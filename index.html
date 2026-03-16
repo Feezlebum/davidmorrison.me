@@ -515,26 +515,67 @@
       background: var(--cream-dark);
     }
 
-    .video-frame {
+    .video-spoiler {
       max-width: 720px;
       margin: var(--space-md) auto 0;
       border-radius: 2px;
       overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .spoiler-cover {
+      position: absolute;
+      inset: 0;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .spoiler-text {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.8rem 1.6rem;
+      border-radius: 2px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .video-spoiler:hover .spoiler-text {
+      color: rgba(255, 255, 255, 0.8);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .video-spoiler.revealed {
+      cursor: default;
+    }
+
+    .video-spoiler.revealed .spoiler-cover {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .video-frame {
+      border-radius: 2px;
+      overflow: hidden;
       box-shadow: 0 4px 20px rgba(26, 26, 46, 0.08);
+      aspect-ratio: 16 / 9;
+      background: #000;
     }
 
     .video-frame video {
       width: 100%;
+      height: 100%;
       display: block;
       background: #000;
-    }
-
-    .video-caption {
-      text-align: center;
-      margin-top: var(--space-sm);
-      font-size: 0.82rem;
-      color: var(--ink-muted);
-      font-style: italic;
     }
 
     /* ═══════════════════════════════════════════
@@ -829,35 +870,23 @@
       <p class="builds-intro reveal">I build things on the side. Partly because I enjoy it, partly because shipping your own product teaches you more about users than any amount of research.</p>
 
       <div class="builds-grid">
-        <div class="build-card reveal">
+        <a href="https://play.google.com/store/apps/details?id=com.peptrack.app" target="_blank" rel="noopener" class="build-card reveal" style="text-decoration:none; color:inherit; display:block;">
           <div class="build-name">PepTrack</div>
           <div class="build-tag">Live · Revenue</div>
           <p class="build-desc">Peptide tracking app, live on Google Play. People use it to log and schedule compounds. It makes money.</p>
-        </div>
+        </a>
 
-        <div class="build-card reveal">
+        <a href="https://www.producthunt.com/products/mascotvibe" target="_blank" rel="noopener" class="build-card reveal" style="text-decoration:none; color:inherit; display:block;">
           <div class="build-name">MascotVibe</div>
           <div class="build-tag">Launched · Product Hunt</div>
           <p class="build-desc">AI mascot generator and animator. Describe your brand, get a character. Animate it. Launched on Product Hunt last week.</p>
-        </div>
+        </a>
 
-        <div class="build-card reveal">
-          <div class="build-name">Michi</div>
-          <div class="build-tag">In Development</div>
-          <p class="build-desc">AI menu scanner. Point your phone at a restaurant menu, get calorie counts and health recommendations before you order.</p>
-        </div>
-
-        <div class="build-card reveal">
-          <div class="build-name">SniffScam</div>
-          <div class="build-tag">Live</div>
-          <p class="build-desc">Paste a suspicious email, find out if it's a scam. Built for people who get targeted most often.</p>
-        </div>
-
-        <div class="build-card reveal">
+        <a href="https://infinitestrip.com/" target="_blank" rel="noopener" class="build-card reveal" style="text-decoration:none; color:inherit; display:block;">
           <div class="build-name">Infinite Strip</div>
           <div class="build-tag">Autonomous</div>
           <p class="build-desc">An AI generates a new 4-panel comic every day at 11am. No human involvement. It just runs.</p>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -922,16 +951,21 @@
       <h2 class="reveal" style="margin-bottom: 0.5rem;">How I actually build things</h2>
       <p class="reveal" style="margin-bottom: 0;">A short video. No script, no editing.</p>
 
-      <div class="video-frame reveal">
-        <video
-          controls
-          playsinline
-          preload="metadata"
-          src="capabilities.mp4"
-          style="width: 100%; display: block; background: #000;"
-        ></video>
+      <div class="video-spoiler reveal" id="videoSpoiler" onclick="document.getElementById('videoSpoiler').classList.add('revealed')">
+        <div class="spoiler-cover">
+          <span class="spoiler-text">Click to reveal</span>
+        </div>
+        <div class="video-frame">
+          <video
+            id="spoilerVideo"
+            controls
+            playsinline
+            preload="none"
+            src="capabilities.mp4"
+            style="width: 100%; display: block; background: #000;"
+          ></video>
+        </div>
       </div>
-      <p class="video-caption reveal"></p>
     </div>
   </section>
 
@@ -985,6 +1019,15 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.reveal, .exp-item').forEach(el => observer.observe(el));
+
+    // Video spoiler: load and play on reveal
+    document.getElementById('videoSpoiler').addEventListener('click', function() {
+      const video = document.getElementById('spoilerVideo');
+      if (video.preload === 'none') {
+        video.preload = 'auto';
+        video.load();
+      }
+    }, { once: true });
   </script>
 
 </body>
