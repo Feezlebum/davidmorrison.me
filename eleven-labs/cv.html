@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>David Morrison — ElevenLabs CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F8F6F1;
+      --ink: #1a1a2e;
+      --ink-light: #3a3a52;
+      --ink-muted: #6b6b82;
+      --terracotta: #C4652A;
+      --rule: rgba(26, 26, 46, 0.12);
+      --serif: 'Fraunces', Georgia, serif;
+      --sans: 'Inter', -apple-system, sans-serif;
+    }
+
+    html { font-size: 11px; }
+
+    body {
+      background: white;
+      color: var(--ink);
+      font-family: var(--sans);
+      font-weight: 400;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      width: 210mm;
+      margin: 0 auto;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 28mm 24mm 20mm 24mm;
+      page-break-after: always;
+      position: relative;
+    }
+
+    .page:last-child { page-break-after: avoid; }
+
+    /* ── HEADER ── */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--ink);
+      margin-bottom: 20px;
+    }
+
+    .header-left h1 {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    .header-left .tagline {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      margin-top: 4px;
+      letter-spacing: 0.03em;
+    }
+
+    .header-right {
+      text-align: right;
+      font-size: 9.5px;
+      color: var(--ink-light);
+      line-height: 1.7;
+    }
+
+    .header-right a {
+      color: var(--ink-light);
+      text-decoration: none;
+    }
+
+    /* ── SECTION ── */
+    .section { margin-bottom: 18px; }
+
+    .section-title {
+      font-family: var(--sans);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 10px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* ── ABOUT ── */
+    .about p {
+      font-size: 10.5px;
+      color: var(--ink-light);
+      line-height: 1.6;
+      max-width: 100%;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-entry { margin-bottom: 14px; }
+    .exp-entry:last-child { margin-bottom: 0; }
+
+    .exp-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1px;
+    }
+
+    .exp-company {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .exp-date {
+      font-size: 9px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+
+    .exp-role {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--terracotta);
+      margin-bottom: 2px;
+    }
+
+    .exp-progression {
+      font-size: 9px;
+      color: var(--ink-muted);
+      font-style: italic;
+      margin-bottom: 4px;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      padding: 0;
+    }
+
+    .exp-bullets li {
+      font-size: 10px;
+      color: var(--ink-light);
+      line-height: 1.5;
+      padding-left: 10px;
+      position: relative;
+      margin-bottom: 2px;
+    }
+
+    .exp-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 4px;
+      height: 1px;
+      background: var(--terracotta);
+    }
+
+    .metric {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .exp-earlier {
+      font-size: 9.5px;
+      color: var(--ink-muted);
+      font-style: italic;
+      margin-top: 10px;
+    }
+
+    /* ── TWO COLUMN ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    /* ── PROJECTS ── */
+    .project { margin-bottom: 8px; }
+    .project:last-child { margin-bottom: 0; }
+
+    .project-name {
+      font-family: var(--serif);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .project-tag {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+    }
+
+    .project-desc {
+      font-size: 9.5px;
+      color: var(--ink-muted);
+      line-height: 1.5;
+      margin-top: 1px;
+    }
+
+    /* ── SKILLS ── */
+    .skills-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .skills-list li {
+      font-size: 10px;
+      color: var(--ink-light);
+      line-height: 1.5;
+      padding-left: 10px;
+      position: relative;
+      margin-bottom: 3px;
+    }
+
+    .skills-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 4px;
+      height: 1px;
+      background: var(--terracotta);
+    }
+
+    .skill-name {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ── EDUCATION ── */
+    .edu-entry { margin-bottom: 6px; }
+
+    .edu-name {
+      font-size: 10.5px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .edu-detail {
+      font-size: 9.5px;
+      color: var(--ink-muted);
+    }
+
+    /* ── ACCENT BAR ── */
+    .page::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--terracotta);
+    }
+
+    /* ── LINKS ── */
+    a { color: var(--terracotta); text-decoration: none; }
+
+    @media print {
+      body { width: auto; }
+      .page { padding: 20mm 22mm 18mm 22mm; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════ PAGE 1 ════════ -->
+<div class="page">
+
+  <div class="header">
+    <div class="header-left">
+      <h1>David Morrison</h1>
+      <div class="tagline">Social Lead · AI-Native Creative Marketing · Product Storytelling</div>
+    </div>
+    <div class="header-right">
+      d.morrison1@hotmail.co.uk<br>
+      <a href="https://linkedin.com/in/davidmorrison12">linkedin.com/in/davidmorrison12</a><br>
+      <a href="https://davidmorrison.me/eleven-labs">davidmorrison.me/eleven-labs</a><br>
+      United Kingdom
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section about">
+    <div class="section-title">Profile</div>
+    <p>Social and creative marketing lead with seven years turning complex technical products into clear public narratives, platform-native social content, and communities people want to follow. At NEAR Foundation I worked with co-founder Illia Polosukhin, co-author of "Attention Is All You Need", on brand strategy and communications while scaling X followers by 500% in six months and share of voice by 600%. I also build AI-assisted products myself, including creative tooling and recurring content experiments, so I understand the difference between describing a product and showing why it matters.</p>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section">
+    <div class="section-title">Experience</div>
+
+    <div class="exp-entry">
+      <div class="exp-top">
+        <span class="exp-company">Fogo</span>
+        <span class="exp-date">May 2025 – Present</span>
+      </div>
+      <div class="exp-role">Social Lead</div>
+      <ul class="exp-bullets">
+        <li>Own social strategy, public voice, and technical storytelling for a high-performance Layer 1 blockchain</li>
+        <li>Translate technical concepts such as sub-40ms block times, colocation consensus, and market-structure design into clear audience-facing narratives</li>
+        <li>Work daily with founders, engineering, product, and ecosystem teams to keep external messaging accurate and useful</li>
+        <li>Use Superluminal (@slx_fi) as a sharper current example of product-led social voice, technical positioning, and market education</li>
+      </ul>
+    </div>
+
+    <div class="exp-entry">
+      <div class="exp-top">
+        <span class="exp-company">NEAR Foundation</span>
+        <span class="exp-date">Jul 2021 – May 2025</span>
+      </div>
+      <div class="exp-role">Head of Creative Campaigns & Social Media</div>
+      <div class="exp-progression">Community Lead → Community Engagement Lead → Head of Social Media → Head of Creative Campaigns & Social Media</div>
+      <ul class="exp-bullets">
+        <li><span class="metric">500% increase in X followers in 6 months</span></li>
+        <li><span class="metric">600% increase in share of voice</span> in under 3 months by targeting developer audiences directly</li>
+        <li>Ran the largest CoinGecko co-marketing campaign in the ecosystem: <span class="metric">20,000 users, 10,000+ on-chain transactions</span></li>
+        <li>Worked directly with co-founder Illia Polosukhin, co-author of "Attention Is All You Need", on brand strategy, communications, and ecosystem narrative</li>
+        <li>Hired and mentored a Marketing Executive from onboarding through to working independently</li>
+        <li>Sat in top-level strategy sessions at international offsites. Contributed to marketing direction and org-wide planning</li>
+        <li>Set the strategy for NEAR’s forum and Discord as part of the wider brand and audience ecosystem. Both hit <span class="metric">all-time activity highs</span></li>
+        <li>Represented NEAR at events around the world, helping translate the brand in rooms where audience trust and presence actually mattered</li>
+        <li>Presented on stage at international conferences and interviewed industry leaders</li>
+      </ul>
+    </div>
+
+    <div class="exp-entry">
+      <div class="exp-top">
+        <span class="exp-company">Plutus.it</span>
+        <span class="exp-date">Jul 2018 – Sep 2021</span>
+      </div>
+      <div class="exp-role">Community Manager & Customer Service Team Lead</div>
+      <ul class="exp-bullets">
+        <li>Owned social and audience-facing channels across Discord, Telegram, BitcoinTalk, and Reddit for a crypto fintech startup</li>
+        <li>Created an Ambassador Program that gave the most active members a reason to stay active</li>
+        <li>Worked with marketing to drive traffic to the site and social channels</li>
+        <li>Built the support system from scratch: ZenDesk, live chat, how-to guides, FAQ database</li>
+        <li>Wrote due diligence reports on potential partners for the executive team</li>
+      </ul>
+    </div>
+
+    <div class="exp-earlier">Earlier: Sales at Dixons Carphone (2015–2018). Crew Trainer at McDonald's (2011–2015). Customer-facing work since I was 16.</div>
+
+  </div>
+
+</div>
+
+<!-- ════════ PAGE 2 ════════ -->
+<div class="page">
+
+  <div class="two-col">
+
+    <div>
+      <!-- SKILLS -->
+      <div class="section">
+        <div class="section-title">Capabilities</div>
+        <ul class="skills-list">
+          <li><span class="skill-name">Social Strategy & Audience Growth</span> — X, LinkedIn, Discord, community surfaces, audience development, and brand presence.</li>
+          <li><span class="skill-name">Strategic Communications</span> — Brand narrative, positioning, launch messaging, executive communications, and technical storytelling.</li>
+          <li><span class="skill-name">Content Strategy</span> — Platform-native social copy, campaigns, threads, scripts, product moments, demos, and long-form.</li>
+          <li><span class="skill-name">Cross-functional Collaboration</span> — Creative, product, engineering, founders, growth, external partners. I work between teams and keep everyone aligned.</li>
+          <li><span class="skill-name">Partner & Stakeholder Management</span> — Co-marketing, partnerships, executive comms across time zones.</li>
+          <li><span class="skill-name">Campaigns, Events & Activation</span> — Launches, co-marketing moments, creator/community activations, international conferences, logistics and follow-through.</li>
+          <li><span class="skill-name">AI & Product Development</span> — AI-assisted product building, creative tooling, rapid prototyping, and user feedback loops.</li>
+          <li><span class="skill-name">Video Editing & Product Demos</span> — Short-form video workflows, screen recording, product walkthroughs, social clips, and editing for clear product moments.</li>
+          <li><span class="skill-name">Performance Insight & Reporting</span> — Engagement metrics, share of voice, campaign reporting, and signal tracking.</li>
+        </ul>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="section">
+        <div class="section-title">Education</div>
+        <div class="edu-entry">
+          <div class="edu-name">Northumbria University</div>
+          <div class="edu-detail">BSc Computer & Digital Forensics — 2015–2018</div>
+          <div class="edu-detail" style="font-style: italic;">Dissertation: A Forensic Investigation into Bitcoin and TOR</div>
+        </div>
+        <div class="edu-entry">
+          <div class="edu-name">General Assembly</div>
+          <div class="edu-detail">Product Management — 2021</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <!-- PROJECTS -->
+      <div class="section">
+        <div class="section-title">What I Build</div>
+        <p style="font-size: 9.5px; color: var(--ink-muted); margin-bottom: 10px; line-height: 1.5;">I build things on the side. Partly because I enjoy it, partly because shipping your own product teaches you more about users than any research.</p>
+
+        <div class="project">
+          <div class="project-name">PepTrack <span class="project-tag">Live · Revenue</span></div>
+          <div class="project-desc">Peptide tracking app live on Google Play. Proof of hands-on product thinking, positioning, user onboarding, and monetisation beyond advisory marketing work.</div>
+        </div>
+
+        <div class="project">
+          <div class="project-name">MascotVibe <span class="project-tag">Launched · Product Hunt</span></div>
+          <div class="project-desc">AI mascot generator and animator launched on Product Hunt. Practical experience with AI creative tooling, brand identity, character generation, and social-ready assets.</div>
+        </div>
+
+        <div class="project">
+          <div class="project-name">Infinite Strip <span class="project-tag">Autonomous</span></div>
+          <div class="project-desc">Autonomous AI-generated comic experiment: recurring creative production, automated publishing, and AI-native entertainment.</div>
+        </div>
+      </div>
+
+      <!-- KEY HIGHLIGHTS -->
+      <div class="section">
+        <div class="section-title">Key Highlights</div>
+        <ul class="skills-list">
+          <li>Worked directly with NEAR co-founder <span class="skill-name">Illia Polosukhin</span> (co-author of "Attention Is All You Need") on brand strategy</li>
+          <li>Current work sample: Superluminal (<span class="skill-name">@slx_fi</span>) for product-led social voice and technical market education</li>
+          <li>Promoted 4 times in under 4 years at NEAR Foundation</li>
+          <li>In crypto and blockchain since 2014</li>
+          <li>Public speaker at international conferences</li>
+          <li>Degree dissertation on Bitcoin forensics</li>
+        </ul>
+      </div>
+
+      <!-- LINKS -->
+      <div class="section">
+        <div class="section-title">Links</div>
+        <ul class="skills-list">
+          <li><a href="https://davidmorrison.me/eleven-labs">davidmorrison.me/eleven-labs</a></li>
+          <li><a href="https://linkedin.com/in/davidmorrison12">LinkedIn</a></li>
+          <li><a href="https://play.google.com/store/apps/details?id=com.peptrack.app">PepTrack on Google Play</a></li>
+          <li><a href="https://www.producthunt.com/products/mascotvibe">MascotVibe on Product Hunt</a></li>
+          <li><a href="https://infinitestrip.com">infinitestrip.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
