@@ -623,80 +623,6 @@
       padding: var(--space-md) 0;
     }
 
-    body.locked {
-      overflow: hidden;
-    }
-
-    body.locked > :not(.password-gate) {
-      visibility: hidden;
-    }
-
-    .password-gate {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      background: var(--cream);
-    }
-
-    .password-card {
-      width: min(100%, 420px);
-      padding: 2rem;
-      border: 1px solid var(--rule);
-      background: rgba(255, 255, 255, 0.35);
-    }
-
-    .password-card h1 {
-      font-size: 2.2rem;
-      margin-bottom: 0.7rem;
-    }
-
-    .password-card p {
-      margin-bottom: 1.4rem;
-    }
-
-    .password-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--terracotta);
-      margin-bottom: 0.8rem;
-    }
-
-    .password-card input,
-    .password-card button {
-      width: 100%;
-      height: 44px;
-      border-radius: 2px;
-      font: inherit;
-    }
-
-    .password-card input {
-      margin-bottom: 0.8rem;
-      padding: 0 0.9rem;
-      border: 1px solid var(--rule-strong);
-      color: var(--ink);
-      background: #fff;
-    }
-
-    .password-card button {
-      border: 0;
-      background: var(--ink);
-      color: var(--cream);
-      cursor: pointer;
-    }
-
-    .password-error {
-      min-height: 1.4rem;
-      margin-top: 0.7rem;
-      color: var(--terracotta);
-      font-size: 0.85rem;
-    }
-
     .footer-inner {
       display: flex;
       justify-content: space-between;
@@ -794,17 +720,7 @@
     }
   </style>
 </head>
-<body class="locked">
-  <div id="passwordGate" class="password-gate">
-    <form class="password-card" id="passwordForm">
-      <div class="password-label">Private CV</div>
-      <h1>David Morrison</h1>
-      <p>Enter password to view the standard portfolio.</p>
-      <input id="passwordInput" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password">
-      <button type="submit">Enter</button>
-      <div class="password-error" id="passwordError" role="status"></div>
-    </form>
-  </div>
+<body>
 
   <!-- ════════════════════════════════════════
        NAV
@@ -1087,30 +1003,6 @@
        SCRIPTS
   ════════════════════════════════════════ -->
   <script>
-    const gatePassword = 'near';
-    const gate = document.getElementById('passwordGate');
-    const form = document.getElementById('passwordForm');
-    const input = document.getElementById('passwordInput');
-    const error = document.getElementById('passwordError');
-
-    if (sessionStorage.getItem('dmPortfolioUnlocked') === 'true') {
-      document.body.classList.remove('locked');
-      gate.remove();
-    }
-
-    form?.addEventListener('submit', (event) => {
-      event.preventDefault();
-      if (input.value.trim().toLowerCase() === gatePassword) {
-        sessionStorage.setItem('dmPortfolioUnlocked', 'true');
-        document.body.classList.remove('locked');
-        gate.remove();
-      } else {
-        error.textContent = 'Wrong password';
-        input.value = '';
-        input.focus();
-      }
-    });
-
     // Nav scroll effect
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
