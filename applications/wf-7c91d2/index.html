@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="referrer" content="no-referrer">
+  <title>David Morrison — World Foundation</title>
+  <meta name="description" content="A private application brief prepared for World Foundation.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --paper: #f2f1ec;
+      --ink: #101214;
+      --muted: #5d6163;
+      --line: rgba(16, 18, 20, 0.18);
+      --blue: #315cf3;
+      --blue-soft: #dfe6ff;
+      --acid: #d8ff60;
+      --sans: "Manrope", system-ui, sans-serif;
+      --serif: "Newsreader", Georgia, serif;
+      --mono: "DM Mono", monospace;
+      --max: 1180px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 82% 8%, rgba(49, 92, 243, 0.13), transparent 24rem),
+        var(--paper);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--acid); color: var(--ink); }
+
+    a { color: inherit; }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: relative;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .wordmark {
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+
+    .nav-link, .button {
+      display: inline-flex;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0 17px;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .nav-link:hover, .button:hover { transform: translateY(-2px); border-color: var(--ink); }
+    .button--dark { background: var(--ink); color: white; border-color: var(--ink); }
+    .button--dark:hover { background: var(--blue); border-color: var(--blue); }
+
+    .hero {
+      position: relative;
+      min-height: 760px;
+      padding: 86px 0 56px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.7fr);
+      gap: 70px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 34px;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--acid);
+      box-shadow: 0 0 0 5px rgba(216, 255, 96, 0.32);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 820px;
+      margin-bottom: 28px;
+      font-family: var(--serif);
+      font-size: clamp(4.4rem, 9.2vw, 8.6rem);
+      font-weight: 300;
+      letter-spacing: -0.062em;
+      line-height: 0.82;
+    }
+
+    .hero-role {
+      max-width: 780px;
+      margin-bottom: 30px;
+      font-family: var(--serif);
+      font-size: clamp(1.75rem, 3.2vw, 3.2rem);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+    }
+
+    .hero-intro {
+      max-width: 680px;
+      margin-bottom: 38px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.5vw, 1.18rem);
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .signal {
+      position: relative;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.36);
+      backdrop-filter: blur(8px);
+    }
+
+    .signal-orbit {
+      position: relative;
+      aspect-ratio: 1;
+      margin-bottom: 28px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 36% 33%, rgba(255,255,255,.96) 0 3%, transparent 4%),
+        radial-gradient(circle at 44% 40%, #8fabff 0 11%, #315cf3 38%, #182962 67%, #101214 100%);
+      box-shadow: inset -28px -24px 55px rgba(0,0,0,.33), 0 30px 80px rgba(49, 92, 243, .21);
+    }
+
+    .signal-orbit::before,
+    .signal-orbit::after {
+      content: "";
+      position: absolute;
+      inset: -10%;
+      border: 1px solid rgba(49, 92, 243, .36);
+      border-radius: 50%;
+      transform: rotate(26deg) scaleY(.34);
+    }
+
+    .signal-orbit::after {
+      inset: -17%;
+      border-color: rgba(16, 18, 20, .17);
+      transform: rotate(-28deg) scaleY(.54);
+    }
+
+    .signal-label {
+      margin-bottom: 18px;
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .fact-list { display: grid; gap: 0; }
+    .fact {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+      font-size: .86rem;
+    }
+    .fact span:first-child { color: var(--muted); }
+    .fact span:last-child { text-align: right; font-weight: 600; }
+
+    .section {
+      padding: 110px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 70px;
+    }
+
+    .section-index {
+      position: sticky;
+      top: 28px;
+      align-self: start;
+      font-family: var(--mono);
+      font-size: .72rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .section-index strong {
+      display: block;
+      margin-top: 8px;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    h2 {
+      max-width: 820px;
+      margin-bottom: 44px;
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5vw, 5.4rem);
+      font-weight: 300;
+      letter-spacing: -0.045em;
+      line-height: .96;
+    }
+
+    .lead {
+      max-width: 760px;
+      font-size: clamp(1.15rem, 2vw, 1.45rem);
+      color: var(--muted);
+    }
+
+    .brief-list { margin-top: 54px; border-top: 1px solid var(--ink); }
+    .brief-item {
+      display: grid;
+      grid-template-columns: 52px 220px minmax(0, 1fr);
+      gap: 24px;
+      padding: 27px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .brief-number { font-family: var(--mono); font-size: .72rem; color: var(--blue); }
+    .brief-title { font-weight: 600; line-height: 1.35; }
+    .brief-copy { color: var(--muted); }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 52px;
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+    }
+    .metric { min-height: 190px; padding: 26px 20px 24px 0; }
+    .metric + .metric { padding-left: 20px; border-left: 1px solid var(--line); }
+    .metric-value {
+      display: block;
+      margin-bottom: 25px;
+      font-family: var(--serif);
+      font-size: clamp(3rem, 5vw, 5.2rem);
+      font-weight: 300;
+      letter-spacing: -.05em;
+      line-height: .9;
+    }
+    .metric-label { max-width: 18ch; color: var(--muted); font-size: .86rem; }
+
+    .evidence { display: grid; gap: 34px; }
+    .evidence-card {
+      display: grid;
+      grid-template-columns: minmax(200px, .65fr) minmax(0, 1.35fr);
+      gap: 34px;
+      padding: 34px 0 4px;
+      border-top: 1px solid var(--line);
+    }
+    .evidence-card:first-child { border-color: var(--ink); }
+    .evidence-card h3 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      font-weight: 400;
+      letter-spacing: -.025em;
+      line-height: 1.1;
+    }
+    .evidence-card p { color: var(--muted); }
+
+    .timeline { border-top: 1px solid var(--ink); }
+    .role {
+      display: grid;
+      grid-template-columns: 165px 230px minmax(0, 1fr);
+      gap: 28px;
+      padding: 34px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .role-date { font-family: var(--mono); font-size: .7rem; color: var(--muted); }
+    .role-company { font-family: var(--serif); font-size: 1.65rem; line-height: 1; }
+    .role-title { margin-top: 8px; color: var(--blue); font-size: .78rem; font-weight: 600; }
+    .role ul { margin: 0; padding-left: 1.1em; color: var(--muted); }
+    .role li + li { margin-top: 8px; }
+
+    .world-note {
+      position: relative;
+      overflow: hidden;
+      background: var(--ink);
+      color: white;
+    }
+    .world-note::after {
+      content: "";
+      position: absolute;
+      right: -14vw;
+      bottom: -28vw;
+      width: 54vw;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 36% 32%, #a9bcff, var(--blue) 34%, #151e3d 70%);
+      opacity: .92;
+    }
+    .world-note .section-grid { position: relative; z-index: 1; }
+    .world-note .section-index, .world-note .lead { color: rgba(255,255,255,.67); }
+    .world-note .section-index strong { color: white; }
+    .world-note h2 { max-width: 760px; }
+    .world-note .lead { max-width: 650px; }
+
+    .footer { padding: 70px 0; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 40px;
+      align-items: end;
+    }
+    .footer h2 { max-width: 700px; margin-bottom: 22px; }
+    .footer p { color: var(--muted); }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
+    .fineprint {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      margin-top: 70px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: .66rem;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .nav-link, .button { transition: none; }
+    }
+
+    @media (max-width: 900px) {
+      .hero { min-height: auto; }
+      .hero-grid, .section-grid { grid-template-columns: 1fr; }
+      .hero-grid { gap: 56px; }
+      .signal { max-width: 460px; }
+      .section-grid { gap: 38px; }
+      .section-index { position: static; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+      .metric:nth-child(3) { border-left: 0; border-top: 1px solid var(--line); }
+      .metric:nth-child(4) { border-top: 1px solid var(--line); }
+      .role { grid-template-columns: 130px 200px minmax(0, 1fr); }
+      .world-note::after { width: 72vw; right: -25vw; bottom: -35vw; opacity: .65; }
+    }
+
+    @media (max-width: 650px) {
+      .wrap { width: min(100% - 30px, var(--max)); }
+      .nav { min-height: 66px; }
+      .nav-link { display: none; }
+      .button { min-height: 40px; padding-inline: 14px; }
+      .hero { padding-top: 60px; }
+      h1 { font-size: clamp(4rem, 20vw, 6rem); }
+      .section { padding: 76px 0; }
+      .brief-item { grid-template-columns: 36px 1fr; gap: 15px; }
+      .brief-copy { grid-column: 2; }
+      .metrics { grid-template-columns: 1fr; }
+      .metric, .metric + .metric { min-height: 0; padding: 24px 0; border-left: 0; border-top: 1px solid var(--line); }
+      .metric:first-child { border-top: 0; }
+      .metric-label { max-width: 28ch; }
+      .evidence-card { grid-template-columns: 1fr; gap: 14px; }
+      .role { grid-template-columns: 1fr; gap: 12px; }
+      .role-title { margin-top: 4px; }
+      .footer-grid { grid-template-columns: 1fr; align-items: start; }
+      .footer-links { justify-content: flex-start; }
+      .fineprint { flex-direction: column; }
+      .world-note::after { width: 112vw; opacity: .35; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Application navigation">
+      <a class="wordmark" href="https://davidmorrison.me">David Morrison / Application brief</a>
+      <div class="nav-actions">
+        <a class="nav-link" href="#experience">Experience</a>
+        <a class="button button--dark" href="../../cv/world-foundation/David_Morrison_World_Foundation_CV.pdf">Download CV</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow reveal">Prepared for World Foundation</p>
+          <h1 class="reveal">David<br>Morrison</h1>
+          <p class="hero-role reveal">Community and ecosystem leadership for technical networks.</p>
+          <p class="hero-intro reveal">I have spent seven years building the public voice, communities, campaigns, and partner relationships around crypto products. I started in community, grew into Foundation-level strategy, and still like doing the hands-on work.</p>
+          <div class="hero-actions reveal">
+            <a class="button button--dark" href="../../cv/world-foundation/David_Morrison_World_Foundation_CV.pdf">Download tailored CV</a>
+            <a class="button" href="mailto:d.morrison1@hotmail.co.uk">Email me</a>
+          </div>
+        </div>
+        <aside class="signal reveal" aria-label="Candidate overview">
+          <div class="signal-orbit" aria-hidden="true"></div>
+          <div class="signal-label">Candidate signal</div>
+          <div class="fact-list">
+            <div class="fact"><span>Based</span><span>United Kingdom<br>CET-compatible</span></div>
+            <div class="fact"><span>Crypto</span><span>Since 2014</span></div>
+            <div class="fact"><span>Experience</span><span>7+ years</span></div>
+            <div class="fact"><span>Current</span><span>Douro Labs</span></div>
+            <div class="fact"><span>Focus</span><span>Community · narrative<br>ecosystem · AI</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="brief">
+      <div class="wrap section-grid">
+        <div class="section-index">01 <strong>The brief</strong></div>
+        <div>
+          <h2 class="reveal">This is bigger than running a community channel.</h2>
+          <p class="lead reveal">The job is to give World Foundation and World Chain a credible voice, carry complex work into the conversations that matter, and build enough trust that builders, researchers, founders, investors, and media want to stay in the room.</p>
+          <div class="brief-list reveal">
+            <div class="brief-item">
+              <span class="brief-number">01</span>
+              <span class="brief-title">Set the narrative</span>
+              <span class="brief-copy">Turn protocol, governance, grants, privacy, and ecosystem work into a clear point of view that is recognisably the Foundation's.</span>
+            </div>
+            <div class="brief-item">
+              <span class="brief-number">02</span>
+              <span class="brief-title">Earn relevance</span>
+              <span class="brief-copy">Know which conversations, communities, events, and relationships matter, then contribute with substance instead of chasing attention.</span>
+            </div>
+            <div class="brief-item">
+              <span class="brief-number">03</span>
+              <span class="brief-title">Connect the ecosystem</span>
+              <span class="brief-copy">Keep Foundation, core contributors, builders, partners, and community aligned without flattening their different roles.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proof">
+      <div class="wrap section-grid">
+        <div class="section-index">02 <strong>Track record</strong></div>
+        <div>
+          <h2 class="reveal">The useful numbers.</h2>
+          <p class="lead reveal">Reach only matters when it changes who notices the network, joins it, or acts. These are the outcomes I am proudest of from NEAR Foundation.</p>
+          <div class="metrics reveal">
+            <div class="metric">
+              <span class="metric-value">500%</span>
+              <span class="metric-label">increase in X followers in six months</span>
+            </div>
+            <div class="metric">
+              <span class="metric-value">600%</span>
+              <span class="metric-label">increase in share of voice in under three months</span>
+            </div>
+            <div class="metric">
+              <span class="metric-value">20k</span>
+              <span class="metric-label">users brought into NEAR's largest CoinGecko campaign</span>
+            </div>
+            <div class="metric">
+              <span class="metric-value">10k+</span>
+              <span class="metric-label">on-chain transactions from that campaign</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="fit">
+      <div class="wrap section-grid">
+        <div class="section-index">03 <strong>Why the fit is real</strong></div>
+        <div class="evidence">
+          <article class="evidence-card reveal">
+            <h3>Foundation perspective</h3>
+            <p>I spent nearly four years at NEAR Foundation, moving from Community Lead to Head of Creative Campaigns &amp; Social Media. I learned how to represent a network rather than a single product, and how to work across leadership, ecosystem teams, partners, developers, and community.</p>
+          </article>
+          <article class="evidence-card reveal">
+            <h3>Technical translation</h3>
+            <p>At Douro Labs I lead social for special projects across Layer 1 infrastructure and onchain perpetuals. The work starts with founders, engineers, and product teams, then turns market structure, matching systems, sub-40ms block times, and colocation consensus into language that stays accurate.</p>
+          </article>
+          <article class="evidence-card reveal">
+            <h3>Community infrastructure</h3>
+            <p>I set the strategy for NEAR's forum and Discord, which both reached all-time activity highs during my tenure. Earlier, I ran Discord, Telegram, BitcoinTalk, and Reddit at Plutus and built its ambassador programme and customer-support system from scratch.</p>
+          </article>
+          <article class="evidence-card reveal">
+            <h3>People and presence</h3>
+            <p>I hired and mentored a Marketing Executive through to independent ownership, worked with partners and agencies across time zones, and represented NEAR at conferences and ecosystem events around the world, both on stage and in the room.</p>
+          </article>
+          <article class="evidence-card reveal">
+            <h3>AI from the inside</h3>
+            <p>I build products with AI rather than talking about it from a distance. My live projects include an AI mascot tool, an autonomous comic, and consumer apps built through AI-assisted product development. At NEAR I also worked directly on brand strategy with Illia Polosukhin, co-author of “Attention Is All You Need.”</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="wrap section-grid">
+        <div class="section-index">04 <strong>Experience</strong></div>
+        <div>
+          <h2 class="reveal">From community operator to strategic lead.</h2>
+          <div class="timeline reveal">
+            <article class="role">
+              <div class="role-date">2025 — now</div>
+              <div>
+                <div class="role-company">Douro Labs</div>
+                <div class="role-title">Social Lead, Special Projects</div>
+              </div>
+              <ul>
+                <li>Lead strategy and daily social across Layer 1 infrastructure and onchain perpetuals.</li>
+                <li>Set the voice for technical products and keep their public story aligned with product reality.</li>
+                <li>Work directly with founders, engineers, product, growth, and sales before and after launch.</li>
+              </ul>
+            </article>
+            <article class="role">
+              <div class="role-date">2021 — 2025</div>
+              <div>
+                <div class="role-company">NEAR Foundation</div>
+                <div class="role-title">Head of Creative Campaigns &amp; Social Media</div>
+              </div>
+              <ul>
+                <li>Promoted through four roles spanning community, engagement, social, and creative campaigns.</li>
+                <li>Led audience strategy, ecosystem campaigns, community surfaces, and global event presence.</li>
+                <li>Worked with leadership and co-founder Illia Polosukhin on positioning and brand strategy.</li>
+              </ul>
+            </article>
+            <article class="role">
+              <div class="role-date">2018 — 2021</div>
+              <div>
+                <div class="role-company">Plutus.it</div>
+                <div class="role-title">Community Manager &amp; Customer Service Team Lead</div>
+              </div>
+              <ul>
+                <li>Owned community across Discord, Telegram, BitcoinTalk, and Reddit.</li>
+                <li>Created the ambassador programme and built the support operation from scratch.</li>
+                <li>Assessed potential partners and wrote due-diligence reports for the executive team.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section world-note">
+      <div class="wrap section-grid">
+        <div class="section-index">05 <strong>Why World</strong></div>
+        <div>
+          <h2 class="reveal">The internet needs a way to know when a human is present without asking that human to give up who they are.</h2>
+          <p class="lead reveal">That is a difficult technical story, a live cultural argument, and a coordination problem across builders, institutions, and communities. It is exactly the kind of work I enjoy: learn the details, find the honest version of the story, and make sure the organisation shows up where the argument is actually happening.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <h2>Useful conversation?</h2>
+          <p>I would be glad to talk through the role and what World Foundation needs next.</p>
+        </div>
+        <div class="footer-links">
+          <a class="button button--dark" href="mailto:d.morrison1@hotmail.co.uk">d.morrison1@hotmail.co.uk</a>
+          <a class="button" href="https://linkedin.com/in/davidmorrison12">LinkedIn</a>
+          <a class="button" href="https://davidmorrison.me">Full portfolio</a>
+        </div>
+      </div>
+      <div class="fineprint">
+        <span>David Morrison · United Kingdom</span>
+        <span>Prepared for World Foundation · 2026</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
