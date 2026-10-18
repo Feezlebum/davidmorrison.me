@@ -1,0 +1,82 @@
+/* The resume uses the shared shell without changing other portfolio pages. */
+.resume-page{font-family:var(--sans,Arial,Helvetica,sans-serif);padding-top:48px;padding-bottom:55px}
+.resume-page .resume-header,.resume-page .resume-section{display:grid;grid-template-columns:1fr 2fr;gap:clamp(30px,5vw,90px);align-items:start}
+.resume-page .resume-header{padding-bottom:54px}
+.resume-page h1{font-family:inherit;font-size:clamp(38px,4vw,60px);font-weight:400;letter-spacing:-.04em;line-height:1.08;margin:0 0 23px}
+.resume-page .resume-role{max-width:320px;font-size:var(--text-body);line-height:1.55;color:var(--ink)}
+.resume-page .resume-location{margin-top:12px;font-size:13px;color:var(--muted)}
+.resume-page .resume-introduction{min-width:0;max-width:900px;padding-top:4px}
+.resume-page .resume-introduction>p:first-child{max-width:740px;font-size:clamp(23px,2.4vw,34px);letter-spacing:-.025em;line-height:1.35}
+.resume-page .resume-introduction-detail{max-width:68ch;font-size:var(--text-body);line-height:1.6;color:var(--muted);margin-top:18px}
+.resume-page .resume-contact-links{display:flex;flex-wrap:wrap;gap:0 25px;margin-top:20px}
+.resume-page .resume-contact-links a{display:inline-flex;align-items:center;min-height:44px;font-size:13px;text-decoration:none;overflow-wrap:anywhere;color:var(--muted)}
+.resume-page .resume-contact-links a:hover{text-decoration:underline;text-underline-offset:4px;color:var(--ink)}
+.resume-page .resume-section{padding:33px 0 38px;border-top:1px solid var(--line)}
+.resume-page .resume-section>h2{font-family:inherit;font-size:14px;font-weight:400;letter-spacing:0;line-height:1.5;padding-top:3px}
+.resume-page .resume-experience{min-width:0;max-width:980px}
+.resume-page .resume-job+.resume-job{margin-top:33px;padding-top:30px;border-top:1px solid var(--line)}
+.resume-page .resume-job-heading,.resume-page .resume-qualification{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 28px;align-items:baseline}
+.resume-page .resume-job-heading>div,.resume-page .resume-qualification>div{min-width:0;flex:1 1 230px}
+.resume-page .resume-job h3,.resume-page .resume-qualification h3{font-family:inherit;font-size:23px;font-weight:400;letter-spacing:-.025em;line-height:1.3}
+.resume-page .resume-job-role,.resume-page .resume-qualification>div>p{margin-top:7px;font-size:var(--text-body);line-height:1.6;color:var(--muted)}
+.resume-page .resume-job-dates{font-size:13px;line-height:1.7;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--muted);margin:0}
+.resume-page .resume-job-points{margin:20px 0 0;padding-left:17px;max-width:68ch;font-size:var(--text-body);line-height:1.7;color:var(--muted)}
+.resume-page .resume-job-points li+li{margin-top:9px}
+.resume-page .resume-job-points li::marker{color:var(--line);font-size:11px}
+.resume-page .resume-job-points a{color:var(--ink);text-decoration-thickness:1px;text-underline-offset:3px}
+.resume-page .resume-job-points a:hover{text-decoration-thickness:2px}
+.resume-page .resume-earlier{margin-top:33px;padding-top:24px;border-top:1px solid var(--line);font-size:var(--text-secondary);line-height:1.7;color:var(--muted)}
+.resume-page .resume-earlier-label{display:block;color:var(--ink);margin-bottom:5px}
+.resume-page .resume-earlier-role{white-space:nowrap}
+.resume-page .resume-earlier-dates{font-variant-numeric:tabular-nums}
+.resume-page .resume-funnel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 40px;max-width:980px;margin:0}
+.resume-page .resume-funnel div{min-width:0}
+.resume-page .resume-funnel dt{font-size:var(--text-body);line-height:1.5;color:var(--ink)}
+.resume-page .resume-funnel dd{margin:4px 0 0;font-size:var(--text-secondary);line-height:1.6;color:var(--muted)}
+.resume-page .resume-progression{max-width:70ch;margin-top:18px;font-size:13px;line-height:1.8;color:var(--muted)}
+.resume-page .resume-progression-label{display:block;color:var(--ink);margin-bottom:5px}
+.resume-page .resume-progression>span[aria-hidden]{display:inline;padding-inline:3px}
+.resume-page .resume-education,.resume-page .resume-certification{padding-block:30px}
+.resume-page .resume-source{margin-top:5px;display:flex;justify-content:flex-end}
+.resume-page .resume-source-link{display:inline-flex;align-items:center;min-height:44px;font-size:13px;line-height:1.6;color:var(--muted);text-decoration:none}
+.resume-page .resume-source-link:hover{text-decoration:underline;text-underline-offset:4px;color:var(--ink)}
+.resume-page .resume-side-projects{display:grid;gap:22px;max-width:820px}
+.resume-page .resume-side-projects h3{font-size:19px;letter-spacing:-.025em;line-height:1.3}
+.resume-page .resume-side-projects a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none}
+.resume-page .resume-side-projects a:hover{text-decoration:underline}
+.resume-page .resume-side-projects p{max-width:68ch;font-size:var(--text-body);line-height:1.7;color:var(--muted)}
+@media(max-width:900px){
+  .resume-page .resume-header,.resume-page .resume-section{grid-template-columns:1fr 1.7fr;gap:35px}
+  .resume-page .resume-job-heading>div,.resume-page .resume-qualification>div{flex-basis:250px}
+}
+@media(max-width:650px){
+  .resume-page{padding-top:32px;padding-bottom:32px}
+  .resume-page .resume-header,.resume-page .resume-section{grid-template-columns:minmax(0,1fr);gap:24px}
+  .resume-page .resume-header{padding-bottom:35px}
+  .resume-page h1{font-size:42px;margin-bottom:18px}
+  .resume-page .resume-role{font-size:var(--text-body);max-width:380px}
+  .resume-page .resume-location{font-size:13px;margin-top:8px}
+  .resume-page .resume-introduction{padding-top:0}
+  .resume-page .resume-introduction>p:first-child{font-size:25px;max-width:550px}
+  .resume-page .resume-introduction-detail{font-size:var(--text-body);margin-top:14px}
+  .resume-page .resume-contact-links{gap:0 22px;margin-top:14px}
+  .resume-page .resume-contact-links a{font-size:13px}
+  .resume-page .resume-section{padding-block:28px}
+  .resume-page .resume-section>h2{font-size:14px;padding-top:0}
+  .resume-page .resume-job h3,.resume-page .resume-qualification h3{font-size:21px}
+  .resume-page .resume-job-role,.resume-page .resume-qualification>div>p{font-size:var(--text-body);margin-top:6px}
+  .resume-page .resume-job-heading,.resume-page .resume-qualification{gap:8px 20px}
+  .resume-page .resume-job-heading>div,.resume-page .resume-qualification>div{flex-basis:100%}
+  .resume-page .resume-job-dates{font-size:13px;white-space:normal}
+  .resume-page .resume-job+.resume-job{margin-top:27px;padding-top:25px}
+  .resume-page .resume-job-points{font-size:var(--text-body);line-height:1.75;margin-top:16px}
+  .resume-page .resume-job-points li+li{margin-top:8px}
+  .resume-page .resume-progression{font-size:13px;margin-top:15px}
+  .resume-page .resume-source{justify-content:flex-start;margin-top:0}
+  .resume-page .resume-side-projects p{font-size:var(--text-body)}
+  .resume-page .resume-funnel{grid-template-columns:minmax(0,1fr);gap:18px}
+  .resume-page .resume-earlier{margin-top:27px;padding-top:22px}
+  .resume-page .resume-earlier-role{display:block;white-space:normal}
+  .resume-page .resume-earlier-separator{display:none}
+}
+

@@ -1,0 +1,80 @@
+/* The Profile as a Canvas: the page is NEAR's X profile in blackout. A black banner
+   carries the Morse signal, a black square avatar sits on it, and the page lightens
+   step by step down the timeline, the way the identity came back. */
+body.profile-theme { --paper: #000; --ink: #f2f2ee; --muted: #a8a8a2; --line: #262626; --accent: #f2f2ee; background: #000; color: var(--ink); }
+.profile-theme .site-header { --muted: #a8a8a2; --line: #262626; --ink: #f2f2ee; }
+.profile-theme #footer { --paper: #f4f4f0; --ink: #151515; --muted: #5b5b55; --line: #d4d4cd; background: var(--paper); color: var(--ink); }
+.campaign-profile { --campaign-accent: #f2f2ee; --mono: ui-monospace, 'Cascadia Mono', 'SFMono-Regular', Consolas, Menlo, monospace; }
+.campaign-profile .campaign-breadcrumb { padding: 18px 0 14px; }
+
+/* Hero: banner, avatar, display name, handle, bio */
+.campaign-profile .profile-hero { padding: 0 0 46px; }
+.profile-banner { position: relative; overflow: hidden; aspect-ratio: 3 / 1; max-height: 380px; width: 100%; background: #070707; border: 1px solid #1c1c1c; }
+.profile-banner::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(255, 255, 255, .025) 0 1px, transparent 1px 4px); pointer-events: none; }
+.profile-morse { position: absolute; top: 50%; left: 0; display: flex; width: max-content; margin: 0; color: #3a3a3a; font-family: var(--mono); font-size: clamp(16px, 2vw, 26px); letter-spacing: .32em; white-space: nowrap; transform: translateY(-50%); animation: profile-morse 48s linear infinite; }
+.profile-morse span { padding-right: 4em; }
+.profile-identity { position: relative; padding: 0 clamp(4px, 1.6vw, 22px); }
+.profile-avatar { width: clamp(96px, 12vw, 168px); aspect-ratio: 1; margin: calc(clamp(96px, 12vw, 168px) / -2) 0 22px; border: 5px solid #f2f2ee; border-radius: 16px; background: #000; }
+.campaign-profile .campaign-hero-meta { margin-bottom: 12px; font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.campaign-profile .campaign-hero-meta > span:first-child { color: var(--ink); }
+.campaign-profile .profile-hero h1 { position: relative; max-width: 14ch; margin: 0; color: var(--ink); font-size: clamp(46px, 6.6vw, 104px); font-weight: 700; letter-spacing: -.05em; line-height: .95; animation: profile-resolve 2.4s steps(1) .3s both; }
+.profile-handle { margin: 10px 0 18px; color: var(--muted); font-size: 17px; }
+.campaign-profile .profile-hero .campaign-summary { max-width: 52ch; color: var(--ink); font-size: clamp(18px, 1.6vw, 21px); line-height: 1.5; }
+
+/* Brief, story and the blackout record stay in the dark */
+.campaign-profile .campaign-facts dt { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+.campaign-profile .campaign-story { padding: 50px 0 20px; border-top: 1px solid var(--line); }
+.campaign-profile .campaign-story h2 { font-size: clamp(32px, 3.6vw, 52px); font-weight: 700; letter-spacing: -.05em; line-height: 1.02; }
+.campaign-profile .campaign-story-copy p { font-size: 17px; }
+.campaign-profile .campaign-feature-section { border-bottom-color: var(--line); }
+.campaign-profile .campaign-image-frame { background: #111; }
+.campaign-profile .campaign-hero-image .campaign-image-frame { border: 1px solid #262626; }
+
+/* The identity comes back in stages: each step is a little lighter than the last. */
+.campaign-profile .campaign-sequence-heading h2 { font-size: clamp(32px, 3.6vw, 52px); font-weight: 700; letter-spacing: -.05em; }
+.campaign-profile .campaign-chapter-menu { border-color: var(--line); }
+.campaign-profile .campaign-chapter { --stage: #000; background: var(--stage); box-shadow: 0 0 0 100vmax var(--stage); clip-path: inset(0 -100vmax); color: var(--ink); }
+.campaign-profile .campaign-step-1 { --stage: #000; }
+.campaign-profile .campaign-step-2 { --stage: #0c0c0c; }
+.campaign-profile .campaign-step-3 { --stage: #1f1f1e; --muted: #b3b3ad; --line: #333; }
+.campaign-profile .campaign-step-4 { --stage: #cfcfc9; --ink: #121212; --muted: #45453f; --line: #b5b5ae; }
+.campaign-profile .campaign-step-5 { --stage: #ecece7; --ink: #121212; --muted: #4f4f49; --line: #d0d0c9; }
+.campaign-profile .campaign-chapter-number span { display: inline-grid; place-items: center; width: 30px; height: 30px; border: 1px solid currentColor; border-radius: 7px; font-family: var(--mono); font-size: 11px; }
+.campaign-profile .campaign-step-1 .campaign-chapter-number span { background: #000; border-color: #f2f2ee; color: #f2f2ee; }
+.campaign-profile .campaign-step-4 .campaign-chapter-number span, .campaign-profile .campaign-step-5 .campaign-chapter-number span { color: #121212; }
+.campaign-profile .campaign-chapter-number { color: var(--ink); }
+.campaign-profile .campaign-chapter-heading h3 { font-weight: 600; }
+.campaign-profile .campaign-step-1 .campaign-chapter-heading h3 { font-family: var(--mono); font-weight: 400; letter-spacing: .02em; text-transform: uppercase; }
+.campaign-profile .campaign-earned-label { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.campaign-profile .campaign-chapter .campaign-source-link, .campaign-profile .campaign-chapter .tweet-original-link { color: var(--muted); }
+.campaign-profile .campaign-chapter .campaign-source-link:hover, .campaign-profile .campaign-chapter .tweet-original-link:hover { color: var(--ink); }
+.campaign-profile .tweet-source-heading > span:last-child { color: var(--ink); }
+
+/* After the reveal, the page is back in the light. */
+.campaign-profile .campaign-visual-thread,
+.campaign-profile .campaign-related,
+.campaign-profile .campaign-sources,
+.campaign-profile .campaign-end-nav { --ink: #121212; --muted: #4f4f49; --line: #d0d0c9; --stage: #f4f4f0; background: var(--stage); box-shadow: 0 0 0 100vmax var(--stage); clip-path: inset(0 -100vmax); color: var(--ink); }
+.campaign-profile .campaign-visual-thread { padding-top: 54px; }
+.campaign-page.campaign-profile { padding-bottom: 0; }
+.campaign-profile .campaign-end-nav { margin-bottom: 0; padding-bottom: 30px; }
+
+@keyframes profile-morse { to { transform: translate(-50%, -50%); } }
+@keyframes profile-resolve {
+  0% { opacity: .2; filter: blur(3px); transform: translateX(-4px); text-shadow: 6px 0 #555, -6px 0 #222; }
+  20% { opacity: .7; filter: blur(1px); transform: translateX(3px); text-shadow: -4px 0 #555, 4px 0 #222; }
+  40% { opacity: .5; filter: none; transform: translateX(-2px); text-shadow: 3px 0 #444; }
+  60% { opacity: 1; transform: none; text-shadow: -2px 0 #333; }
+  80%, 100% { opacity: 1; transform: none; filter: none; text-shadow: none; }
+}
+
+@media (max-width: 760px) {
+  .profile-banner { aspect-ratio: 2 / 1; }
+  .profile-identity { padding: 0 2px; }
+  .campaign-profile .profile-hero h1 { font-size: clamp(42px, 12.5vw, 64px); }
+  .profile-handle { font-size: 15px; }
+  .campaign-profile .campaign-story { padding-top: 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .profile-morse, .campaign-profile .profile-hero h1 { animation: none; }
+}

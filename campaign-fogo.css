@@ -1,0 +1,97 @@
+/* Fogo Fire Launch: Fogo's purple-to-fire brand gradient and mint type, run as a
+   night-time livestream that cuts out, then the clinical calm of the hospital bed. */
+body.fogo-theme { --paper: #120a12; --ink: #fff3ea; --muted: #d4bcc2; --line: #3a2433; --accent: #ff7a3d; background: var(--paper); color: var(--ink); }
+.fogo-theme .site-header, .fogo-theme .portfolio-footer { --muted: #d4bcc2; --line: #3a2433; --ink: #fff3ea; }
+.campaign-fogo { --campaign-accent: #ff8a4c; --fogo-mint: #cff7d4; --fogo-purple: #9b5de5; --fogo-red: #ef3b1c; --fogo-orange: #ff8a1f; --fogo-live: #ff2e3b; --mono: ui-monospace, 'Cascadia Mono', 'SFMono-Regular', Consolas, Menlo, monospace; }
+.campaign-fogo .campaign-breadcrumb { padding: 18px 0 14px; }
+
+/* The stage: a livestream on Fogo's gradient */
+.campaign-fogo .fogo-hero { padding: 0 0 10px; }
+.fogo-stage { position: relative; overflow: hidden; isolation: isolate; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; min-height: min(80vh, 760px); padding: clamp(20px, 3vw, 40px); border-radius: 22px; background: linear-gradient(128deg, #8a4cf0 0%, #a94bbd 30%, #d93c4a 60%, #f0461c 80%, #ff8a1f 100%); box-shadow: 0 40px 120px -40px rgba(255, 90, 30, .55); }
+.fogo-stage::after { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(90% 70% at 85% 120%, rgba(255, 210, 120, .55), transparent 60%), linear-gradient(180deg, rgba(18, 10, 18, 0) 40%, rgba(18, 10, 18, .45) 100%); }
+.fogo-heat { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.fogo-heat i { position: absolute; bottom: -45%; left: calc(var(--i) * 7.4% - 6%); width: clamp(140px, 20vw, 300px); aspect-ratio: 1 / 1.6; border-radius: 50% 50% 45% 45%; background: radial-gradient(closest-side, rgba(255, 196, 92, .55), rgba(255, 100, 30, .25) 55%, transparent); filter: blur(14px); mix-blend-mode: screen; animation: fogo-rise calc(4.2s + var(--i) * .23s) ease-in infinite; animation-delay: calc(var(--i) * -.53s); }
+.fogo-heat i:nth-child(odd) { bottom: -4%; width: 6px; height: 6px; aspect-ratio: auto; border-radius: 50%; background: #ffd27a; filter: none; box-shadow: 0 0 10px 2px rgba(255, 170, 60, .85); mix-blend-mode: normal; animation: fogo-ember calc(3.2s + var(--i) * .31s) linear infinite; animation-delay: calc(var(--i) * -.71s); }
+.fogo-stage-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--fogo-mint); }
+.fogo-live { display: inline-flex; align-items: center; gap: 8px; padding: 5px 11px 5px 9px; border-radius: 6px; background: var(--fogo-live); color: #fff; font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.fogo-live-dot { width: 8px; height: 8px; border-radius: 50%; background: #fff; animation: fogo-pulse 1.2s ease-in-out infinite; }
+.fogo-hero-copy { max-width: 980px; }
+.campaign-fogo .campaign-hero-meta { margin-bottom: 16px; font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 243, 234, .85); }
+.campaign-fogo .campaign-hero-meta > span:first-child { color: var(--fogo-mint); }
+.campaign-fogo .fogo-hero h1 { max-width: none; margin: 0 0 22px; color: var(--fogo-mint); font-size: clamp(60px, 10.4vw, 164px); font-weight: 700; letter-spacing: -.055em; line-height: .86; text-shadow: 0 6px 40px rgba(110, 20, 60, .35); }
+.campaign-fogo .fogo-hero .campaign-summary { max-width: 46ch; color: #fff; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.5; }
+.fogo-scrubber { position: relative; height: 4px; border-radius: 4px; background: rgba(255, 255, 255, .28); }
+.fogo-scrubber-played { position: absolute; left: 0; top: 0; bottom: 0; width: 72%; border-radius: 4px; background: var(--fogo-live); box-shadow: 0 0 12px rgba(255, 46, 59, .8); }
+.fogo-scrubber-played::after { content: ''; position: absolute; right: -7px; top: 50%; width: 14px; height: 14px; border-radius: 50%; background: #fff; transform: translateY(-50%); }
+.fogo-scrubber-cut { position: absolute; left: 72%; bottom: 14px; padding: 4px 9px; margin-left: 14px; border-radius: 4px; background: rgba(18, 10, 18, .78); color: var(--fogo-mint); font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+
+/* Brief and story on the dark page */
+.campaign-fogo .campaign-facts { border-top: 0; padding-top: 34px; }
+.campaign-fogo .campaign-facts dt { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--fogo-mint); }
+.campaign-fogo .campaign-facts dd { font-size: 15px; }
+.campaign-fogo .campaign-format-list li { border-color: rgba(207, 247, 212, .3); }
+.campaign-fogo .campaign-results-jump { color: var(--fogo-mint); font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.campaign-fogo .campaign-story { padding: 54px 0 30px; border-top: 1px solid var(--line); }
+.campaign-fogo .campaign-story h2 { font-size: clamp(34px, 3.8vw, 56px); font-weight: 700; letter-spacing: -.05em; line-height: 1; color: var(--fogo-mint); }
+.campaign-fogo .campaign-story-copy p { font-size: 17px; color: var(--muted); }
+
+/* Two acts: the fire broadcast, the feed cut, the hospital bed */
+.campaign-fogo .campaign-two-acts { grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr); gap: 0; align-items: stretch; padding: 30px 0 64px; border-bottom: 0; }
+.campaign-fogo .campaign-act { max-width: none; padding: clamp(20px, 2.4vw, 32px); border-radius: 20px; }
+.campaign-fogo .campaign-act h2 { margin: 6px 0 16px; font-size: clamp(26px, 2.4vw, 34px); font-weight: 700; letter-spacing: -.04em; }
+.campaign-fogo .campaign-act .tweet-embed { max-width: 550px; }
+.campaign-act-fire { border: 1px solid #4b2a3c; background: radial-gradient(120% 60% at 50% 0%, rgba(239, 59, 28, .30), transparent 70%), #1a0d17; }
+.fogo-act-flare { display: flex; margin-bottom: 18px; }
+.campaign-act-fire .campaign-act-meta > span:first-child { color: var(--fogo-orange); }
+.campaign-act-hospital { --ink: #11201b; --muted: #4a5d56; --line: #bfd2cb; color: var(--ink); background: linear-gradient(180deg, #e9f3f0, #dce9e5); border: 1px solid #c9dad4; }
+.campaign-act-hospital .campaign-act-meta > span:first-child { color: #138a52; }
+.fogo-act-monitor { height: 44px; margin: -4px 0 14px; }
+.fogo-ecg { display: block; width: 100%; height: 100%; overflow: visible; }
+.fogo-ecg path { fill: none; stroke: #16b866; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; stroke-dasharray: 1400; stroke-dashoffset: 1400; filter: drop-shadow(0 0 4px rgba(22, 184, 102, .55)); animation: fogo-trace 3.4s linear infinite; }
+.fogo-cut { position: relative; display: flex; align-items: center; justify-content: center; }
+.fogo-cut::before { content: ''; position: absolute; top: 18px; bottom: 18px; left: 50%; width: 0; border-left: 2px dashed rgba(255, 243, 234, .22); }
+.fogo-cut span { position: relative; padding: 10px 6px; background: var(--paper); color: var(--muted); font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; writing-mode: vertical-rl; transform: rotate(180deg); }
+
+/* Sequence */
+.campaign-fogo .campaign-sequence { padding-top: 54px; border-top: 1px solid var(--line); }
+.campaign-fogo .campaign-sequence-heading h2 { font-size: clamp(34px, 3.8vw, 56px); font-weight: 700; letter-spacing: -.05em; color: var(--fogo-mint); }
+.campaign-fogo .campaign-chapter-number span { display: inline-block; padding: 1px 8px; border-radius: 999px; background: linear-gradient(90deg, var(--fogo-purple), var(--fogo-red) 60%, var(--fogo-orange)); color: #fff; font-family: var(--mono); font-size: 11px; font-weight: 700; }
+.campaign-fogo .campaign-chapter-head { grid-template-columns: 48px minmax(0, 1fr); }
+.campaign-fogo .campaign-chapter-body { margin-left: 64px; }
+.campaign-fogo .campaign-chapter-heading h3 { font-weight: 600; }
+.campaign-fogo .campaign-earned-label { color: var(--fogo-mint); font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+.campaign-fogo .campaign-chapter-nav a > span { color: var(--fogo-orange); }
+
+/* Results */
+.campaign-fogo .campaign-results { margin-top: 36px; padding: clamp(28px, 3.6vw, 48px); border: 1px solid #4b2a3c; border-radius: 22px; background: radial-gradient(80% 90% at 0% 0%, rgba(155, 93, 229, .22), transparent 60%), radial-gradient(70% 90% at 100% 100%, rgba(255, 122, 61, .18), transparent 60%), #170c15; }
+.campaign-fogo .campaign-results > h2 { font-size: clamp(34px, 3.8vw, 56px); font-weight: 700; letter-spacing: -.05em; color: var(--fogo-mint); }
+.campaign-fogo .campaign-counter .campaign-counter-value { font-weight: 700; letter-spacing: -.05em; background: linear-gradient(95deg, #c7a4ff, #ff7a3d 70%, #ffb057); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.campaign-fogo .campaign-measurement, .campaign-fogo .campaign-sources details { border-color: var(--line); }
+
+@keyframes fogo-rise { 0% { transform: translateY(0) scale(.9); opacity: 0; } 25% { opacity: 1; } 100% { transform: translateY(-85%) scale(1.15); opacity: 0; } }
+@keyframes fogo-ember { 0% { transform: translate(0, 0); opacity: 0; } 10% { opacity: 1; } 100% { transform: translate(30px, -70vh); opacity: 0; } }
+@keyframes fogo-pulse { 50% { opacity: .25; } }
+@keyframes fogo-trace { 0% { stroke-dashoffset: 1400; } 80%, 100% { stroke-dashoffset: 0; } }
+
+@media (max-width: 840px) {
+  .campaign-fogo .campaign-two-acts { grid-template-columns: minmax(0, 1fr); padding-bottom: 44px; }
+  .fogo-cut { height: 64px; }
+  .fogo-cut::before { top: 50%; bottom: auto; left: 18px; right: 18px; width: auto; height: 0; border-left: 0; border-top: 2px dashed rgba(255, 243, 234, .22); }
+  .fogo-cut span { padding: 4px 12px; writing-mode: horizontal-tb; transform: none; }
+}
+@media (max-width: 760px) {
+  .fogo-stage { min-height: 560px; gap: 28px; padding: 20px; border-radius: 16px; }
+  .fogo-stage-top { font-size: 10px; letter-spacing: .1em; }
+  .campaign-fogo .fogo-hero h1 { font-size: clamp(54px, 16vw, 92px); }
+  .campaign-fogo .fogo-hero .campaign-summary { font-size: 17px; }
+  .fogo-scrubber-cut { left: auto; right: 0; margin-left: 0; }
+  .campaign-fogo .campaign-story { padding-top: 38px; }
+  .campaign-fogo .campaign-chapter-head { grid-template-columns: 40px minmax(0, 1fr); }
+  .campaign-fogo .campaign-chapter-body { margin-left: 0; }
+  .campaign-fogo .campaign-results { padding: 24px 20px; border-radius: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fogo-heat i, .fogo-live-dot { animation: none; }
+  .fogo-heat i:nth-child(odd) { display: none; }
+  .fogo-ecg path { animation: none; stroke-dashoffset: 0; }
+}

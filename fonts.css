@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('/fonts/instrument-sans-latin.woff2') format('woff2');
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+.ui-icon { display: inline-block; inline-size: 1em; block-size: 1em; flex: 0 0 auto; vertical-align: -.12em; }

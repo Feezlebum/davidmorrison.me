@@ -1,0 +1,111 @@
+/* Motion Design. The Lennon sheet is parchment dressed with ink lifted from the film. */
+.md-sheet{--u:min(1vw,1.25svh);--ink:#2b241c;--grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .14 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");position:relative;overflow:hidden;isolation:isolate;font-size:var(--u);height:calc(78 * var(--u));min-height:600px;background:var(--grain),radial-gradient(ellipse 75% 70% at 50% 45%,#e4dac4 0%,#dccfb6 55%,#cbb999 100%);background-color:#dcd1ba}
+.md-ink{position:absolute;display:block;height:auto;mix-blend-mode:multiply;user-select:none;pointer-events:none}
+
+.md-date{left:calc(50% - 46em);top:3em;width:13em}
+.md-glasses{left:calc(50% - 18em);top:1.5em;width:36em}
+.md-dolls{left:calc(50% - 45em);top:33em;width:12em}
+.md-scribble{left:calc(50% + 33em);top:19em;width:10em}
+.md-agree{left:calc(50% - 17em);top:61em;width:34em}
+.md-credit{left:calc(50% - 19em);top:72em;width:38em}
+
+/* The film on a note card with a folded corner, outlined in ink. */
+.md-card{position:absolute;z-index:2;left:calc(50% - 30em);top:15em;width:60em;margin:0;padding:1em;background:#e9e0cb var(--grain);clip-path:polygon(0 0,95.2% 0,100% 8.6%,100% 100%,0 100%);filter:drop-shadow(0 1.2em 1.4em rgba(60,44,20,.22))}
+.md-card::after{content:"";position:absolute;top:0;right:0;width:4.8%;height:8.6%;background:linear-gradient(225deg,transparent 50%,#cdbf9f 50%);pointer-events:none}
+.md-card video{display:block;width:100%;aspect-ratio:16/9;background:#dcd1ba;object-fit:cover}
+.md-outline{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.md-outline path{fill:none;stroke:var(--ink);stroke-width:.3;stroke-linecap:round;stroke-linejoin:round}
+.md-start{position:absolute;z-index:1;left:50%;top:50%;width:4.6em;height:4.6em;min-width:44px;min-height:44px;translate:-50% -50%;margin:0;padding:0;border:1.5px solid rgba(43,36,28,.85);border-radius:50%;background:rgba(236,228,210,.55);color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:background-color .3s cubic-bezier(.16,1,.3,1),color .3s cubic-bezier(.16,1,.3,1),scale .3s cubic-bezier(.16,1,.3,1),opacity .3s}
+.md-start svg{width:40%;height:40%;margin-left:8%;fill:currentColor}
+.md-start:hover{background:var(--ink);color:#ece4d2;scale:1.05}
+.md-start:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+.has-played .md-start{opacity:0;scale:.8;pointer-events:none}
+
+/* The train from the film runs along a hand-drawn track under the card, all the way across the sheet. */
+.md-rail{--tw:21em;position:absolute;left:0;right:0;top:51em;height:calc(var(--tw) * .3787)}
+.md-track{position:absolute;left:0;width:100%;top:calc(var(--tw) * .2205);height:calc(var(--tw) * .185);overflow:visible}
+.md-track path{fill:none;stroke:var(--ink);stroke-width:1.4;opacity:.85;vector-effect:non-scaling-stroke}
+.md-train{left:0;top:0;width:var(--tw);animation:md-chug 30s linear infinite}
+@keyframes md-chug{from{translate:calc(-1 * var(--tw)) 0}to{translate:100vw 0}}
+
+/* Ink arrives as the sheet scrolls in: writing is written on left to right, drawings settle onto the page. */
+.md-sheet.is-armed .md-ink:not(.md-train){opacity:0}
+.md-sheet.is-armed .md-outline path{stroke-dashoffset:1}
+.md-outline path{stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset 1.6s cubic-bezier(.65,0,.35,1) .3s}
+.md-sheet.is-live .md-write{animation:md-write 1.6s cubic-bezier(.45,0,.55,1) backwards}
+.md-sheet.is-live .md-fade{animation:md-settle .9s cubic-bezier(.16,1,.3,1) backwards}
+.md-sheet.is-live .md-date{animation-delay:.2s}
+.md-sheet.is-live .md-glasses{animation-delay:.1s}
+.md-sheet.is-live .md-dolls{animation-delay:.6s}
+.md-sheet.is-live .md-scribble{animation-delay:.8s}
+.md-sheet.is-live .md-agree{animation-delay:1.2s}
+.md-sheet.is-live .md-credit{animation-delay:2s}
+@keyframes md-write{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes md-settle{from{opacity:0;translate:0 .8em}}
+
+@media (prefers-reduced-motion:reduce){.md-train{left:calc(50% - var(--tw) / 2)}}
+
+/* Portrait and phones: the sheet stacks. */
+@media (max-width:900px),(max-aspect-ratio:1/1){
+  .md-sheet{--u:min(1vw,5.2px);height:calc(182 * var(--u));min-height:0}
+  .md-date{left:5em;top:3em;width:30em}
+  .md-glasses{left:5em;top:11em;width:90em}
+  .md-card{left:3em;top:43em;width:94em}
+  .md-dolls{left:8em;top:101em;width:22em}
+  .md-scribble{left:auto;right:10em;top:106em;width:20em}
+  .md-rail{--tw:42em;top:130em}
+  .md-agree{left:12em;top:150em;width:76em}
+  .md-credit{left:5em;top:171em;width:90em}
+}
+
+/* The Bach Solfeggio. A page of the engraved score the film plays: its own paper, its own ink, its red accents. */
+.md-sheet--cpe-bach-solfeggio{--ink:#3e3832;--red:#c9502c;--paper:#f6f4ee;height:calc(86 * var(--u));background:radial-gradient(ellipse 80% 75% at 50% 45%,var(--paper) 60%,#ebe7dc 100%);background-color:var(--paper)}
+.bs-opening{left:calc(50% - 42em);top:4em;width:52em}
+.bs-close{left:calc(50% - 38.85em);top:69em;width:48.7em}
+.bs-title{left:calc(50% - 27em);top:79.5em;width:54em}
+
+/* The film is one system of the score: printed straight onto the page, opened with a heavy-light barline
+   and closed with the final light-heavy one. */
+.bs-system{position:absolute;z-index:2;left:calc(50% - 30em);top:16em;width:60em;margin:0;border-block:1px solid color-mix(in srgb,var(--ink) 35%,transparent)}
+.bs-system::before,.bs-system::after{content:"";position:absolute;top:-1px;bottom:-1px;width:1.4em;pointer-events:none}
+.bs-system::before{left:-1.6em;background:linear-gradient(90deg,var(--ink) 0 .45em,transparent .45em .85em,var(--ink) .85em calc(.85em + 1px),transparent 0)}
+.bs-system::after{right:-1.6em;background:linear-gradient(90deg,transparent calc(.55em - 1px),var(--ink) calc(.55em - 1px) .55em,transparent .55em .95em,var(--ink) .95em)}
+.bs-system video{display:block;width:100%;aspect-ratio:16/9;background:var(--paper);object-fit:cover}
+
+/* Play is the film's leading note: a black dot that sends out red rings. */
+.md-sheet--cpe-bach-solfeggio .md-start{width:5.2em;height:5.2em;border:0;background:var(--ink);color:var(--paper);overflow:visible}
+.md-sheet--cpe-bach-solfeggio .md-start::before,.md-sheet--cpe-bach-solfeggio .md-start::after{content:"";position:absolute;inset:0;border:1px solid var(--red);border-radius:50%;opacity:0;pointer-events:none}
+.md-sheet--cpe-bach-solfeggio .md-start:hover{background:#111;color:var(--paper)}
+.md-sheet--cpe-bach-solfeggio .md-start:hover::before{animation:bs-ring 1.4s cubic-bezier(.16,1,.3,1) infinite}
+.md-sheet--cpe-bach-solfeggio .md-start:hover::after{animation:bs-ring 1.4s cubic-bezier(.16,1,.3,1) .45s infinite}
+@keyframes bs-ring{from{opacity:.9;scale:1}to{opacity:0;scale:2.6}}
+
+/* The live system: the melody writes itself across the staff, led by a black note. */
+.bs-staff{position:absolute;left:0;right:0;top:55em;width:100%;height:10em;overflow:visible}
+.bs-lines line{stroke:var(--ink);stroke-width:1;opacity:.75;stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset 2.2s cubic-bezier(.65,0,.35,1) .4s}
+.md-sheet--cpe-bach-solfeggio.is-armed .bs-lines line{stroke-dashoffset:1}
+.bs-line{fill:none;stroke:var(--ink);stroke-width:1;opacity:.8}
+.bs-head,.bs-beam{fill:var(--ink)}
+.bs-stem{stroke:var(--ink);stroke-width:1.2}
+.bs-note,.bs-group > .bs-beam{opacity:0;transition:opacity .25s}
+.bs-note.is-on,.bs-group.is-on > .bs-beam{opacity:1}
+.bs-dot{fill:#111}
+.bs-ring circle{fill:none;stroke:var(--red);stroke-width:1;opacity:0;transform-box:fill-box;transform-origin:center}
+.bs-ring.is-on circle{animation:bs-ring 2.4s cubic-bezier(.16,1,.3,1) forwards}
+.bs-ring.is-on circle:nth-child(2){animation-delay:.2s}
+.bs-ring.is-on circle:nth-child(3){animation-delay:.4s}
+.bs-staff :is(.bs-line,.bs-group){transition:opacity .9s}
+.bs-staff.is-clearing :is(.bs-line,.bs-group){opacity:0}
+
+.md-sheet--cpe-bach-solfeggio.is-live .bs-opening{animation-delay:.1s}
+.md-sheet--cpe-bach-solfeggio.is-live .bs-close{animation-delay:.9s}
+.md-sheet--cpe-bach-solfeggio.is-live .bs-title{animation-delay:1.5s}
+
+@media (max-width:900px),(max-aspect-ratio:1/1){
+  .md-sheet--cpe-bach-solfeggio{height:calc(128 * var(--u))}
+  .bs-opening{left:4em;top:4em;width:92em}
+  .bs-system{left:5em;top:24em;width:90em}
+  .bs-staff{top:81em;height:15em}
+  .bs-close{left:9.6em;top:102em;width:86em}
+  .bs-title{left:5em;top:119em;width:90em}
+}

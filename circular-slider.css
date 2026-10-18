@@ -1,0 +1,46 @@
+/* Original curved selector: campaign artwork rides the crest of a circle. */
+.home-route .project-explorer{grid-template-columns:minmax(280px,.8fr) minmax(0,2fr);gap:clamp(32px,4vw,64px);align-items:center;padding-bottom:34px}
+.home-route .explorer-about{grid-template-columns:minmax(280px,.8fr) minmax(0,2fr);gap:clamp(32px,4vw,64px)}
+.circular-slider{min-width:0;width:100%;align-self:center}
+.circular-track{position:relative;min-width:0;height:260px;overflow:hidden;touch-action:pan-y pinch-zoom;cursor:grab;isolation:isolate}
+.circular-track[data-dragging="true"]{cursor:grabbing}
+.circular-track ul{list-style:none;padding:0;margin:0}
+.circular-project{position:absolute;left:50%;top:48px;width:clamp(140px,15vw,180px);transform:translate3d(calc(-50% + var(--card-x,0px)),var(--card-y,0px),0) rotate(var(--card-rotation,0deg));transform-origin:50% 50%;opacity:var(--card-opacity,1);z-index:var(--card-z,1);transition:transform .6s cubic-bezier(.22,.72,.2,1.08),opacity .35s ease;will-change:transform}
+.circular-track[data-dragging="true"] .circular-project{transition:none}
+.circular-track:has(.project-index-link:focus-visible) .circular-project{transition:none}
+.circular-project .project-index-link{display:block;min-height:0;padding:2px;gap:0;user-select:none;-webkit-user-select:none;-webkit-user-drag:none}
+.circular-project .project-index-thumbnail{width:100%;height:auto;aspect-ratio:1;background:#0a0b0a}
+.circular-project .project-index-thumbnail img{width:100%;height:100%;object-fit:contain;opacity:1;pointer-events:none;-webkit-user-drag:none}
+.circular-project .project-index-link:focus-visible{outline-offset:5px}
+.circular-current{display:flex;align-items:center;justify-content:center;gap:14px;min-height:44px;padding:5px 12px;font-size:var(--text-secondary);line-height:1.5;text-align:center;text-decoration:none}
+.circular-current>span:first-child{overflow-wrap:anywhere}
+.circular-current:hover{text-decoration:underline;text-underline-offset:4px}
+.circular-current .ui-icon{font-size:17px}
+.circular-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 4px 0}
+.circular-hint{font-size:var(--text-meta);color:var(--muted);line-height:1.5}
+.circular-controls>div{display:flex;gap:4px}
+.circular-controls button{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:0;padding:10px;background:transparent;color:var(--ink);cursor:pointer}
+.circular-controls button:hover{color:var(--accent)}
+.circular-controls button:active{opacity:.65}
+.circular-controls .ui-icon{font-size:20px}
+@media(max-width:1050px){.circular-project{width:150px}}
+@media(max-width:900px){
+  .home-route .project-explorer{display:flex;flex-direction:column;gap:34px;padding-top:18px}
+  .circular-slider{width:100%;max-width:700px;align-self:center}
+  .circular-track{height:244px}
+  .circular-project{width:164px;top:38px}
+  .circular-controls{max-width:360px;margin:auto}
+  .home-route .project-gallery{width:100%;order:initial}
+  .home-route .explorer-introduction{max-width:38ch;margin:0 0 24px;font-size:var(--text-body)}
+  .home-route .project-preview-media{height:clamp(220px,54vw,490px)}
+  .home-route .explorer-about{grid-template-columns:1fr;gap:20px}
+}
+@media(max-width:480px){
+  .home-route .project-explorer{gap:28px;padding-top:8px}
+  .circular-track{height:222px}
+  .circular-project{width:134px;top:48px}
+  .circular-controls{padding-top:6px}
+  .home-route .project-preview-media{height:clamp(190px,60vw,290px)}
+}
+@media(prefers-reduced-motion:reduce){.circular-project{transition:none;will-change:auto}}
+@media(forced-colors:active){.circular-current{color:LinkText}.circular-controls button{color:ButtonText}}

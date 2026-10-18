@@ -1,0 +1,215 @@
+/* Video page intro, in the portfolio's own type. */
+.video-intro{display:grid;grid-template-columns:1fr 2fr;gap:clamp(24px,5vw,90px);align-items:start;padding-block:40px 56px}
+.video-intro h1{font-size:clamp(32px,3.6vw,56px);font-weight:500;line-height:1.05;letter-spacing:-.04em}
+.video-intro p{font-size:clamp(16px,1.25vw,19px);line-height:1.55;color:var(--muted);max-width:60ch;padding-top:.35em}
+@media (max-width:760px){.video-intro{grid-template-columns:1fr;gap:16px;padding-block:24px 36px}}
+
+/* Videos index: each category is a portrait collage card in its own visual world, three or four across. */
+.video-categories{list-style:none;margin:0;padding:8px 0 64px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:clamp(16px,2vw,28px)}
+.video-category{--grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");position:relative;isolation:isolate;overflow:hidden;container-type:inline-size;display:grid;place-items:center;aspect-ratio:4/5;background:var(--field) var(--grain);color:#f6efdc;text-decoration:none}
+.video-category:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.vc-piece{position:absolute;display:block;height:auto;filter:drop-shadow(0 .9cqi 1cqi rgba(8,10,9,.32)) drop-shadow(0 .15cqi .2cqi rgba(8,10,9,.2));user-select:none;pointer-events:none;transition:translate .5s cubic-bezier(.16,1,.3,1)}
+
+/* Titles are words of individual letters, so each category can move its own type. */
+.vc-title{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;font-weight:600;line-height:.8;letter-spacing:-.04em}
+.vc-word{display:flex}
+.vc-letter{display:block}
+
+/* VOX: green field, the globe-turning hands and the alien bleeding in, the saucer beaming down on the title. */
+.video-category--vox{--field:#1d6246}
+/* Cut-paper letters, each pasted at its own slight angle; they straighten on hover. */
+.video-category--vox .vc-title{font-size:30cqi;translate:0 6%}
+.video-category--vox .vc-letter{filter:drop-shadow(0 .05em .04em rgba(8,10,9,.35));transition:rotate .5s cubic-bezier(.16,1,.3,1),translate .5s cubic-bezier(.16,1,.3,1)}
+.video-category--vox .vc-letter:nth-child(1){rotate:-5deg}
+.video-category--vox .vc-letter:nth-child(2){rotate:3deg;translate:0 -.04em}
+.video-category--vox .vc-letter:nth-child(3){rotate:-2deg}
+.video-category--vox:is(:hover,:focus-visible) .vc-letter{rotate:0deg;translate:0 0}
+.vc-beam{position:absolute;z-index:1;left:50%;top:16%;width:70cqi;height:62%;translate:-50% 0;background:#71baaf var(--grain);clip-path:polygon(40% 0,60% 0,100% 100%,0 100%);opacity:.9}
+.vc-ufo{z-index:2;left:50%;top:3%;width:52cqi;translate:-50% 0}
+.vc-globe{z-index:2;left:0;top:0;width:40cqi}
+.vc-alien{z-index:2;right:0;top:0;width:30cqi}
+.video-category--vox:is(:hover,:focus-visible) .vc-ufo{translate:-50% -6%}
+.video-category--vox:is(:hover,:focus-visible) .vc-globe{translate:-2% -2%}
+.video-category--vox:is(:hover,:focus-visible) .vc-alien{translate:2% -2%}
+
+/* Motion Design: a motion study that wakes on hover. The ball bounces with squash and stretch and a trail of ghosts,
+   "Motion" ripples, "Design" wobbles with follow-through, and the easing curve that drives it draws itself in. */
+.video-category--motion-design{--field:#2433c9;--coral:#ff6a3d}
+.video-category--motion-design .vc-title{font-size:17cqi;translate:0 -14%}
+.video-category--motion-design .vc-word + .vc-word{margin-top:.06em}
+.video-category--motion-design .vc-letter{transform-origin:50% 100%}
+.mt-graph{position:absolute;z-index:1;inset:10% 8% 22% 8%;width:84%;height:68%;overflow:visible}
+.mt-graph path{fill:none;vector-effect:non-scaling-stroke}
+.mt-curve{stroke:rgba(246,239,220,.28);stroke-width:1.5;stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset 1.2s cubic-bezier(.65,0,.35,1),stroke .4s}
+.mt-handle{stroke:rgba(255,106,61,.75);stroke-width:1;opacity:0;transition:opacity .4s .5s}
+.mt-graph circle{fill:var(--coral);opacity:0;transition:opacity .4s .6s}
+.mt-floor{position:absolute;z-index:2;left:8%;right:8%;bottom:16%;height:1.5px;background:rgba(246,239,220,.45)}
+.mt-ball-x{position:absolute;z-index:4;left:10%;bottom:16%;width:8cqi;height:8cqi}
+.mt-ball-y{display:block;width:100%;height:100%;transform-origin:50% 100%}
+.mt-ball{display:block;width:100%;height:100%;border-radius:50%;background:var(--coral)}
+.mt-ghost-1,.mt-ghost-2,.mt-ghost-3{opacity:0}
+.mt-ghost-1 .mt-ball{opacity:.45}
+.mt-ghost-2 .mt-ball{opacity:.25}
+.mt-ghost-3 .mt-ball{opacity:.12}
+.video-category--motion-design:is(:hover,:focus-visible) .mt-ball-x{opacity:1;animation:mt-travel 2.4s linear infinite alternate;animation-delay:calc(var(--lag) * 45ms)}
+.video-category--motion-design:is(:hover,:focus-visible) .mt-ball-y{animation:mt-bounce .8s infinite;animation-delay:calc(var(--lag) * 45ms)}
+.video-category--motion-design:is(:hover,:focus-visible) .mt-curve{stroke:rgba(246,239,220,.55);animation:mt-draw 1.2s cubic-bezier(.65,0,.35,1)}
+.video-category--motion-design:is(:hover,:focus-visible) :is(.mt-handle,.mt-graph circle){opacity:1}
+.video-category--motion-design:is(:hover,:focus-visible) .vc-word:first-child .vc-letter{animation:mt-wave 1.1s cubic-bezier(.45,0,.55,1) infinite;animation-delay:calc(var(--i) * 70ms)}
+.video-category--motion-design:is(:hover,:focus-visible) .vc-word:last-child .vc-letter{animation:mt-wobble 1.6s cubic-bezier(.34,1.56,.64,1) infinite;animation-delay:calc(var(--i) * 60ms)}
+@keyframes mt-travel{to{translate:72cqi 0}}
+@keyframes mt-bounce{
+  0%{translate:0 0;scale:1.3 .7;animation-timing-function:cubic-bezier(.2,.7,.4,1)}
+  10%{scale:.82 1.18}
+  50%{translate:0 -30cqi;scale:1 1;animation-timing-function:cubic-bezier(.6,0,.8,.3)}
+  90%{scale:.82 1.18}
+  100%{translate:0 0;scale:1.3 .7}
+}
+@keyframes mt-draw{from{stroke-dashoffset:1}}
+@keyframes mt-wave{0%,100%{translate:0 0}50%{translate:0 -.14em}}
+@keyframes mt-wobble{0%,60%,100%{rotate:0deg}15%{rotate:-7deg}30%{rotate:4deg}45%{rotate:-2deg}}
+
+/* Slop: AI experiments and cuts that never quite landed. A loud AI-gradient field, sparkles and slime letters with
+   hard offset shadows. On hover the field swirls, the sparkles twinkle, the letters jelly and their drips stretch
+   until a drop falls into the puddle. The field pauses where it is when the pointer leaves. */
+.video-category--slop{--field:#6a12ee;--slime:#c6ff1f;--shade:#2a0870;--floor:88cqi}
+.video-category--slop::after{content:"";position:absolute;z-index:1;inset:0;background:var(--grain);pointer-events:none}
+.sl-defs{position:absolute;width:0;height:0}
+.sl-swirl{position:absolute;z-index:0;inset:-45%;background:radial-gradient(21% 19% at 50% 51%,#ff2bc2,transparent),radial-gradient(15% 13% at 65% 35%,#ff7a00,transparent),radial-gradient(15% 13% at 35% 67%,#00d2ff,transparent),radial-gradient(13% 12% at 66% 66%,#ff2d55,transparent),var(--field);animation:sl-swirl 10s linear infinite paused}
+.sl-spark{position:absolute;z-index:2;height:auto;aspect-ratio:1;fill:var(--c);filter:drop-shadow(.7cqi .7cqi 0 var(--shade))}
+.sl-spark-1{--c:#ffe83a;--d:0s;left:8cqi;top:8cqi;width:20cqi}
+.sl-spark-2{--c:#fff;--d:.25s;left:29cqi;top:6cqi;width:8cqi}
+.sl-spark-3{--c:#fff;--d:.5s;left:25cqi;top:25cqi;width:5cqi}
+.sl-spark-4{--c:#2cf2ff;--d:.15s;right:9cqi;top:14cqi;width:13cqi}
+.sl-spark-5{--c:#ffe83a;--d:.4s;right:10cqi;bottom:31cqi;width:8cqi}
+.sl-puddle{position:absolute;z-index:4;left:0;bottom:-1cqi;width:100%;height:19cqi;fill:var(--slime);transform-origin:50% 100%}
+.video-category--slop .vc-title{font-size:38cqi;font-weight:700;letter-spacing:0;color:var(--slime);translate:0 -12cqi;filter:url(#sl-goo) drop-shadow(0 1.4cqi 0 var(--shade))}
+.video-category--slop .vc-letter{position:relative;-webkit-text-stroke:.035em var(--slime);transform-origin:50% 100%}
+/* Each letter has one drip, ending in a bulb, and one drop that only exists while it falls. */
+.video-category--slop .vc-letter::before,.video-category--slop .vc-letter::after{content:"";position:absolute;left:var(--dx);translate:-50% 0}
+.video-category--slop .vc-letter::after{top:var(--dt);width:.15em;height:var(--dl);background:radial-gradient(circle at 50% calc(100% - .07em),var(--slime) .068em,transparent .072em),linear-gradient(var(--slime) 0 0) 50% 0/.09em calc(100% - .07em) no-repeat}
+.video-category--slop .vc-letter::before{--fall:calc(var(--floor) - var(--dt) - var(--dl));top:calc(var(--dt) + var(--dl) - .14em);width:.15em;height:.15em;border-radius:50%;background:var(--slime);scale:0}
+.video-category--slop .vc-letter:nth-child(1){--dx:43%;--dt:.64em;--dl:.3em;--dur:2.6s;--delay:.1s}
+.video-category--slop .vc-letter:nth-child(2){--dx:52%;--dt:.64em;--dl:.5em;--dur:3.1s;--delay:.5s}
+.video-category--slop .vc-letter:nth-child(3){--dx:38%;--dt:.64em;--dl:.2em;--dur:2.3s;--delay:.9s}
+.video-category--slop .vc-letter:nth-child(4){--dx:22%;--dt:.86em;--dl:.26em;--dur:2.8s;--delay:.3s}
+.video-category--slop:is(:hover,:focus-visible) .sl-swirl{animation-play-state:running}
+.video-category--slop:is(:hover,:focus-visible) .sl-spark{animation:sl-twinkle 1.6s cubic-bezier(.45,0,.55,1) var(--d) infinite}
+.video-category--slop:is(:hover,:focus-visible) .vc-letter{animation:sl-jelly 1.3s cubic-bezier(.45,0,.55,1) infinite;animation-delay:calc(var(--i) * 110ms)}
+.video-category--slop:is(:hover,:focus-visible) .vc-letter::after{animation:sl-drip var(--dur) cubic-bezier(.45,0,.55,1) var(--delay) infinite}
+.video-category--slop:is(:hover,:focus-visible) .vc-letter::before{animation:sl-drop var(--dur) var(--delay) infinite}
+.video-category--slop:is(:hover,:focus-visible) .sl-puddle{animation:sl-slosh 1.9s cubic-bezier(.45,0,.55,1) infinite}
+@keyframes sl-swirl{to{rotate:1turn}}
+@keyframes sl-twinkle{0%,100%{scale:1;rotate:0deg}50%{scale:.6;rotate:45deg}}
+@keyframes sl-jelly{0%,100%{scale:1 1}30%{scale:1.1 .86}55%{scale:.92 1.1}80%{scale:1.03 .97}}
+@keyframes sl-drip{0%,100%{height:var(--dl)}55%{height:calc(var(--dl) * 1.7)}64%{height:calc(var(--dl) * .85)}}
+@keyframes sl-drop{
+  0%{scale:0;translate:-50% 0}
+  55%{scale:1;translate:-50% calc(var(--dl) * .7);animation-timing-function:cubic-bezier(.55,0,1,.45)}
+  100%{scale:.8 1.25;translate:-50% var(--fall)}
+}
+@keyframes sl-slosh{0%,100%{scale:1 1}50%{scale:1 1.18}}
+
+/* Slop page: a film without a world of its own sits on a loud band in the card's world, framed in slime with a hard shadow. */
+.sl-band{display:grid;place-items:center;padding:clamp(32px,6vw,96px) var(--gutter);background:radial-gradient(60% 70% at 50% 50%,#ff2bc2,transparent),radial-gradient(40% 50% at 85% 15%,#ff7a00,transparent),radial-gradient(40% 50% at 15% 85%,#00d2ff,transparent),#6a12ee}
+.sl-band video{--b:clamp(6px,.7vw,10px);display:block;box-sizing:content-box;width:min(100% - 2 * var(--b),calc(78svh * var(--ar)));aspect-ratio:var(--ar);background:#120330;border:var(--b) solid #c6ff1f;box-shadow:clamp(8px,1.1vw,16px) clamp(8px,1.1vw,16px) 0 #2a0870}
+
+/* From Dial-Up to Starlink: a Windows 98 desktop, the teal the film opens and closes on. The film plays in a window,
+   with desktop icons, a visitor counter, web badges, a crash dialog, a paperclip assistant and the taskbar around it,
+   all drawn here as pixel art and bevels. Positions and outer widths are in --u; everything inside a piece is in em,
+   so on phones a larger type size scales every piece at once. */
+.sl-desk{--u:min(1vw,1.6svh);--face:#c0c0c0;--raised:inset -1px -1px #0a0a0a,inset 1px 1px #dfdfdf,inset -2px -2px #808080,inset 2px 2px #fff;--sunken:inset -1px -1px #fff,inset 1px 1px #808080,inset -2px -2px #dfdfdf,inset 2px 2px #0a0a0a;position:relative;overflow:hidden;isolation:isolate;height:calc(62.5 * var(--u));min-height:540px;font:var(--u)/1.3 Tahoma,Verdana,Geneva,sans-serif;background:#008080;color:#000}
+.sl-desk > *{position:absolute;margin:0}
+.sl-pixels,.sl-cursor{display:block;overflow:visible}
+
+.sl-icons{left:calc(50% - 47.5 * var(--u));top:calc(5 * var(--u));display:grid;gap:1.6em;width:9em}
+.sl-icon{display:grid;justify-items:center;gap:.45em;text-align:center}
+.sl-icon .sl-pixels{width:4.6em;height:auto}
+.sl-icon span{font-size:1.05em;color:#fff;overflow-wrap:anywhere}
+
+.sl-dialog{padding:.25em;background:var(--face);box-shadow:var(--raised)}
+.sl-titlebar{display:flex;align-items:center;justify-content:space-between;gap:1em;height:1.9em;padding:0 .2em 0 .5em;background:linear-gradient(90deg,#000080,#1084d0);color:#fff;font-size:1.1em;font-weight:700}
+.sl-titlebar > span:first-child{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.sl-controls{display:flex;gap:.15em}
+.sl-controls span{display:grid;place-items:center;width:1.45em;height:1.3em;background:var(--face);box-shadow:var(--raised);color:#000;font-size:.85em;line-height:1}
+.sl-controls span:last-child{margin-left:.15em}
+
+.sl-window{z-index:3;left:calc(50% - 30 * var(--u));top:calc(7 * var(--u));width:calc(60 * var(--u))}
+.sl-screen{position:relative;margin-top:.25em;padding:2px;box-shadow:var(--sunken)}
+.sl-screen video{display:block;width:100%;aspect-ratio:var(--ar);background:#000}
+.sl-start{position:absolute;left:50%;top:50%;translate:-50% -50%;display:flex;align-items:center;gap:.45em;min-height:44px;padding:.55em 1.3em;border:0;background:var(--face);box-shadow:var(--raised);color:#000;font:700 1.25em Tahoma,Verdana,Geneva,sans-serif;cursor:pointer}
+.sl-start svg{width:1em;height:1em;fill:currentColor}
+.sl-start:active{box-shadow:var(--sunken);padding:.6em 1.25em .5em 1.35em}
+.sl-start:focus-visible{outline:2px dotted #000;outline-offset:-6px}
+.sl-cursor{position:absolute;left:calc(50% + 3.6em);top:calc(50% + 1.1em);width:1.7em;height:auto;pointer-events:none;filter:drop-shadow(1px 1px 0 rgba(0,0,0,.35))}
+.has-played :is(.sl-start,.sl-cursor){display:none}
+
+.sl-error{z-index:2;left:calc(50% - 44 * var(--u));top:calc(41 * var(--u));width:25em}
+.sl-error-body{display:flex;align-items:flex-start;gap:1.1em;padding:1.3em 1.1em .7em}
+.sl-error-icon{flex:none;width:2.6em}
+.sl-error-body p{font-size:1.05em;padding-top:.2em}
+.sl-buttons{display:flex;justify-content:center;gap:.7em;padding:.3em 0 .9em}
+.sl-buttons span{min-width:6.5em;padding:.3em .8em;text-align:center;box-shadow:var(--raised)}
+.sl-buttons span:first-child{outline:1px dotted #000;outline-offset:-5px}
+
+.sl-counter{right:calc(50% - 47 * var(--u));top:calc(6 * var(--u));display:grid;justify-items:center;gap:.4em;font-family:'Times New Roman',Times,serif;font-size:1.15em;color:#fff}
+.sl-digits{display:flex;gap:.12em;padding:.18em;background:#000;box-shadow:var(--sunken)}
+.sl-digit{display:block;width:.95em;height:1.25em;overflow:hidden;background:linear-gradient(#2a2a2a,#000 48%,#000 52%,#2a2a2a);color:#fff;font:700 1.5em/1.25 'Courier New',Courier,monospace;text-align:center}
+.sl-digit > span{display:block;translate:0 calc(var(--n) * -1.25em)}
+.sl-digit > span > span{display:block}
+
+.sl-badges{right:calc(50% - 47 * var(--u));top:calc(14 * var(--u));display:grid;justify-items:end;gap:.7em}
+.sl-badge{display:flex;align-items:center;justify-content:center;gap:.5em;width:11em;height:3.875em;box-sizing:border-box;padding:0 .5em;line-height:1.05}
+.sl-badge--view{background:var(--face);box-shadow:var(--raised);color:#000080;font-size:.8em;width:13.75em;height:4.84em}
+.sl-badge--view .sl-pixels{flex:none;width:2.6em;height:auto}
+.sl-badge--slop{flex-direction:column;gap:0;background:#000;border:2px outset #6a6a6a;color:#fff}
+.sl-badge--slop small{font-size:.65em;letter-spacing:.12em;text-transform:uppercase}
+.sl-badge--slop b{font:900 1.5em/1 Impact,'Arial Black',sans-serif;letter-spacing:.06em;color:#c6ff1f}
+
+.sl-assistant{z-index:4;right:calc(50% - 47 * var(--u));top:calc(27 * var(--u));width:17em;display:grid;justify-items:end}
+.sl-bubble{position:relative;padding:.9em 1.1em;background:#ffffe1;border:1px solid #000;border-radius:.8em;font-size:1.05em;box-shadow:.3em .3em 0 rgba(0,0,0,.28)}
+.sl-bubble::after{content:"";position:absolute;right:6em;bottom:-1.05em;width:1.1em;height:1.1em;background:#ffffe1;border:solid #000;border-width:0 1px 1px 0;clip-path:polygon(0 0,100% 0,100% 100%);transform:skewY(30deg)}
+.sl-clip{width:6.4em;margin:1.3em 4em 0 0;overflow:visible;filter:drop-shadow(.35em .35em 0 rgba(0,0,0,.28))}
+.sl-wire-edge,.sl-wire{fill:none;stroke-linecap:round}
+.sl-wire-edge{stroke:#3d4148;stroke-width:5.4}
+.sl-wire{stroke:#d3d8df;stroke-width:3.4}
+.sl-eyes ellipse{fill:#fff;stroke:#000;stroke-width:1.1}
+.sl-pupil{fill:#000}
+.sl-brows path{fill:none;stroke:#000;stroke-width:1.6;stroke-linecap:round}
+.sl-eyes,.sl-brows{transform-box:fill-box;transform-origin:50% 50%}
+
+.sl-taskbar{z-index:5;left:0;right:0;bottom:0;display:flex;align-items:stretch;gap:.35em;height:2.9em;padding:.3em .25em .25em;background:var(--face);box-shadow:inset 0 1px #dfdfdf,inset 0 2px #fff}
+.sl-taskbar > span{display:flex;align-items:center;gap:.4em;padding:0 .6em;white-space:nowrap}
+.sl-startmenu{font-weight:700;box-shadow:var(--raised)}
+.sl-startmenu svg{width:1.3em;height:1.3em;fill:#6a12ee}
+.sl-taskbar > .sl-task{display:block;flex:0 1 19em;min-width:0;overflow:hidden;text-overflow:ellipsis;line-height:2.3em;box-shadow:var(--sunken);font-weight:700;background:repeating-conic-gradient(#fff 0 25%,var(--face) 0 50%) 0 0/2px 2px}
+.sl-tray{margin-left:auto;box-shadow:inset 1px 1px #808080,inset -1px -1px #fff}
+
+/* Arrival: the desktop draws itself one piece at a time, like a slow machine; the counter rolls up to 1998 and the
+   assistant bounces in last. After that the assistant blinks now and then. */
+.sl-desk.is-armed :is(.sl-icon,.sl-window,.sl-error,.sl-counter,.sl-badge,.sl-assistant){visibility:hidden}
+.sl-desk.is-armed .sl-digit > span{translate:0 0}
+.sl-desk.is-live :is(.sl-icon,.sl-window,.sl-error,.sl-counter,.sl-badge){animation:sl-pop .01s var(--at) backwards}
+.sl-desk.is-live .sl-digit > span{animation:sl-roll 1.4s cubic-bezier(.2,.75,.25,1) calc(.9s + var(--i) * 70ms) backwards}
+.sl-desk.is-live .sl-assistant{animation:sl-arrive .7s cubic-bezier(.34,1.56,.64,1) var(--at) backwards}
+.sl-desk.is-live .sl-bubble{animation:sl-pop .01s 3.1s backwards}
+.sl-desk.is-live .sl-eyes{animation:sl-blink 5.5s 4s infinite}
+.sl-desk.is-live .sl-brows{animation:sl-brow 5.5s 4s infinite}
+@keyframes sl-pop{from{visibility:hidden}}
+@keyframes sl-roll{from{translate:0 0}}
+@keyframes sl-arrive{from{visibility:hidden;translate:0 4em;opacity:0}}
+@keyframes sl-blink{0%,92%,100%{scale:1 1}95%{scale:1 .1}}
+@keyframes sl-brow{0%,80%,100%{translate:0 0}86%,92%{translate:0 -1.5px}}
+
+/* Portrait and phones: the desktop stacks around a full-width window, and the type grows so the pieces stay legible. */
+@media (max-width:900px),(max-aspect-ratio:1/1){
+  .sl-desk{--u:min(1vw,6px);height:calc(226 * var(--u));min-height:0;font-size:calc(3 * var(--u))}
+  .sl-counter{left:calc(50% - 46 * var(--u));right:auto;top:calc(5 * var(--u));justify-items:start}
+  .sl-badges{right:calc(50% - 46 * var(--u));top:calc(4 * var(--u))}
+  .sl-window{left:calc(50% - 47 * var(--u));top:calc(32 * var(--u));width:calc(94 * var(--u))}
+  .sl-icons{left:calc(50% - 46 * var(--u));top:calc(96 * var(--u));grid-auto-flow:column;gap:1.4em;width:auto}
+  .sl-icon{width:8.5em}
+  .sl-error{left:calc(50% - 46 * var(--u));top:calc(128 * var(--u))}
+  .sl-assistant{top:calc(166 * var(--u));right:calc(50% - 44 * var(--u))}
+  .sl-clip{width:4.8em;margin-right:4.4em}
+}

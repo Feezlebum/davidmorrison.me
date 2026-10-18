@@ -1,0 +1,75 @@
+.after-page h1,.after-page h2{font-family:var(--sans,Arial,Helvetica,sans-serif);font-style:normal;font-weight:400;letter-spacing:-.04em}
+.after-index-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end;gap:40px;padding:55px 0 40px}
+.after-index-hero h1{font-size:clamp(48px,6vw,72px);line-height:1.02;margin-top:22px}
+.after-index-hero>p{max-width:360px;font-size:clamp(18px,1.6vw,24px);line-height:1.4;justify-self:end;padding-bottom:8px}
+.after-selected{padding-bottom:clamp(65px,9vw,130px)}
+.after-project{border-top:1px solid var(--line);padding-top:24px;min-width:0}
+.after-project-link{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.8fr);align-items:center;gap:clamp(28px,5vw,80px);text-decoration:none;min-width:0}
+.after-project-art{display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:16/10;padding:clamp(20px,3vw,42px);min-width:0;background:#202220;color:#f2f0e9}
+.after-art-top,.after-art-bottom{font-size:11px;letter-spacing:.04em;line-height:1.4}
+.after-art-top{text-transform:uppercase}
+.after-art-mark{font-family:var(--sans,Arial,Helvetica,sans-serif);font-size:clamp(90px,15vw,220px);line-height:1;letter-spacing:-.085em;align-self:center}
+.after-art-bottom{display:flex;justify-content:space-between;gap:20px;border-top:1px solid #5b5d57;padding-top:12px}
+.after-art-bottom>span{font-size:20px;line-height:1}
+.after-project-copy{min-width:0;padding-block:20px}
+.after-project-copy h2{font-size:clamp(32px,3.7vw,58px);line-height:1.05;margin:24px 0 20px;max-width:440px}
+.after-project-copy>p{font-size:var(--text-body);color:var(--muted);max-width:330px}
+.after-project-cta{display:inline-flex;align-items:center;gap:25px;min-height:44px;font-size:13px;margin-top:32px;border-bottom:1px solid currentColor}
+.after-project-link:hover .after-project-cta{border-bottom-width:2px}
+.after-project-supporting{margin-top:clamp(65px,10vw,150px);width:76%;margin-left:auto}
+.after-project-supporting .after-project-link{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,60px)}
+.after-project-supporting .after-project-copy h2{font-size:clamp(30px,3vw,46px)}
+.after-art-superluminal{background:#e4e2da;color:#202220;aspect-ratio:4/3}
+.after-art-superluminal .after-art-mark{font-size:clamp(27px,3.2vw,52px);letter-spacing:-.04em}
+.after-art-superluminal .after-art-bottom{border-color:#aaa89e}
+.film-breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:12px;min-height:80px;font-size:13px;color:var(--muted)}
+.film-breadcrumb a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;color:var(--ink)}
+.film-breadcrumb a:hover{text-decoration:underline}
+.film-hero{padding:35px 0 50px}
+.film-hero h1{font-size:clamp(43px,6vw,76px);line-height:1.02;max-width:1100px;margin:24px 0 25px;overflow-wrap:anywhere}
+.film-hero>p{font-size:clamp(18px,1.7vw,24px);line-height:1.45;max-width:min(680px,65ch);color:var(--muted)}
+.film-facts{margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;border-block:1px solid var(--line);padding:25px 0}
+.film-facts>div{min-width:0}
+.film-facts dt{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.film-facts dd{margin:9px 0 0;font-size:14px}
+.after-page.film-page .film-section{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:40px;padding:clamp(50px,7vw,95px) 0;border-bottom:1px solid var(--line);scroll-margin-top:30px}
+.film-section-heading h2{font-size:clamp(27px,3vw,42px);line-height:1.15;letter-spacing:-.04em;margin-top:24px;max-width:370px}
+.film-posts{display:grid;gap:30px;min-width:0}
+.after-page .after-post{width:100%;max-width:550px;min-width:0}
+.after-page .tweet-source-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:14px;min-width:0;font-size:13px}
+.after-page .tweet-original-link{display:inline-flex;align-items:center;min-height:44px;max-width:100%;overflow-wrap:anywhere;color:var(--ink);text-decoration:none}
+.after-page .tweet-original-link:hover{color:var(--ink);text-decoration:underline}
+.after-page .tweet-source-heading>span:last-child{color:var(--muted)}
+.after-page .tweet-host{max-width:100%;min-width:0}
+.after-page .tweet-host iframe{max-width:100%!important}
+.film-source-link{font-size:14px}
+.film-end-nav{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:35px 0 70px;font-size:13px}
+.film-end-nav a{display:inline-flex;align-items:center;gap:12px;min-height:44px;text-decoration:none;max-width:100%}
+.film-end-nav a:last-child{text-align:right}
+.film-end-nav a:hover{text-decoration:underline}
+@media(max-width:760px){
+  .after-index-hero{grid-template-columns:minmax(0,1fr);gap:24px;padding:45px 0 40px}
+  .after-index-hero h1{font-size:clamp(48px,12vw,64px)}
+  .after-index-hero>p{justify-self:start;padding:0;max-width:440px}
+  .after-project-link,.after-project-supporting .after-project-link{grid-template-columns:minmax(0,1fr);gap:22px}
+  .after-project-art{aspect-ratio:16/10;padding:22px}
+  .after-art-mark{font-size:clamp(95px,26vw,190px)}
+  .after-project-copy{padding:0}
+  .after-project-copy h2{font-size:36px;margin:18px 0 15px;max-width:540px}
+  .after-project-copy>p{max-width:460px}
+  .after-project-cta{margin-top:20px}
+  .after-project-supporting{width:100%;margin-top:65px}
+  .after-project-supporting .after-project-copy h2{font-size:32px}
+  .after-art-superluminal{aspect-ratio:16/9}
+  .after-art-superluminal .after-art-mark{font-size:clamp(31px,8vw,58px)}
+  .film-breadcrumb{min-height:65px}
+  .film-hero{padding:28px 0 45px}
+  .film-hero h1{font-size:clamp(43px,10vw,64px);margin:24px 0}
+  .film-facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:25px}
+  .after-page.film-page .film-section{grid-template-columns:minmax(0,1fr);gap:25px;padding:45px 0}
+  .film-section-heading h2{font-size:30px;margin-top:16px}
+  .film-end-nav{flex-direction:column;align-items:flex-start;padding-bottom:45px;gap:15px}
+  .film-end-nav a:last-child{text-align:left}
+}
+@media(max-width:370px){.after-project-copy h2{font-size:32px}.after-art-top,.after-art-bottom{font-size:10px}.after-art-superluminal .after-art-mark{font-size:30px}}
+

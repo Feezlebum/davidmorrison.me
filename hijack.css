@@ -1,0 +1,275 @@
+/* Editorial case studies: shared Arial typography, authentic media and a quiet accent. */
+.before-index,
+.hijack-page { font-family: var(--sans, Arial, Helvetica, sans-serif); }
+
+.before-index-heading { max-width: 850px; padding: 64px 0 44px; }
+.before-index-heading h1 { margin: 18px 0 20px; font-family: inherit; font-size: clamp(36px, 4.4vw, 64px); font-weight: 400; letter-spacing: -.04em; line-height: 1.05; }
+.before-index-heading > p:last-child { max-width: 630px; color: var(--muted); font-size: 18px; line-height: 1.6; }
+.before-index .campaign-lead { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(30px, 4vw, 64px); align-items: center; margin-bottom: 58px; color: var(--ink); text-decoration: none; }
+.campaign-lead-art,
+.campaign-lead-copy { min-width: 0; }
+.campaign-lead-art picture,
+.campaign-lead-art img { display: block; width: 100%; }
+.campaign-lead-art img { height: auto; aspect-ratio: 2874 / 1460; object-fit: contain; }
+.campaign-lead-meta,
+.case-option-meta { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.before-index .campaign-lead h2 { margin: 22px 0 14px; font-family: inherit; font-size: clamp(34px, 3.4vw, 48px); font-weight: 400; letter-spacing: -.04em; line-height: 1.1; }
+.campaign-lead-description { max-width: 410px; font-size: 21px; line-height: 1.45; letter-spacing: -.02em; }
+.campaign-lead-role { margin-top: 17px; color: var(--muted); font-size: 13px; }
+.case-entry { display: inline-flex; align-items: center; justify-content: space-between; gap: 35px; min-height: 44px; margin-top: 18px; font-size: 14px; }
+.campaign-lead:hover .case-entry { text-decoration: underline; text-underline-offset: 5px; }
+.case-selection > h2 { margin-bottom: 22px; font-family: inherit; font-size: 15px; font-weight: 400; letter-spacing: 0; }
+.case-options { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.case-options > li { border-bottom: 1px solid var(--line); }
+.case-option { display: grid; grid-template-columns: minmax(0, 1fr) 24px; gap: 28px; align-items: center; padding: 27px 0; text-decoration: none; }
+.case-option.has-image { grid-template-columns: 120px minmax(0, 1fr) 24px; }
+.case-option-image { margin: 0; }
+.case-option-image img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; object-position: center top; }
+.case-option-copy { min-width: 0; }
+.case-option h3 { margin: 10px 0 9px; font-family: inherit; font-size: clamp(22px, 2.2vw, 29px); font-weight: 400; letter-spacing: -.035em; line-height: 1.2; }
+.case-option-summary { max-width: 68ch; color: var(--muted); font-size: var(--text-body); line-height: 1.6; }
+.case-option-arrow { justify-self: end; font-size: 20px; }
+.case-option:hover h3 { text-decoration: underline; text-underline-offset: 5px; }
+.index-editorial-note { padding: 24px 0 58px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+@media (max-width: 760px) {
+  .before-index-heading { padding: 40px 0 30px; }
+  .before-index-heading > p:last-child { font-size: var(--text-body); }
+  .before-index .campaign-lead { grid-template-columns: minmax(0, 1fr); gap: 25px; margin-bottom: 42px; }
+  .before-index .campaign-lead h2 { margin-top: 15px; }
+  .campaign-lead-description { max-width: 550px; font-size: 20px; }
+  .case-option { gap: 18px; padding: 24px 0; }
+  .case-option.has-image { grid-template-columns: 86px minmax(0, 1fr) 18px; }
+  .case-option-summary { font-size: var(--text-body); }
+  .index-editorial-note { padding-bottom: 40px; }
+}
+@media (max-width: 540px) {
+  .case-option.has-image { grid-template-columns: minmax(0, 1fr) 18px; }
+  .case-option-image { grid-column: 1 / -1; max-width: 120px; }
+}
+
+/* Native post wrappers, shared by every case study. */
+.tweet-embed { width: 100%; max-width: 550px; min-width: 0; }
+.tweet-source-heading { display: flex; align-items: baseline; gap: 12px; min-width: 0; margin-bottom: 8px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.tweet-original-link { display: flex; align-items: center; flex: 1; min-height: 44px; padding-block: 9px; color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+.tweet-original-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.tweet-source-heading > span:last-child { margin-left: auto; }
+.tweet-source-heading .source-order { color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.tweet-host { width: 100%; min-width: 0; }
+.tweet-host:empty { display: none; }
+.tweet-host iframe { max-width: 100%; }
+.tweet-host .twitter-tweet { margin: 0 !important; max-width: 100% !important; }
+.tweet-embed[data-embed-state="loading"] .tweet-host:empty { display: block; min-height: 200px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255, 255, 255, .25); }
+
+/* ─────────────────────────────────────────────────────────────
+   HiJack: the page is the hijacked broadcast. Phosphor green on
+   black, scanlines, a glitching title and a log of UTC timestamps.
+   ───────────────────────────────────────────────────────────── */
+body.hijack-theme {
+  --paper: #060a08; --ink: #e8f2eb; --muted: #9fb3a6; --line: #24362b;
+  --accent: #6dffb0; --hijack-green: #6dffb0; --hijack-glow: rgba(109, 255, 176, .45);
+  --hijack-cyan: #3df5ff; --hijack-magenta: #ff3df2; --hijack-amber: #ffc56b;
+  --mono: ui-monospace, 'Cascadia Mono', 'SFMono-Regular', Consolas, Menlo, monospace;
+}
+.hijack-page { font-family: var(--sans, Arial, Helvetica, sans-serif); }
+.hijack-label { display: block; color: var(--hijack-green); font-family: var(--mono); font-size: 11px; font-weight: 400; letter-spacing: .14em; text-transform: uppercase; }
+.hijack-page .breadcrumb { display: flex; align-items: center; padding: 18px 0 14px; color: var(--muted); font-size: 13px; }
+.hijack-page .breadcrumb a { display: inline-flex; align-items: center; min-height: 44px; }
+
+/* The screen */
+.hijack-hero { padding: 0 0 8px; }
+.hijack-screen { position: relative; overflow: hidden; isolation: isolate; aspect-ratio: 2874 / 1460; max-height: 78vh; min-height: 420px; border-radius: 18px; background: #020403; box-shadow: 0 0 0 1px #1d2c23, 0 30px 90px -30px rgba(109, 255, 176, .25); }
+.hijack-screen picture, .hijack-screen img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.hijack-screen img { object-fit: cover; object-position: 60% 30%; filter: saturate(1.15) contrast(1.05); animation: hijack-flicker 7s steps(1) infinite; }
+.hijack-screen-fx { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(2, 4, 3, .92) 0%, rgba(2, 4, 3, .55) 34%, rgba(2, 4, 3, 0) 62%),
+    linear-gradient(0deg, rgba(2, 4, 3, .85) 0%, rgba(2, 4, 3, 0) 45%),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, .28) 0 1px, transparent 1px 3px),
+    radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(0, 0, 0, .7) 100%); }
+.hijack-screen-fx::after { content: ''; position: absolute; left: 0; right: 0; height: 22%; top: -22%; background: linear-gradient(180deg, transparent, rgba(109, 255, 176, .07), transparent); animation: hijack-roll 6.5s linear infinite; }
+.hijack-screen-bug, .hijack-screen-clock { position: absolute; z-index: 2; top: clamp(16px, 2.4vw, 30px); margin: 0; font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--hijack-green); text-shadow: 0 0 10px var(--hijack-glow); }
+.hijack-screen-bug { left: clamp(18px, 2.6vw, 36px); display: flex; align-items: center; gap: 10px; }
+.hijack-screen-clock { right: clamp(18px, 2.6vw, 36px); font-variant-numeric: tabular-nums; }
+.hijack-rec { width: 9px; height: 9px; border-radius: 50%; background: #ff4d4d; box-shadow: 0 0 10px #ff4d4d; animation: hijack-blink 1.2s steps(1) infinite; }
+.hijack-hero-copy { position: absolute; z-index: 2; left: clamp(18px, 2.6vw, 36px); bottom: clamp(20px, 3vw, 44px); max-width: min(620px, 60%); }
+.hijack-hero-meta { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 0; font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.hijack-hero-meta span:first-child { color: var(--hijack-green); }
+.hijack-page .hijack-title { position: relative; margin: 10px 0 12px; color: var(--ink); font-family: inherit; font-size: clamp(64px, 11vw, 168px); font-weight: 600; letter-spacing: -.055em; line-height: .9; text-shadow: -2px 0 rgba(61, 245, 255, .55), 2px 0 rgba(255, 61, 242, .45), 0 0 28px rgba(109, 255, 176, .25); }
+.hijack-title::before, .hijack-title::after { content: attr(data-text); position: absolute; inset: 0; pointer-events: none; opacity: 0; }
+.hijack-title::before { color: var(--hijack-cyan); transform: translateX(-6px); clip-path: inset(18% 0 58% 0); animation: hijack-slice-a 5.5s steps(1) infinite; }
+.hijack-title::after { color: var(--hijack-magenta); transform: translateX(7px); clip-path: inset(62% 0 12% 0); animation: hijack-slice-b 5.5s steps(1) infinite; }
+.hijack-subtitle { max-width: 520px; margin: 0; font-size: clamp(19px, 1.9vw, 26px); letter-spacing: -.025em; line-height: 1.3; color: var(--ink); }
+.hijack-screen-credit { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; margin: 12px 2px 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+
+/* Lower third: intro, role, goal, formats */
+.hijack-brief { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.4fr); grid-template-areas: 'intro facts' 'jump facts'; gap: 8px clamp(30px, 5vw, 80px); align-items: start; padding: 46px 0 50px; border-bottom: 1px solid var(--line); }
+.hijack-intro { grid-area: intro; max-width: 34ch; margin: 0; font-size: clamp(21px, 1.9vw, 27px); line-height: 1.35; letter-spacing: -.025em; color: var(--ink); }
+.hijack-jump { grid-area: jump; display: inline-flex; align-items: center; gap: 14px; width: fit-content; min-height: 44px; margin-top: 12px; color: var(--hijack-green); font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; }
+.hijack-jump:hover { text-decoration: underline; text-underline-offset: 5px; }
+.hijack-facts { grid-area: facts; display: grid; grid-template-columns: 1fr; gap: 0; margin: 0; border-left: 3px solid var(--hijack-green); background: linear-gradient(90deg, rgba(109, 255, 176, .09), rgba(109, 255, 176, 0) 80%); }
+.hijack-facts > div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 20px; padding: 14px 20px; border-bottom: 1px solid rgba(109, 255, 176, .12); }
+.hijack-facts > div:last-child { border-bottom: 0; }
+.hijack-facts dt { color: var(--hijack-green); font-family: var(--mono); font-size: 11px; letter-spacing: .14em; line-height: 1.9; text-transform: uppercase; }
+.hijack-facts dd { margin: 0; font-size: 15px; line-height: 1.6; }
+
+/* The idea, beside the film */
+.hijack-page .hijack-idea { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(30px, 5vw, 80px); align-items: start; padding: 64px 0; border-bottom: 1px solid var(--line); }
+.hijack-idea-copy { min-width: 0; }
+.hijack-page .hijack-idea h2 { margin: 16px 0 20px; font-family: inherit; font-size: clamp(32px, 3.6vw, 52px); font-weight: 500; letter-spacing: -.045em; line-height: 1.05; }
+.hijack-idea-copy p:not(.hijack-label) { max-width: 60ch; color: var(--muted); font-size: 17px; line-height: 1.7; }
+.hijack-idea-copy p + p { margin-top: 1em; }
+.hijack-hero-film { min-width: 0; }
+.hijack-page .hijack-hero-film.timeline-chapter { display: block; padding: 0; }
+.hijack-hero-film .hijack-label { margin-bottom: 4px; }
+.hijack-hero-film .timeline-sources { margin: 0; }
+
+/* Timeline as a broadcast log */
+.hijack-timeline-section { padding: 64px 0 10px; scroll-margin-top: 24px; }
+.hijack-timeline-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 25px; margin-bottom: 44px; }
+.hijack-page .hijack-timeline-heading h2 { font-family: inherit; font-size: clamp(32px, 3.6vw, 52px); font-weight: 500; letter-spacing: -.045em; line-height: 1.05; }
+.hijack-timeline-heading > p { display: flex; flex-wrap: wrap; gap: 6px 22px; color: var(--muted); font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+.hijack-timeline-heading > p span { color: var(--hijack-green); }
+.hijack-page .timeline-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: clamp(30px, 4vw, 64px); }
+.timeline-sidebar { min-width: 0; }
+.hijack-page .timeline-index { position: sticky; top: 24px; }
+.hijack-page .timeline-index > summary { display: none; }
+.hijack-page .timeline-index nav > p { margin-bottom: 12px; }
+.hijack-page .timeline-index ol { list-style: none; margin: 0; padding: 0; }
+.hijack-page .timeline-index a { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 8px; align-items: baseline; min-height: 44px; padding: 7px 0; color: var(--muted); font-size: 13px; line-height: 1.45; text-decoration: none; }
+.hijack-page .timeline-index a > span { font-family: var(--mono); font-size: 11px; font-variant-numeric: tabular-nums; }
+.hijack-page .timeline-index a[aria-current="step"], .hijack-page .timeline-index a:hover { color: var(--hijack-green); }
+.hijack-page .timeline-index a[aria-current="step"] > span { text-shadow: 0 0 10px var(--hijack-glow); }
+.campaign-timeline { list-style: none; min-width: 0; margin: 0; padding: 0; }
+.hijack-page .timeline-chapter { position: relative; display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 0 clamp(24px, 3vw, 44px); padding: 0 0 64px; scroll-margin-top: 24px; }
+.hijack-page .timeline-chapter::before { content: ''; position: absolute; left: 150px; top: 10px; bottom: 0; width: 1px; transform: translateX(calc(clamp(24px, 3vw, 44px) / 2)); background: linear-gradient(180deg, rgba(109, 255, 176, .5), rgba(109, 255, 176, .08)); }
+.hijack-page .timeline-chapter:last-child::before { bottom: auto; height: 90px; }
+.timeline-stamp { display: flex; flex-direction: column; gap: 6px; padding-top: 2px; text-align: right; }
+.timeline-number { color: var(--muted); font-family: var(--mono); font-size: 11px; letter-spacing: .14em; }
+.timeline-stamp time, .timeline-stamp .unrecorded-time { color: var(--hijack-green); font-family: var(--mono); font-size: clamp(28px, 2.9vw, 40px); font-variant-numeric: tabular-nums; letter-spacing: -.02em; line-height: 1; text-shadow: 0 0 18px var(--hijack-glow); }
+.timeline-stamp .unrecorded-time { font-size: 13px; letter-spacing: .1em; line-height: 1.4; text-transform: uppercase; text-shadow: none; }
+.timeline-content { min-width: 0; }
+.hijack-page .timeline-content h3 { max-width: 760px; margin-bottom: 14px; font-family: inherit; font-size: clamp(25px, 2.5vw, 34px); font-weight: 500; letter-spacing: -.035em; line-height: 1.15; }
+.hijack-page .chapter-copy { max-width: 64ch; color: var(--muted); font-size: 17px; line-height: 1.7; }
+.profile-evidence { max-width: 609px; margin: 26px 0 0; padding: 10px; border: 1px solid var(--line); border-radius: 14px; background: #0c1410; }
+.profile-evidence img { display: block; width: 100%; height: auto; border-radius: 6px; }
+.profile-evidence figcaption, .timeline-film figcaption { max-width: 70ch; padding: 10px 4px 2px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.profile-evidence figcaption > span { display: block; margin-top: 2px; font-size: 12px; }
+.timeline-film { margin: 26px 0 0; }
+.timeline-film video { display: block; width: 100%; height: auto; aspect-ratio: 2874 / 1460; background: #020403; }
+.timeline-sources { display: grid; list-style: none; gap: 22px; min-width: 0; margin: 24px 0 0; padding: 0; }
+.timeline-sources > .tweet-panel { display: block; min-width: 0; border: 0; background: transparent; }
+.hijack-page .closing-sources { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.hijack-page .tweet-original-link { color: var(--ink); }
+
+/* Results: the numbers on screen */
+.hijack-page .hijack-results { position: relative; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: clamp(30px, 4vw, 64px); margin: 30px 0 0; padding: clamp(32px, 4vw, 56px); border: 1px solid #1f3328; border-radius: 18px; overflow: hidden; isolation: isolate;
+  background: radial-gradient(120% 120% at 0% 0%, rgba(109, 255, 176, .10), transparent 60%), #08110c; }
+.hijack-page .hijack-results::after { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .22) 0 1px, transparent 1px 3px); }
+.hijack-page .hijack-results h2 { margin-top: 12px; font-family: inherit; font-size: clamp(32px, 3.6vw, 52px); font-weight: 500; letter-spacing: -.045em; line-height: 1.05; }
+.hijack-result-content { min-width: 0; }
+.hijack-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: 0 0 34px; }
+.hijack-metrics > div { padding-top: 16px; border-top: 1px solid rgba(109, 255, 176, .25); }
+.hijack-metric-value { color: var(--hijack-green); font-family: var(--mono); font-size: clamp(38px, 4.6vw, 64px); font-weight: 400; letter-spacing: -.04em; line-height: 1; text-shadow: 0 0 22px var(--hijack-glow); }
+.hijack-metrics h3 { margin: 14px 0 6px; font-family: inherit; font-size: 15px; font-weight: 400; line-height: 1.45; }
+.hijack-metrics > div > p:last-child:not(.hijack-metric-value) { color: var(--muted); font-size: 13px; line-height: 1.6; }
+.hijack-result-notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.hijack-result-notes h3 { margin-bottom: 8px; font-family: inherit; font-size: 18px; font-weight: 500; letter-spacing: -.015em; }
+.registration-result p, .hijack-tradeoff p { max-width: 52ch; color: var(--muted); font-size: 15px; line-height: 1.7; }
+.hijack-tradeoff h3 { color: var(--hijack-amber); }
+.hijack-methodology { max-width: 70ch; margin-top: 28px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.hijack-measurement { max-width: 760px; margin-top: 6px; color: var(--muted); }
+.hijack-measurement summary, .hijack-credits summary { min-height: 44px; padding-block: 12px; color: var(--hijack-green); font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+.hijack-measurement p { max-width: 70ch; padding: 2px 0 8px; font-size: 14px; line-height: 1.7; }
+
+/* Press, credits, end nav */
+.hijack-page .hijack-press, .hijack-page .hijack-credits { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: clamp(30px, 4vw, 64px); padding: 54px 0; border-bottom: 1px solid var(--line); }
+.hijack-page .hijack-press > h2, .hijack-page .hijack-credits > h2 { font-family: inherit; font-size: 22px; font-weight: 500; letter-spacing: -.025em; line-height: 1.3; }
+.hijack-press ul { display: grid; gap: 4px; list-style: none; margin: 0 0 16px; padding: 0; }
+.hijack-press li a { display: inline-flex; align-items: center; min-height: 44px; font-size: clamp(20px, 1.9vw, 26px); letter-spacing: -.025em; line-height: 1.3; text-decoration: none; }
+.hijack-press li a:hover { color: var(--hijack-green); text-decoration: underline; text-underline-offset: 6px; }
+.hijack-press > div > p { color: var(--muted); font-size: 15px; line-height: 1.7; }
+.hijack-credits p { max-width: 70ch; color: var(--muted); font-size: 14px; line-height: 1.7; }
+.hijack-credits strong { color: var(--ink); font-weight: 400; }
+.hijack-credits .hijack-media-credit { font-size: 13px; }
+.hijack-credits details { margin-top: 12px; }
+.hijack-credits ul { list-style: none; margin: 4px 0 0; padding: 0; }
+.hijack-credits li a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 8px; font-size: 13px; }
+.hijack-page .case-end-nav { display: flex; justify-content: space-between; gap: 25px; margin-bottom: 40px; padding: 18px 0; border: 0; font-size: 14px; }
+.hijack-page .case-end-nav a { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; text-decoration: none; }
+.hijack-page .case-end-nav a:hover { color: var(--hijack-green); text-decoration: underline; text-underline-offset: 5px; }
+
+@keyframes hijack-roll { to { top: 100%; } }
+@keyframes hijack-blink { 50% { opacity: .15; } }
+@keyframes hijack-flicker { 0%, 100% { opacity: 1; } 91% { opacity: .82; } 92% { opacity: 1; } 96% { opacity: .9; } 97% { opacity: 1; } }
+@keyframes hijack-slice-a {
+  0%, 86%, 100% { opacity: 0; }
+  87% { opacity: .9; clip-path: inset(12% 0 64% 0); transform: translateX(-8px); }
+  89% { opacity: .9; clip-path: inset(48% 0 30% 0); transform: translateX(5px); }
+  91% { opacity: .9; clip-path: inset(70% 0 8% 0); transform: translateX(-4px); }
+  93% { opacity: 0; }
+}
+@keyframes hijack-slice-b {
+  0%, 87%, 100% { opacity: 0; }
+  88% { opacity: .85; clip-path: inset(58% 0 20% 0); transform: translateX(9px); }
+  90% { opacity: .85; clip-path: inset(20% 0 66% 0); transform: translateX(-6px); }
+  92% { opacity: .85; clip-path: inset(36% 0 44% 0); transform: translateX(4px); }
+  94% { opacity: 0; }
+}
+
+@media (max-width: 1150px) {
+  .hijack-page .closing-sources { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 900px) {
+  .hijack-brief { grid-template-columns: minmax(0, 1fr); grid-template-areas: 'intro' 'facts' 'jump'; gap: 24px; }
+  .hijack-intro { max-width: 40ch; }
+  .hijack-page .hijack-idea { grid-template-columns: minmax(0, 1fr); gap: 34px; }
+  .hijack-page .timeline-layout { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .hijack-page .timeline-index { position: static; padding: 0 0 12px; border-bottom: 1px solid var(--line); }
+  .hijack-page .timeline-index > summary { display: flex; justify-content: space-between; align-items: center; min-height: 44px; color: var(--hijack-green); font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; list-style: none; }
+  .hijack-page .timeline-index > summary::-webkit-details-marker { display: none; }
+  .hijack-page .timeline-index[open] > summary span { transform: rotate(45deg); }
+  .hijack-page .timeline-index nav > p { display: none; }
+  .hijack-page .timeline-index ol { display: grid; grid-template-columns: 1fr 1fr; gap: 0 25px; margin-top: 6px; }
+  .hijack-page .hijack-results, .hijack-page .hijack-press, .hijack-page .hijack-credits { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+}
+@media (max-width: 760px) {
+  .hijack-page .breadcrumb { padding: 8px 0 10px; }
+  .hijack-screen { aspect-ratio: 4 / 5; max-height: none; min-height: 0; border-radius: 14px; }
+  .hijack-screen img { object-position: 62% 30%; }
+  .hijack-screen-fx { background:
+    linear-gradient(180deg, rgba(2, 4, 3, .85) 0%, rgba(2, 4, 3, 0) 24%),
+    linear-gradient(0deg, rgba(2, 4, 3, .96) 0%, rgba(2, 4, 3, .7) 38%, rgba(2, 4, 3, 0) 66%),
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, .28) 0 1px, transparent 1px 3px),
+    radial-gradient(120% 90% at 50% 40%, transparent 50%, rgba(0, 0, 0, .7) 100%); }
+  .hijack-screen-bug, .hijack-screen-clock { font-size: 10px; letter-spacing: .1em; }
+  .hijack-screen-clock { top: 40px; right: auto; left: clamp(18px, 2.6vw, 36px); opacity: .8; }
+  .hijack-hero-copy { right: 18px; max-width: none; }
+  .hijack-page .hijack-title { font-size: clamp(64px, 21vw, 110px); }
+  .hijack-subtitle { font-size: 19px; }
+  .hijack-screen-credit { font-size: 12px; }
+  .hijack-brief { padding: 32px 0 36px; }
+  .hijack-intro { font-size: 21px; }
+  .hijack-facts > div { grid-template-columns: minmax(0, 1fr); gap: 4px; padding: 12px 16px; }
+  .hijack-page .hijack-idea { padding: 44px 0; }
+  .hijack-idea-copy p:not(.hijack-label), .hijack-page .chapter-copy { font-size: var(--text-body); }
+  .hijack-timeline-section { padding-top: 44px; }
+  .hijack-timeline-heading { flex-direction: column; align-items: start; gap: 12px; margin-bottom: 26px; }
+  .hijack-page .timeline-index ol { grid-template-columns: minmax(0, 1fr); }
+  .hijack-page .timeline-chapter { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 0 0 44px 22px; }
+  .hijack-page .timeline-chapter::before { left: 0; top: 6px; transform: none; }
+  .hijack-page .timeline-chapter:last-child::before { height: 60px; }
+  .timeline-stamp { flex-direction: row; align-items: baseline; gap: 12px; text-align: left; }
+  .timeline-stamp time { font-size: 30px; }
+  .hijack-page .timeline-content h3 { font-size: 25px; }
+  .hijack-page .hijack-results { margin-top: 10px; padding: 26px 20px; border-radius: 14px; }
+  .hijack-metrics, .hijack-result-notes { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .hijack-metric-value { font-size: 48px; }
+  .hijack-page .hijack-press, .hijack-page .hijack-credits { padding: 40px 0; }
+  .hijack-press ul { gap: 12px; }
+  .hijack-press li a { font-size: 20px; }
+  .hijack-page .case-end-nav { flex-wrap: wrap; gap: 8px 24px; margin-bottom: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hijack-screen img, .hijack-screen-fx::after, .hijack-rec, .hijack-title::before, .hijack-title::after { animation: none; }
+  .hijack-page .timeline-index > summary span { transition: none; }
+}

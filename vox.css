@@ -1,0 +1,101 @@
+/* VOX: the page is a paper collage. Pieces are cut from the films' stills; each field follows its film's scene. */
+.vox-page{--cream:#f6efdc;--string:#d23a2c;--grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");--lift:drop-shadow(0 .45em .5em rgba(8,10,9,.3)) drop-shadow(0 .08em .1em rgba(8,10,9,.22));--lift-high:drop-shadow(0 1.1em 1em rgba(8,10,9,.32)) drop-shadow(0 .12em .15em rgba(8,10,9,.2))}
+.vox-route ::selection{background:var(--cream);color:#1b1a16}
+
+
+/* One unit for the whole collage: a 16:10 poster that fills the width or the height, whichever runs out first. */
+.vox-band{--u:min(1vw,1.6svh);position:relative;overflow:hidden;isolation:isolate;height:calc(62.5 * var(--u));min-height:540px;background-color:var(--field);background-image:var(--grain);transition:background-color .8s cubic-bezier(.16,1,.3,1);font-size:var(--u)}
+.vox-piece{position:absolute;margin:0;filter:var(--lift);user-select:none}
+.vox-piece img,.vox-piece{display:block}
+.vox-piece img{width:100%;height:auto;pointer-events:none}
+img.vox-piece{height:auto}
+
+/* Scene pieces are the film's chapter controls. */
+.vox-play{padding:0;border:0;background:none;cursor:pointer;transition:translate .45s cubic-bezier(.16,1,.3,1),filter .45s cubic-bezier(.16,1,.3,1)}
+.vox-play:hover,.vox-play:focus-visible,.vox-play[aria-current="true"]{translate:0 -.7em;filter:var(--lift-high)}
+.vox-play:focus-visible{outline:3px solid var(--cream);outline-offset:.6em;border-radius:2px}
+.vox-play:active{translate:0 -.3em;transition-duration:.12s}
+
+/* The print each film plays in. */
+.vox-frame{position:absolute;z-index:4;left:calc(50% - 12.5em);top:14em;width:25em;margin:0;padding:.7em;background:var(--cream) var(--grain);box-shadow:0 1.6em 2.4em -1em rgba(8,10,9,.5),0 .15em .3em rgba(8,10,9,.22);rotate:-1.4deg}
+.vox-frame video{display:block;width:100%;aspect-ratio:9/16;background:#141513;object-fit:cover}
+/* Quiet play mark: a thin cream ring on a light scrim; it fills cream on hover. */
+.vox-start{position:absolute;z-index:1;left:50%;top:46%;width:4.2em;height:4.2em;min-width:44px;min-height:44px;translate:-50% -50%;margin:0;padding:0;border:1.5px solid rgba(246,239,220,.9);border-radius:50%;background:rgba(8,10,9,.28);color:var(--cream);cursor:pointer;display:grid;place-items:center;transition:background-color .3s cubic-bezier(.16,1,.3,1),color .3s cubic-bezier(.16,1,.3,1),scale .3s cubic-bezier(.16,1,.3,1),opacity .3s}
+.vox-start svg{width:40%;height:40%;margin-left:8%;fill:currentColor}
+.vox-start:hover{background:var(--cream);color:#1b1a16;scale:1.05}
+.vox-start:focus-visible{outline:2px solid var(--cream);outline-offset:4px}
+.has-played .vox-start{opacity:0;scale:.8;pointer-events:none}
+.vox-anchor{position:absolute;width:2px;height:2px;margin:-1px 0 0 -1px;pointer-events:none}
+
+/* String: red evidence string and gold string, pulled taut. */
+.vox-strings{position:absolute;inset:0;z-index:7;width:100%;height:100%;pointer-events:none;overflow:visible}
+.vox-strings path{fill:none;stroke:var(--string);stroke-width:2.2;stroke-linecap:round;filter:drop-shadow(0 2px 1.5px rgba(8,10,9,.35));stroke-dasharray:var(--length);stroke-dashoffset:var(--length);transition:stroke-dashoffset .9s cubic-bezier(.16,1,.3,1)}
+.vox-strings circle{fill:#e24a33;stroke:rgba(90,16,10,.35);stroke-width:1;filter:drop-shadow(0 2px 2px rgba(8,10,9,.4));opacity:0;transition:opacity .3s}
+.vox-band.is-strung .vox-strings path{stroke-dashoffset:0}
+.vox-band.is-strung .vox-strings circle{opacity:1}
+.vox-band.is-strung .vox-strings path:nth-of-type(2){transition-delay:.25s}
+
+/* Assemble when the band arrives: structure first, figures next, evidence last. */
+@keyframes vox-in{from{translate:var(--from);rotate:var(--spin,0deg)}}
+.vox-band.is-armed .vox-piece,.vox-band.is-armed .vox-beam{visibility:hidden}
+.vox-band.is-live .vox-piece{animation:vox-in .9s cubic-bezier(.16,1,.3,1) backwards;animation-delay:var(--at,0s)}
+
+/* I Want to Believe. Tractor beam: flat cardstock, as in the film. */
+.vox-beam{position:absolute;z-index:1;left:calc(50% - 21em);top:10.5em;width:42em;height:44em;background:#71baaf var(--grain);clip-path:polygon(39% 0,61% 0,100% 100%,0 100%);opacity:.94}
+.vox-band.is-live .vox-beam{animation:vox-beam .6s cubic-bezier(.16,1,.3,1) .45s both}
+@keyframes vox-beam{from{clip-path:polygon(39% 0,61% 0,61% 0,39% 0)}}
+.vox-ufo{z-index:5;left:calc(50% - 17em);top:1em;width:34em;--from:0 -30em;--at:.3s}
+.vox-ufo-small{z-index:2;left:calc(50% - 31em);top:4.5em;width:12em;rotate:-8deg;--from:-30em -20em;--at:.4s;--spin:-30deg}
+.vox-house{z-index:3;filter:drop-shadow(0 .35em .4em rgba(8,10,9,.28))}
+.vox-house--1{left:calc(50% - 20.5em);top:17em;width:7.5em;rotate:-8deg;--from:0 40em;--at:.6s}
+.vox-house--2{left:calc(50% + 13.6em);top:27em;width:6.5em;rotate:6deg;--from:0 40em;--at:.7s}
+.vox-house--3{left:calc(50% - 19em);top:38.5em;width:6.2em;rotate:-4deg;--from:0 40em;--at:.8s}
+.vox-crop-circle{z-index:2;left:0;top:0;width:32em;--from:-40em -30em;--at:0s}
+.vox-alien{z-index:5;right:0;top:0;width:23.7em;--from:30em -10em;--at:.2s}
+.vox-toaster{z-index:5;left:calc(50% - 29em);top:47em;width:10.5em;rotate:-7deg;--from:-40em 20em;--at:.75s;--spin:-25deg}
+.vox-arcs{z-index:6;right:20em;top:30em;width:6em;rotate:-52deg;--from:4em 4em;--at:.9s}
+.vox-signal{z-index:6;right:0;bottom:0;width:22.2em;--from:40em 20em;--at:.1s}
+.vox-signal img{transform:scaleX(-1)}
+
+/* The Inner Circle. Everything hangs off the eye on gold string; the eye shuts with the closing coda. */
+.vox-strings path.is-gold{stroke:#d8c23c;stroke-width:1.8;filter:drop-shadow(0 2px 2px rgba(0,0,0,.45))}
+.vox-band--the-inner-circle .vox-frame{left:calc(50% - 10.75em);top:22em;width:21.5em}
+.vox-eye{z-index:5;left:calc(50% - 13em);top:.5em;width:26em;--from:0 -30em;--at:.3s}
+.vox-eye .vox-eye-shut{position:absolute;inset:0;opacity:0;transition:opacity .5s cubic-bezier(.16,1,.3,1)}
+.vox-band[data-scene="close"] .vox-eye-shut{opacity:1}
+.vox-globe{z-index:3;left:0;top:0;width:32em;--from:-35em -25em;--at:0s}
+.vox-medallions{z-index:3;left:7em;top:44em;width:12em;rotate:-4deg;--from:-25em 20em;--at:.5s;--spin:-30deg}
+.vox-compass{z-index:3;right:0;top:0;width:30em;--from:35em -25em;--at:.1s}
+.vox-figure{z-index:6;--from:0 30em}
+.vox-figure--left{left:calc(50% - 22em);top:46em;width:8em;--at:.65s}
+.vox-figure--right{left:calc(50% + 12em);top:47em;width:8.5em;--at:.75s}
+
+/* Portrait and phones: each collage stacks around a larger film. */
+@media (max-width:900px),(max-aspect-ratio:1/1){
+  .vox-band{--u:min(1vw,5.2px);height:calc(226 * var(--u));min-height:0}
+  .vox-frame{left:calc(50% - 31em);top:30em;width:62em;padding:1.4em}
+  .vox-start{width:11em;height:11em}
+
+  .vox-beam{left:calc(50% - 46em);top:19em;width:92em;height:116em;clip-path:polygon(43% 0,57% 0,100% 100%,0 100%)}
+  .vox-ufo{left:calc(50% - 25em);top:4em;width:56em}
+  .vox-ufo-small{left:auto;right:2em;top:24em;width:20em;rotate:-10deg}
+  .vox-crop-circle{top:0;width:30em}
+  .vox-house--1{left:calc(50% - 47em);top:66em;width:14em}
+  .vox-house--2{left:calc(50% + 33em);top:96em;width:13em}
+  .vox-house--3{display:none}
+  .vox-alien{top:142em;width:38em}
+  .vox-signal{left:0;right:auto;top:160em;bottom:auto;width:40em}
+  .vox-signal img{transform:none}
+  .vox-arcs{right:auto;left:30em;top:147em;width:11em;rotate:-8deg}
+  .vox-toaster{left:calc(50% - 6em);top:198em;width:20em;rotate:5deg}
+
+
+  .vox-band--the-inner-circle{height:calc(236 * var(--u))}
+  .vox-band--the-inner-circle .vox-frame{left:calc(50% - 29em);top:52em;width:58em}
+  .vox-eye{left:calc(50% - 30em);top:2em;width:60em}
+  .vox-globe{top:162em;width:50em}
+  .vox-compass{top:160em;width:44em}
+  .vox-medallions{display:none}
+  .vox-figure--left{left:2em;top:100em;width:16em}
+  .vox-figure--right{left:auto;right:1em;top:104em;width:17em}
+}
