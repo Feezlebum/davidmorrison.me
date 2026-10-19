@@ -5,17 +5,6 @@ const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({'
 // Each talk: {slug, video, start (seconds), thumb, event, year, role, title, note}. `start` is where David comes on.
 export const talks = [
   {
-    slug: 'ethdenver-2024',
-    video: '1ohlR_tPlVM',
-    start: 594,
-    thumb: 'hqdefault',
-    event: 'ETHDenver',
-    year: '2024',
-    role: 'Speaker',
-    title: 'NEAR Protocol: An Overview',
-    note: 'An introduction to NEAR, framed as Two Truths and a Lie.',
-  },
-  {
     slug: 'redacted-2024-snowden',
     video: 'VCfTLQo5QZ0',
     start: 1377,
@@ -25,6 +14,17 @@ export const talks = [
     role: 'Moderator',
     title: 'Digital Sovereignty in the Age of AI',
     note: 'In conversation with Edward Snowden.',
+  },
+  {
+    slug: 'ethdenver-2024',
+    video: '1ohlR_tPlVM',
+    start: 594,
+    thumb: 'hqdefault',
+    event: 'ETHDenver',
+    year: '2024',
+    role: 'Speaker',
+    title: 'NEAR Protocol: An Overview',
+    note: 'An introduction to NEAR, framed as Two Truths and a Lie.',
   },
 ];
 

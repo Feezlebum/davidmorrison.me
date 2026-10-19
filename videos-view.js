@@ -33,6 +33,18 @@ export const videoCategories = [
       ${[3, 2, 1, 0].map(lag => `<span class="mt-ball-x mt-ghost-${lag}" style="--lag:${lag}" aria-hidden="true"><span class="mt-ball-y"><span class="mt-ball"></span></span></span>`).join('')}`,
   },
   {
+    slug: 'speaking',
+    title: 'Speaking',
+    href: '/videos/speaking',
+    // A dark stage before the talk. On hover the lamps come up, the spotlight swings onto the title,
+    // the title speaks like a voice meter and the front row leans in.
+    art: () => `
+      ${lamps(5)}
+      <span class="sp-cone" aria-hidden="true"></span>
+      ${mic('sp-mic')}
+      ${crowd('sp-card-crowd')}`,
+  },
+  {
     slug: 'slop',
     title: 'Slop',
     href: '/videos/slop',
@@ -45,18 +57,6 @@ export const videoCategories = [
       <span class="sl-swirl" aria-hidden="true"></span>
       ${spark('sl-spark-1')}${spark('sl-spark-2')}${spark('sl-spark-3')}${spark('sl-spark-4')}${spark('sl-spark-5')}
       <svg class="sl-puddle" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path d="M0 7C9 3 17 9 27 6S45 1 55 5S75 10 85 5S96 3 100 6V20H0Z"/></svg>`,
-  },
-  {
-    slug: 'speaking',
-    title: 'Speaking',
-    href: '/videos/speaking',
-    // A dark stage before the talk. On hover the lamps come up, the spotlight swings onto the title,
-    // the title speaks like a voice meter and the front row leans in.
-    art: () => `
-      ${lamps(5)}
-      <span class="sp-cone" aria-hidden="true"></span>
-      ${mic('sp-mic')}
-      ${crowd('sp-card-crowd')}`,
   },
 ];
 
