@@ -6,7 +6,7 @@
 
 /* Videos index: each category is a portrait collage card in its own visual world, three or four across. */
 .video-categories{list-style:none;margin:0;padding:8px 0 64px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:clamp(16px,2vw,28px)}
-.video-category{--grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");position:relative;isolation:isolate;overflow:hidden;container-type:inline-size;display:grid;place-items:center;aspect-ratio:4/5;background:var(--field) var(--grain);color:#f6efdc;text-decoration:none}
+.video-category{--grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");position:relative;isolation:isolate;overflow:hidden;container-type:inline-size;display:grid;place-items:center;place-content:center;aspect-ratio:4/5;background:var(--field) var(--grain);color:#f6efdc;text-decoration:none}
 .video-category:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
 .vc-piece{position:absolute;display:block;height:auto;filter:drop-shadow(0 .9cqi 1cqi rgba(8,10,9,.32)) drop-shadow(0 .15cqi .2cqi rgba(8,10,9,.2));user-select:none;pointer-events:none;transition:translate .5s cubic-bezier(.16,1,.3,1)}
 
@@ -212,4 +212,31 @@
   .sl-error{left:calc(50% - 46 * var(--u));top:calc(128 * var(--u))}
   .sl-assistant{top:calc(166 * var(--u));right:calc(50% - 44 * var(--u))}
   .sl-clip{width:4.8em;margin-right:4.4em}
+}
+
+/* Speaking: a dark stage before the talk. On hover the lamps come up, the spotlight swings onto the title,
+   the letters speak like a voice meter and the front row leans in. */
+.video-category--speaking{--field:#141017;--warm:#ffd79a;color:#d8cfc2}
+.video-category--speaking .vc-title{font-size:21cqi;translate:0 -8%;transition:color .5s .15s}
+.video-category--speaking .vc-letter{transform-origin:50% 55%}
+.video-category--speaking .sp-lamps{position:absolute;z-index:1;top:7%;left:0;right:0;padding-inline:16%;border-top:2px solid #2c2530}
+.video-category--speaking .sp-lamps i{width:5cqi;background:#3a323f;box-shadow:none;transition:background-color .35s,box-shadow .35s;transition-delay:calc(var(--i) * 70ms)}
+.sp-cone{position:absolute;z-index:1;left:50%;top:7%;width:120cqi;height:86%;translate:-50% 0;transform-origin:50% 0;rotate:-32deg;background:linear-gradient(rgba(255,215,154,.42),rgba(255,215,154,.1) 80%,transparent);clip-path:polygon(46% 0,54% 0,82% 100%,18% 100%);opacity:0;transition:opacity .4s,rotate .9s cubic-bezier(.34,1.3,.64,1)}
+.sp-mic{position:absolute;z-index:2;left:14%;bottom:17%;width:13cqi;fill:#3a323f;transition:fill .4s}
+.sp-card-crowd{position:absolute;z-index:2;left:0;bottom:0;width:100%;height:26cqi}
+.sp-card-crowd .sp-row-back{fill:#0d0b10}
+.sp-card-crowd .sp-row-front{fill:#060508}
+.video-category--speaking:is(:hover,:focus-visible) .sp-lamps i{background:var(--warm);box-shadow:0 0 3cqi 1cqi rgba(255,215,154,.55)}
+.video-category--speaking:is(:hover,:focus-visible) .sp-cone{opacity:1;rotate:0deg}
+.video-category--speaking:is(:hover,:focus-visible) .vc-title{color:#fff1d8}
+.video-category--speaking:is(:hover,:focus-visible) .sp-mic{fill:#6d6072}
+.video-category--speaking:is(:hover,:focus-visible) .vc-letter{animation:sp-talk .9s cubic-bezier(.45,0,.55,1) infinite;animation-delay:calc(var(--i) * -137ms)}
+.video-category--speaking:is(:hover,:focus-visible) .vc-letter:nth-child(3n){animation-duration:.7s}
+.video-category--speaking:is(:hover,:focus-visible) .vc-letter:nth-child(3n+1){animation-duration:1.1s}
+.video-category--speaking:is(:hover,:focus-visible) .sp-head{animation:sp-lean 1.6s cubic-bezier(.45,0,.55,1) infinite;animation-delay:calc(var(--i) * -230ms)}
+@keyframes sp-talk{0%,100%{scale:1 1}30%{scale:1 1.28}55%{scale:1 .82}80%{scale:1 1.12}}
+@keyframes sp-lean{0%,100%{translate:0 0}50%{translate:0 -.8px}}
+@media (prefers-reduced-motion:reduce){
+  .video-category--speaking:is(:hover,:focus-visible) :is(.vc-letter,.sp-head){animation:none}
+  .sp-cone{transition:opacity .4s;rotate:0deg}
 }

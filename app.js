@@ -9,6 +9,7 @@ import { renderVox, mountVox } from './vox-view.js';
 import { renderVideos } from './videos-view.js';
 import { renderMotion, mountMotion } from './motion-view.js';
 import { renderSlop, mountSlop } from './slop-view.js';
+import { renderSpeaking, mountSpeaking } from './speaking-view.js';
 
 const main = document.querySelector('#main');
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
@@ -65,6 +66,8 @@ function render() {
     html = renderMotion(); title = 'Motion Design — David Morrison';
   } else if (route === '/videos/slop') {
     html = renderSlop(); title = 'Slop — David Morrison';
+  } else if (route === '/videos/speaking') {
+    html = renderSpeaking(); title = 'Speaking — David Morrison';
   } else if (route === '/before') {
     html = renderCampaignIndex(); title = 'Before the Singularity — David Morrison';
   } else if (route === '/after') {
@@ -87,12 +90,13 @@ function render() {
   mountVox(document.querySelector('.vox-page'));
   mountMotion(document.querySelector('.md-page'));
   mountSlop(document.querySelector('.sl-page'));
+  mountSpeaking(document.querySelector('.sp-page'));
   document.title = title;
   const descriptions = {
     'near-ai-film': 'An AI-generated NEAR film, released in September 2024.',
     'slx-ai-reference': 'An AI-generated introduction film for Superluminal, released in June 2026.',
   };
-  document.querySelector('meta[name="description"]').content = descriptions[currentProject?.slug] || currentProject?.summary || (route === '/videos' ? 'Videos — David Morrison.' : route === '/videos/vox' ? 'VOX: short paper-collage explainer films by David Morrison.' : route === '/videos/motion-design' ? 'Motion design by David Morrison.' : route === '/videos/slop' ? 'Slop: AI experiments and unfinished films by David Morrison.' : route === '/resume' ? 'David Morrison’s resume. Head of Creative Campaigns & Social Media at NEAR Foundation; now leading social for special projects at Douro Labs.' : route === '/before' ? 'Selected campaigns for NEAR and Fogo.' : route === '/after' ? 'Selected AI-generated films for NEAR and Superluminal.' : 'David Morrison: eight years leading social, creative campaigns and community for crypto and fintech startups. Selected work for NEAR, Fogo and Superluminal.');
+  document.querySelector('meta[name="description"]').content = descriptions[currentProject?.slug] || currentProject?.summary || (route === '/videos' ? 'Videos — David Morrison.' : route === '/videos/vox' ? 'VOX: short paper-collage explainer films by David Morrison.' : route === '/videos/motion-design' ? 'Motion design by David Morrison.' : route === '/videos/slop' ? 'Slop: AI experiments and unfinished films by David Morrison.' : route === '/videos/speaking' ? 'Speaking: talks, interviews and hosting by David Morrison, from ETHDenver to Edward Snowden.' : route === '/resume' ? 'David Morrison’s resume. Head of Creative Campaigns & Social Media at NEAR Foundation; now leading social for special projects at Douro Labs.' : route === '/before' ? 'Selected campaigns for NEAR and Fogo.' : route === '/after' ? 'Selected AI-generated films for NEAR and Superluminal.' : 'David Morrison: eight years leading social, creative campaigns and community for crypto and fintech startups. Selected work for NEAR, Fogo and Superluminal.');
   const themeColors = {'/work/near-hijack':'#060a08','/work/fogo-launch':'#120a12','/work/near-profile-transformation':'#000000','/work/near-egg':'#f4eef6'};
   document.querySelector('meta[name="theme-color"]').content = themeColors[route] || '#f8f8f5';
   if (location.hash) requestAnimationFrame(() => document.getElementById(location.hash.slice(1))?.scrollIntoView());

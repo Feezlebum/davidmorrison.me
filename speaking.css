@@ -1,0 +1,57 @@
+/* Speaking. A dark stage: a lighting bar of lamps, a spotlight on each talk's screen, event badges on lanyards,
+   and the front row in silhouette along the stage edge. */
+.sp-stage{--stage:#110e14;--warm:#ffd79a;--strap:#e8a33d;position:relative;overflow:hidden;isolation:isolate;padding:clamp(72px,9vw,140px) var(--gutter) 0;background:radial-gradient(ellipse 70% 50% at 50% 0,#211a26,transparent 70%),linear-gradient(#110e14 0%,#16121a 70%,#1f1922 100%);color:#f4efe6}
+
+/* The lighting bar across the top; its lamps come on one after another as the stage arrives. */
+.sp-lamps{position:absolute;left:0;right:0;top:22px;display:flex;justify-content:space-around;padding-inline:var(--gutter);border-top:2px solid #2c2530}
+.sp-lamps i{width:clamp(14px,1.6vw,22px);aspect-ratio:1;margin-top:-1px;border-radius:0 0 50% 50%;background:var(--warm);box-shadow:0 0 18px 4px rgba(255,215,154,.55),0 0 60px 10px rgba(255,215,154,.18);transition:background-color .5s,box-shadow .5s;transition-delay:calc(var(--i) * 90ms)}
+.sp-stage.is-dark .sp-lamps i{background:#3a323f;box-shadow:none}
+
+/* A talk: the stage screen under its spotlight, the badge hanging beside it. */
+.sp-set{position:relative;max-width:1400px;margin:0 auto;padding-block:clamp(40px,6vw,96px);display:grid;grid-template-columns:minmax(0,1.7fr) minmax(240px,.8fr);gap:clamp(32px,6vw,110px);align-items:center}
+.sp-set:nth-of-type(even){grid-template-columns:minmax(240px,.8fr) minmax(0,1.7fr)}
+.sp-set:nth-of-type(even) .sp-screen{order:2}
+.sp-screen{position:relative}
+.sp-screen::before{content:"";position:absolute;z-index:-1;left:50%;bottom:30%;width:160%;height:240%;translate:-50% 0;background:conic-gradient(from 160deg at 50% 0,transparent 0deg,rgba(255,215,154,.16) 14deg,rgba(255,215,154,.22) 20deg,rgba(255,215,154,.16) 26deg,transparent 40deg);opacity:1;transition:opacity 1.2s cubic-bezier(.16,1,.3,1) .6s;pointer-events:none}
+.sp-stage.is-dark .sp-screen::before{opacity:0}
+.sp-player{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000;border:clamp(6px,.7vw,10px) solid #050406;border-radius:4px;box-shadow:0 0 0 1px #2c2530,0 30px 80px -20px rgba(0,0,0,.8),0 0 120px -30px rgba(255,215,154,.35)}
+.sp-player img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.88;transition:opacity .4s,scale .6s cubic-bezier(.16,1,.3,1)}
+.sp-player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.sp-play{position:absolute;left:50%;top:50%;width:clamp(64px,7vw,92px);aspect-ratio:1;translate:-50% -50%;display:grid;place-items:center;margin:0;padding:0;border:0;border-radius:50%;background:var(--warm);color:#110e14;cursor:pointer;box-shadow:0 0 0 0 rgba(255,215,154,.5);transition:scale .3s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+.sp-play svg{width:40%;height:40%;margin-left:8%;fill:currentColor}
+.sp-play:hover,.sp-play:focus-visible{scale:1.07;box-shadow:0 0 0 14px rgba(255,215,154,.16)}
+.sp-play:focus-visible{outline:3px solid #fff;outline-offset:6px}
+.sp-player:has(.sp-play:hover) img{opacity:1;scale:1.02}
+
+/* The event pass on its lanyard. It swings a little from the strap when the pointer is over it. */
+.sp-badge{position:relative;justify-self:center;width:min(100%,320px);padding-top:clamp(70px,8vw,120px);transform-origin:50% 0;rotate:-2deg;transition:rotate .9s cubic-bezier(.34,1.56,.64,1)}
+.sp-set:nth-of-type(even) .sp-badge{rotate:2deg}
+.sp-lanyard{position:absolute;left:50%;top:0;width:44%;height:calc(clamp(70px,8vw,120px) + 4px);translate:-50% 0;fill:var(--strap);overflow:visible}
+.sp-pass{position:relative;padding:22px 22px 20px;border-radius:12px;background:#f7f4ee;color:#16121a;box-shadow:0 24px 50px -18px rgba(0,0,0,.75)}
+.sp-pass::before{content:"";position:absolute;left:50%;top:10px;width:34px;height:7px;translate:-50% 0;border-radius:4px;background:#110e14;box-shadow:inset 0 1px 2px rgba(0,0,0,.6)}
+.sp-pass::after{content:"";position:absolute;left:50%;top:-10px;width:22px;height:20px;translate:-50% 0;border-radius:4px 4px 2px 2px;background:linear-gradient(#cfc8bd,#9d968c)}
+.sp-event{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:12px 0 0;padding-bottom:12px;border-bottom:2px solid #16121a;font-size:clamp(22px,2vw,28px);font-weight:600;line-height:1;letter-spacing:-.03em}
+.sp-event span:last-child{font-size:.6em;font-weight:500;font-variant-numeric:tabular-nums}
+.sp-role{display:inline-block;margin:14px 0 0;padding:6px 10px 5px;border-radius:4px;background:var(--strap);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.sp-pass h2{margin:16px 0 0;font-size:clamp(20px,1.6vw,24px);font-weight:500;line-height:1.15;letter-spacing:-.025em}
+.sp-note{margin:8px 0 0;font-size:15px;line-height:1.45;color:#4c4651}
+.sp-watch{display:inline-flex;align-items:center;min-height:44px;margin-top:10px;font-size:14px;font-weight:500;color:#16121a;text-decoration:underline;text-underline-offset:4px}
+.sp-watch:focus-visible{outline:3px solid var(--strap);outline-offset:2px}
+.sp-set:hover .sp-badge{rotate:1deg}
+.sp-set:nth-of-type(even):hover .sp-badge{rotate:-1deg}
+
+/* The front of the stage and the front row, in silhouette. */
+.sp-floor{position:relative;margin:clamp(24px,4vw,64px) calc(-1 * var(--gutter)) 0;height:clamp(70px,9vw,140px);border-top:1px solid #3a3040;background:linear-gradient(#2a2230,#120f15)}
+.sp-crowd{position:absolute;left:0;bottom:0;width:100%;height:100%}
+.sp-crowd .sp-row-back{fill:#0b090d}
+.sp-crowd .sp-row-front{fill:#050406}
+
+@media (max-width:860px){
+  .sp-set,.sp-set:nth-of-type(even){grid-template-columns:1fr;gap:8px}
+  .sp-set:nth-of-type(even) .sp-screen{order:0}
+  .sp-badge{width:min(100%,340px);padding-top:56px}
+  .sp-lanyard{height:60px}
+}
+@media (prefers-reduced-motion:reduce){
+  .sp-badge,.sp-set:nth-of-type(even) .sp-badge,.sp-set:hover .sp-badge{rotate:0deg;transition:none}
+}

@@ -32,7 +32,7 @@ const experience = [
       'Set the strategy for NEAR’s forum and Discord. Both reached all-time activity highs.',
       'Shaped marketing direction and company-wide planning in top-level strategy sessions at international offsites.',
       'Hired and mentored a Marketing Executive from onboarding to working independently.',
-      'Represented NEAR on stage at conferences worldwide and in interviews, adapting technical messaging for each audience.',
+      { html: `Hosted NEARCON, NEAR’s annual conference, every year after my first; interviewed Edward Snowden on stage at [REDACTED] 2024; and represented NEAR at conferences worldwide, including ETHDenver 2024. <a href="/videos/speaking">Watch the talks</a>.` },
     ],
   },
   {

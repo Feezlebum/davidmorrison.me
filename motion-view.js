@@ -70,6 +70,7 @@ export function renderMotion() {
   <div class="md-page">
     <header class="video-intro page-wrap">
       <h1>Motion Design</h1>
+      <p>Motion design built around sound: a 1968 John Lennon interview set to hand-drawn ink, and a C.P.E. Bach solfeggio that writes its own score as it plays. They are small studies in timing, but the same craft carries launch films, explainers and social assets, where the movement has to land the idea before anyone reads a word.</p>
     </header>
     ${motionFilms.map(film => renderers[film.slug](film)).join('')}
   </div>`;

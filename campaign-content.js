@@ -20,15 +20,14 @@ const chapter = (id, order, title, body, dateLabel, exactDate, sourceLinks, extr
   ...extra,
 });
 
+// The campaign as it ran on NEAR's X account, recovered 18 October 2026 from archived status URLs.
 const egg = {
-  teaserOne: source('First official teaser', 'https://t.me/nearprotocolnews/377', 'official-archive'),
-  teaserTwo: source('Second official teaser', 'https://t.me/nearprotocolnews/379', 'official-archive'),
-  archive: source('Official NEAR archive', 'https://t.me/s/nearprotocolnews?before=397', 'official-archive'),
+  teaserSound: source('NEAR · first teaser, 2 October 2022', 'https://x.com/NEARProtocol/status/1576588303897309184', 'original-post', true),
+  teaserFilm: source('NEAR · second teaser, 3 October 2022', 'https://x.com/NEARProtocol/status/1576991840225542145', 'original-post', true),
   reveal: source('The Egg Is NEAR · original reveal', 'https://x.com/NEARProtocol/status/1577290636247564288', 'original-post', true),
-  telegramReveal: source('Official Telegram reveal', 'https://t.me/nearprotocolnews/380', 'official-archive'),
-  participation: source('Original participation instructions', 'https://x.com/NEARProtocol/status/1577290641607835649', 'original-post', true),
-  article: source('NEAR · Win a Trip to Vietnam', 'https://www.near.org/blog/win-a-trip-to-vietnam-with-the-near-foundation', 'official-article'),
-  reminder: source('Official last-day reminder', 'https://t.me/nearprotocolnews/385', 'official-archive'),
+  participation: source('NEAR · rules to enter', 'https://x.com/NEARProtocol/status/1577290641607835649', 'original-post', true),
+  rulesChange: source('NEAR · the rules change, 7 October 2022', 'https://x.com/NEARProtocol/status/1578484278316642304', 'original-post', true),
+  winner: source('NEAR · winner announcement, 10 October 2022', 'https://x.com/NEARProtocol/status/1579492045710069761', 'original-post', true),
 };
 
 const fuego = {
@@ -86,9 +85,9 @@ export const campaignContent = {
     datePrecision: 'month',
     role: 'Campaign lead',
     objective: 'Launch NEAR’s branded hashtag emoji and get people using it.',
-    formats: ['Profile imagery', 'Teaser films', 'Reveal film', 'Branded hashtag'],
+    formats: ['Profile imagery', 'Teaser films', 'Reveal film', 'Branded hashtag', 'Contest'],
     intro: [
-      'I led a campaign that started with an egg appearing on NEAR’s profile. Two short teaser films gave people something to puzzle over.',
+      'I led a campaign that started with an egg appearing on NEAR’s profile. Over two days, a sound teaser and an eight-second film of a chrome egg cracking in pink dunes gave people something to puzzle over.',
       'On 4 October 2022 the egg hatched into the NEAR logo and brought a branded hashtag emoji with it. Anyone could use it in their own posts.',
       'A contest for a trip to Vietnam gave people a reason to: quote the post, tag a friend, use the hashtag and add one to your name or bio.',
     ],
@@ -100,23 +99,20 @@ export const campaignContent = {
     heroMedia: { kind: 'tweet', sourceUrl: egg.reveal.url, alt: 'The original NEAR egg-hatching reveal film.', caption: 'The egg hatches, and the hashtag emoji arrives with it.' },
     heroStill: { path: '/images/near-egg/egg-reveal-poster.jpg', alt: 'A reflective silver-and-pink egg in a pastel landscape, from NEAR’s 2022 reveal film.', width: 1080, height: 1080, caption: 'A frame from the reveal film.' },
     sequence: [
-      chapter('egg-teasers', 1, 'An egg appears', 'A four-second teaser, then an eight-second film. Both showed the egg without saying what it was.', 'Before the reveal', null, [egg.teaserOne, egg.teaserTwo, egg.archive]),
-      chapter('egg-hatches', 2, 'It hatches', 'The iridescent silver-and-pink egg cracked open to show the NEAR logo. The same post introduced the branded hashtag emoji and a contest for a trip for two to Vietnam.', '4 October 2022', '2022-10-04', [egg.reveal, egg.telegramReveal]),
-      chapter('egg-participation', 3, 'How to enter', 'Like and quote the announcement, tag a friend, use a branded hashtag and add one to your profile name or bio. The entry rules asked people to carry the reveal onto their own profiles.', '4 October 2022', '2022-10-04', [egg.participation, egg.article]),
-      chapter('egg-follow-through', 4, 'Last call', 'Reminder posts kept the contest in view until it closed.', 'After the reveal', null, [egg.reminder, egg.article]),
+      chapter('egg-teasers', 1, 'A sound, then an egg', 'First a black screen and a sound wave. The next day, eight seconds of a chrome egg in pastel dunes that jumps, then cracks with a pink glow. Neither post said a word.', '2–3 October 2022', '2022-10-02', [egg.teaserSound, egg.teaserFilm]),
+      chapter('egg-hatches', 2, 'It hatches, and everyone can join in', 'The egg opened on the NEAR logo, and the reveal launched the branded hashtag emoji with a trip for two to Vietnam. To enter, people quoted the post, tagged a friend, used a branded hashtag and added one to their name or bio, so the reveal travelled onto their own profiles.', '4 October 2022', '2022-10-04', [egg.participation]),
+      chapter('egg-rules-change', 3, 'The rules change, in public', 'Three days in, NEAR dropped the retweet restriction and extended the deadline to midnight on Sunday, in the same voice as the rest of the campaign: “We’re also firing our social media intern.”', '7 October 2022', '2022-10-07', [egg.rulesChange]),
+      chapter('egg-winner', 4, 'A winner', 'The draw closed the campaign, and the announcement thanked “the thousands that participated”.', '10 October 2022', '2022-10-10', [egg.winner]),
     ],
-    visualThreads: [
-      {
-        id: 'egg-profile-imagery',
-        title: 'The egg on the profile',
-        dateLabel: 'Across the campaign',
-        exactDate: null,
-        body: 'The egg sat on NEAR’s profile itself, tying the account to the teasers and the reveal.',
-        sourceLinks: [],
-        embedUrls: [],
-      },
+    counterSnapshots: [
+      { label: 'Likes on the reveal', displayValue: '3,352', value: 3352, precision: 'exact', sourceUrl: egg.reveal.url, publishedDate: '2022-10-04', observedAt: '2026-10-18', evidenceAnchor: 'near-egg-featured-film' },
+      { label: 'Replies to the reveal', displayValue: '559', value: 559, precision: 'exact', sourceUrl: egg.reveal.url, publishedDate: '2022-10-04', observedAt: '2026-10-18', evidenceAnchor: 'near-egg-featured-film' },
+      { label: 'Likes on the second teaser', displayValue: '747', value: 747, precision: 'exact', sourceUrl: egg.teaserFilm.url, publishedDate: '2022-10-03', observedAt: '2026-10-18', evidenceAnchor: 'egg-teasers' },
     ],
-    results: [],
+    counterNote: 'Public X counters captured on 18 October 2026.',
+    results: [
+      { title: 'Thousands took part.', body: 'Every entry was a quote post carrying a branded hashtag, and the winner announcement thanked “the thousands that participated”.', evidenceAnchor: 'egg-winner', evidenceLabel: 'See the announcement' },
+    ],
     credits: ['David Morrison — campaign lead.'],
     sources: Object.values(egg),
     relatedWork: [
