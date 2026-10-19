@@ -22,6 +22,7 @@ const chapter = (id, order, title, body, dateLabel, exactDate, sourceLinks, extr
 
 // The campaign as it ran on NEAR's X account, recovered 18 October 2026 from archived status URLs.
 const egg = {
+  teaserPuzzle: source('NEAR · word search, 1 October 2022', 'https://x.com/NEARProtocol/status/1576290149113417728', 'original-post', true),
   teaserSound: source('NEAR · first teaser, 2 October 2022', 'https://x.com/NEARProtocol/status/1576588303897309184', 'original-post', true),
   teaserFilm: source('NEAR · second teaser, 3 October 2022', 'https://x.com/NEARProtocol/status/1576991840225542145', 'original-post', true),
   reveal: source('The Egg Is NEAR · original reveal', 'https://x.com/NEARProtocol/status/1577290636247564288', 'original-post', true),
@@ -87,7 +88,7 @@ export const campaignContent = {
     objective: 'Launch NEAR’s branded hashtag emoji and get people using it.',
     formats: ['Profile imagery', 'Teaser films', 'Reveal film', 'Branded hashtag', 'Contest'],
     intro: [
-      'I led a campaign that started with an egg appearing on NEAR’s profile. Over two days, a sound teaser and an eight-second film of a chrome egg cracking in pink dunes gave people something to puzzle over.',
+      'I led a campaign that started with an egg appearing on NEAR’s profile. Over three days, a word search, a sound teaser and an eight-second film of a chrome egg cracking in pink dunes gave people something to puzzle over.',
       'On 4 October 2022 the egg hatched into the NEAR logo and brought a branded hashtag emoji with it. Anyone could use it in their own posts.',
       'A contest for a trip to Vietnam gave people a reason to: quote the post, tag a friend, use the hashtag and add one to your name or bio.',
     ],
@@ -99,7 +100,7 @@ export const campaignContent = {
     heroMedia: { kind: 'tweet', sourceUrl: egg.reveal.url, alt: 'The original NEAR egg-hatching reveal film.', caption: 'The egg hatches, and the hashtag emoji arrives with it.' },
     heroStill: { path: '/images/near-egg/egg-reveal-poster.jpg', alt: 'A reflective silver-and-pink egg in a pastel landscape, from NEAR’s 2022 reveal film.', width: 1080, height: 1080, caption: 'A frame from the reveal film.' },
     sequence: [
-      chapter('egg-teasers', 1, 'A sound, then an egg', 'First a black screen and a sound wave. The next day, eight seconds of a chrome egg in pastel dunes that jumps, then cracks with a pink glow. Neither post said a word.', '2–3 October 2022', '2022-10-02', [egg.teaserSound, egg.teaserFilm]),
+      chapter('egg-teasers', 1, 'A puzzle, a sound, then an egg', 'It opened with a word search, EGG hidden in its first row. Then a black screen and a sound wave. The next day, eight seconds of a chrome egg in pastel dunes that jumps, then cracks with a pink glow. None of the posts said a word.', '1–3 October 2022', '2022-10-01', [egg.teaserPuzzle, egg.teaserSound, egg.teaserFilm]),
       chapter('egg-hatches', 2, 'It hatches, and everyone can join in', 'The egg opened on the NEAR logo, and the reveal launched the branded hashtag emoji with a trip for two to Vietnam. To enter, people quoted the post, tagged a friend, used a branded hashtag and added one to their name or bio, so the reveal travelled onto their own profiles.', '4 October 2022', '2022-10-04', [egg.participation]),
       chapter('egg-rules-change', 3, 'The rules change, in public', 'Three days in, NEAR dropped the retweet restriction and extended the deadline to midnight on Sunday, in the same voice as the rest of the campaign: “We’re also firing our social media intern.”', '7 October 2022', '2022-10-07', [egg.rulesChange]),
       chapter('egg-winner', 4, 'A winner', 'The draw closed the campaign, and the announcement thanked “the thousands that participated”.', '10 October 2022', '2022-10-10', [egg.winner]),

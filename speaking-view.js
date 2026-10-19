@@ -22,7 +22,7 @@ export const talks = [
     thumb: 'maxresdefault',
     event: '[REDACTED]',
     year: '2024',
-    role: 'Interviewer',
+    role: 'Moderator',
     title: 'Digital Sovereignty in the Age of AI',
     note: 'In conversation with Edward Snowden.',
   },
@@ -78,7 +78,7 @@ export function renderSpeaking() {
   <div class="sp-page">
     <header class="video-intro page-wrap">
       <h1>Speaking</h1>
-      <p>I hosted NEARCON every year after my first at NEAR, and I speak regularly at crypto events around the world, as a speaker, a host and an interviewer. Here are two of those talks, each cued to where I come on.</p>
+      <p>I hosted NEARCON every year from 2022 to 2024, and I speak regularly at crypto events around the world, as a speaker, a host and a moderator. Here are two of those talks, each cued to where I come on.</p>
     </header>
     <section class="sp-stage" aria-label="Talks" data-sp-stage>
       ${lamps(9)}
