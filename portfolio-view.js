@@ -68,6 +68,14 @@ const testimonials = [
     source: {label: 'On X, 10 May 2024', url: 'https://x.com/advait_jayant/status/1789063420441997335'},
   },
   {
+    quote: 'I kind of respect people that take bold risks like this',
+    name: 'Mike Ippolito',
+    role: 'Cofounder, Blockworks',
+    photo: '/images/testimonials/mike-ippolito.webp',
+    context: {label: 'On HiJack', href: '/work/near-hijack'},
+    source: {label: 'On Bell Curve, 6 September 2024', url: 'https://www.youtube.com/watch?v=it3n5LFs46Y&t=630s'},
+  },
+  {
     quote: 'NEAR’s social media hype machine effectively sold to the world that their system was a) developed by them and did not infringe any rights, and b) was decentralized and safe.',
     name: 'Dominic Williams',
     role: 'Founder, ICP',
