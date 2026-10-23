@@ -54,6 +54,7 @@
 .testimonial img{flex:none;width:48px;height:48px;border-radius:50%;object-fit:cover;background:var(--line)}
 .testimonial figcaption > span{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.5em}
 .testimonial strong{font-weight:500;color:var(--ink)}
-.testimonial figcaption a{flex-basis:100%;width:fit-content;min-height:32px;display:inline-flex;align-items:center;font-size:var(--text-meta);color:var(--muted)}
+.testimonial-links{flex-basis:100%;display:flex;flex-wrap:wrap;column-gap:var(--space-4)}
+.testimonial figcaption a{min-height:32px;display:inline-flex;align-items:center;font-size:var(--text-meta);color:var(--muted)}
 .testimonial figcaption a:hover{color:var(--ink)}
 @media(max-width:700px){.explorer-testimonials{margin-top:0}.testimonial blockquote p{font-size:1.25rem}}

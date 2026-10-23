@@ -60,6 +60,14 @@ export function renderHome() {
 // Quotes are verbatim and link to where they were said.
 const testimonials = [
   {
+    quote: 'I’ve never seen marketing done as well as by @NEARProtocol',
+    name: 'Advait Jayant',
+    role: 'CSO, OpenGradient',
+    photo: '/images/testimonials/advait-jayant.webp',
+    context: {label: 'On Profile as a Canvas', href: '/work/near-profile-transformation'},
+    source: {label: 'On X, 10 May 2024', url: 'https://x.com/advait_jayant/status/1789063420441997335'},
+  },
+  {
     quote: 'NEAR’s social media hype machine effectively sold to the world that their system was a) developed by them and did not infringe any rights, and b) was decentralized and safe.',
     name: 'Dominic Williams',
     role: 'Founder, ICP',
@@ -70,7 +78,7 @@ const testimonials = [
 
 const testimonial = item => `<figure class="testimonial">
       <blockquote><p>“${escape(item.quote)}”</p></blockquote>
-      <figcaption><img src="${escape(item.photo)}" alt="" width="96" height="96" loading="lazy" decoding="async"><span><strong>${escape(item.name)}</strong> ${escape(item.role)}<a href="${escape(item.source.url)}" target="_blank" rel="noopener noreferrer">${escape(item.source.label)}<span class="sr-only"> (opens in a new tab)</span></a></span></figcaption>
+      <figcaption><img src="${escape(item.photo)}" alt="" width="96" height="96" loading="lazy" decoding="async"><span><strong>${escape(item.name)}</strong> ${escape(item.role)}<span class="testimonial-links">${item.context ? `<a href="${escape(item.context.href)}">${escape(item.context.label)}</a>` : ''}<a href="${escape(item.source.url)}" target="_blank" rel="noopener noreferrer">${escape(item.source.label)}<span class="sr-only"> (opens in a new tab)</span></a></span></span></figcaption>
     </figure>`;
 
 let dispose = () => {};
