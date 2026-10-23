@@ -19,7 +19,8 @@ const project = slug => projects.find(item => item.slug === slug);
 function header(route) {
   document.querySelector('#header').innerHTML = `
     <a class="identity" href="/" aria-label="David Morrison, home">David Morrison</a>
-    <nav aria-label="Main navigation" class="header-links">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu<span class="menu-icon" aria-hidden="true"><i></i><i></i></span></button>
+    <nav aria-label="Main navigation" class="header-links" id="site-nav">
       <a href="/#work" ${route.startsWith('/work/') || ['/before', '/after'].includes(route) ? 'aria-current="location"' : ''}>Selected work</a>
       <a href="/ai" ${route === '/ai' ? 'aria-current="page"' : ''}>AI</a>
       <a href="/videos" ${route === '/videos' ? 'aria-current="page"' : route.startsWith('/videos/') ? 'aria-current="location"' : ''}>Videos</a>
@@ -37,6 +38,25 @@ function footer() {
       <span class="footer-credit">© ${new Date().getFullYear()} David Morrison</span>
     </div>`;
 }
+
+// Phones fold the navigation into a menu. Choosing a link, pressing Escape or tapping outside closes it.
+const headerElement = document.querySelector('#header');
+function setMenu(open, {focus = false} = {}) {
+  const toggle = headerElement.querySelector('.menu-toggle');
+  headerElement.classList.toggle('is-open', open);
+  toggle?.setAttribute('aria-expanded', String(open));
+  if (focus) toggle?.focus();
+}
+headerElement.addEventListener('click', event => {
+  if (event.target.closest('.menu-toggle')) setMenu(!headerElement.classList.contains('is-open'));
+  else if (event.target.closest('a')) setMenu(false);
+});
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && headerElement.classList.contains('is-open')) setMenu(false, {focus: true});
+});
+document.addEventListener('pointerdown', event => {
+  if (headerElement.classList.contains('is-open') && !headerElement.contains(event.target)) setMenu(false);
+});
 
 let renderedRoute;
 function render() {

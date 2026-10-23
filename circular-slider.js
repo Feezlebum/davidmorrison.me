@@ -145,6 +145,9 @@ export function mountCircularSlider(root, initialSlug, onSelect) {
     }
   };
   const onCancel = event => { if (drag && event.pointerId === drag.pointerId) cancelDrag(true); };
+  // Touch input is implicitly captured by the card under the finger. Taking capture for the track makes that card
+  // lose it, and its lostpointercapture bubbles here; only the track's own loss ends a drag.
+  const onLostCapture = event => { if (event.target === track) onCancel(event); };
   const onClick = event => {
     if (!active) return;
     if (suppressClick && event.detail !== 0 && track.contains(event.target) && (event.pointerId === undefined || event.pointerId === suppressClick.pointerId)) {
@@ -184,7 +187,7 @@ export function mountCircularSlider(root, initialSlug, onSelect) {
   window.addEventListener('pointermove', onMove, {passive: false});
   window.addEventListener('pointerup', onUp);
   window.addEventListener('pointercancel', onCancel);
-  track.addEventListener('lostpointercapture', onCancel);
+  track.addEventListener('lostpointercapture', onLostCapture);
   track.addEventListener('dragstart', onNativeDrag);
   previous?.addEventListener('click', onPrevious);
   next?.addEventListener('click', onNext);
@@ -213,7 +216,7 @@ export function mountCircularSlider(root, initialSlug, onSelect) {
       window.removeEventListener('pointermove', onMove);
       window.removeEventListener('pointerup', onUp);
       window.removeEventListener('pointercancel', onCancel);
-      track.removeEventListener('lostpointercapture', onCancel);
+      track.removeEventListener('lostpointercapture', onLostCapture);
       track.removeEventListener('dragstart', onNativeDrag);
       previous?.removeEventListener('click', onPrevious);
       next?.removeEventListener('click', onNext);
