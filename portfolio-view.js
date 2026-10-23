@@ -53,8 +53,25 @@ export function renderHome() {
       </div>
     </section>
     <section class="explorer-about" id="about" aria-labelledby="about-title"><h2 id="about-title">About</h2><div><p>I’m David Morrison, a UK-based social and creative marketing lead. I’ve spent eight years at crypto and fintech startups, where small teams meant hands-on work across nearly every stage of the funnel: positioning, social, creative campaigns, launches, community and support.</p><p>At NEAR Foundation I rose from Community Lead to Head of Creative Campaigns & Social Media. I now lead social for special projects at Douro Labs.</p><p>I’m at home on a stage, too. I hosted NEARCON every year from 2022 to 2024, moderated a conversation with Edward Snowden at [REDACTED] 2024, and speak regularly at crypto events around the world. <a href="/videos/speaking">Watch the talks</a>.</p><a class="quiet-link" href="/resume">Experience & background <span aria-hidden="true">${icon('up-right')}</span></a></div></section>
+    <section class="explorer-about explorer-testimonials" id="testimonials" aria-labelledby="testimonials-title"><h2 id="testimonials-title">Testimonials</h2><div>${testimonials.map(testimonial).join('')}</div></section>
   </div>`;
 }
+
+// Quotes are verbatim and link to where they were said.
+const testimonials = [
+  {
+    quote: 'NEAR’s social media hype machine effectively sold to the world that their system was a) developed by them and did not infringe any rights, and b) was decentralized and safe.',
+    name: 'Dominic Williams',
+    role: 'Founder, ICP',
+    photo: '/images/testimonials/dominic-williams.webp',
+    source: {label: 'On X, 22 October 2026', url: 'https://x.com/dominic_w/status/2113261945671320015'},
+  },
+];
+
+const testimonial = item => `<figure class="testimonial">
+      <blockquote><p>“${escape(item.quote)}”</p></blockquote>
+      <figcaption><img src="${escape(item.photo)}" alt="" width="96" height="96" loading="lazy" decoding="async"><span><strong>${escape(item.name)}</strong> ${escape(item.role)}<a href="${escape(item.source.url)}" target="_blank" rel="noopener noreferrer">${escape(item.source.label)}<span class="sr-only"> (opens in a new tab)</span></a></span></figcaption>
+    </figure>`;
 
 let dispose = () => {};
 export function mountHome(root = null) {

@@ -11,7 +11,7 @@ const caseStudy = (slug, label) => `<a href="/work/${escape(slug)}">${escape(lab
 const experience = [
   {
     company: 'Douro Labs',
-    role: 'Social Lead, Special Projects',
+    role: 'Head of Social, Special Projects',
     dates: 'May 2025 – Present',
     points: [
       'Own social strategy, voice and daily output for special projects across Layer 1 infrastructure and onchain perpetuals.',

@@ -43,3 +43,17 @@
 @media(max-width:350px){.project-index ul{column-gap:12px}.project-index-name{font-size:var(--text-meta)}}
 
 
+
+/* Testimonials sit under About in the same two-column frame: the quote large, the speaker small beneath it. */
+.explorer-testimonials{margin-top:0}
+.testimonial{margin:0}
+.testimonial + .testimonial{margin-top:var(--space-12)}
+.testimonial blockquote{margin:0}
+.testimonial blockquote p{font-size:clamp(1.375rem,2.1vw,1.875rem);line-height:1.3;letter-spacing:-.025em;text-indent:-.4em}
+.testimonial figcaption{display:flex;align-items:center;gap:var(--space-4);margin-top:var(--space-6);font-size:var(--text-secondary);color:var(--muted)}
+.testimonial img{flex:none;width:48px;height:48px;border-radius:50%;object-fit:cover;background:var(--line)}
+.testimonial figcaption > span{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.5em}
+.testimonial strong{font-weight:500;color:var(--ink)}
+.testimonial figcaption a{flex-basis:100%;width:fit-content;min-height:32px;display:inline-flex;align-items:center;font-size:var(--text-meta);color:var(--muted)}
+.testimonial figcaption a:hover{color:var(--ink)}
+@media(max-width:700px){.explorer-testimonials{margin-top:0}.testimonial blockquote p{font-size:1.25rem}}
