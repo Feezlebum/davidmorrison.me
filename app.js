@@ -10,6 +10,7 @@ import { renderVideos } from './videos-view.js';
 import { renderMotion, mountMotion } from './motion-view.js';
 import { renderSlop, mountSlop } from './slop-view.js';
 import { renderSpeaking, mountSpeaking } from './speaking-view.js';
+import { renderAi, mountAi } from './ai-view.js';
 
 const main = document.querySelector('#main');
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
@@ -20,6 +21,7 @@ function header(route) {
     <a class="identity" href="/" aria-label="David Morrison, home">David Morrison</a>
     <nav aria-label="Main navigation" class="header-links">
       <a href="/#work" ${route.startsWith('/work/') || ['/before', '/after'].includes(route) ? 'aria-current="location"' : ''}>Selected work</a>
+      <a href="/ai" ${route === '/ai' ? 'aria-current="page"' : ''}>AI</a>
       <a href="/videos" ${route === '/videos' ? 'aria-current="page"' : route.startsWith('/videos/') ? 'aria-current="location"' : ''}>Videos</a>
       <a href="/#about">About</a>
       <a href="/resume" ${route === '/resume' ? 'aria-current="page"' : ''}>Resume</a>
@@ -45,6 +47,7 @@ function render() {
   document.body.classList.toggle('fogo-theme', route === '/work/fogo-launch');
   document.body.classList.toggle('profile-theme', route === '/work/near-profile-transformation');
   document.body.classList.toggle('egg-theme', route === '/work/near-egg');
+  document.body.classList.toggle('ai-theme', route === '/ai');
   document.body.classList.toggle('home-route', route === '/');
   document.body.classList.toggle('videos-route', route === '/videos' || route.startsWith('/videos/'));
   document.body.classList.toggle('vox-route', route === '/videos/vox');
@@ -57,6 +60,8 @@ function render() {
     html = renderHome(); title = 'David Morrison — Selected work';
   } else if (route === '/resume') {
     html = renderResume(); title = 'Resume — David Morrison';
+  } else if (route === '/ai') {
+    html = renderAi(); title = 'AI — David Morrison';
   } else if (route === '/videos') {
     html = renderVideos();
     title = 'Videos — David Morrison';
@@ -91,13 +96,14 @@ function render() {
   mountMotion(document.querySelector('.md-page'));
   mountSlop(document.querySelector('.sl-page'));
   mountSpeaking(document.querySelector('.sp-page'));
+  mountAi(document.querySelector('.ai-page'));
   document.title = title;
   const descriptions = {
     'near-ai-film': 'An AI-generated NEAR film, released in September 2024.',
     'slx-ai-reference': 'An AI-generated introduction film for Superluminal, released in June 2026.',
   };
-  document.querySelector('meta[name="description"]').content = descriptions[currentProject?.slug] || currentProject?.summary || (route === '/videos' ? 'Videos — David Morrison.' : route === '/videos/vox' ? 'VOX: short paper-collage explainer films by David Morrison.' : route === '/videos/motion-design' ? 'Motion design by David Morrison.' : route === '/videos/slop' ? 'Slop: AI experiments and unfinished films by David Morrison.' : route === '/videos/speaking' ? 'Speaking: talks, interviews and hosting by David Morrison, from ETHDenver to Edward Snowden.' : route === '/resume' ? 'David Morrison’s resume. Head of Creative Campaigns & Social Media at NEAR Foundation; now leading social for special projects at Douro Labs.' : route === '/before' ? 'Selected campaigns for NEAR and Fogo.' : route === '/after' ? 'Selected AI-generated films for NEAR and Superluminal.' : 'David Morrison: eight years leading social, creative campaigns and community for crypto and fintech startups. Selected work for NEAR, Fogo and Superluminal.');
-  const themeColors = {'/work/near-hijack':'#060a08','/work/fogo-launch':'#120a12','/work/near-profile-transformation':'#000000','/work/near-egg':'#f4eef6'};
+  document.querySelector('meta[name="description"]').content = descriptions[currentProject?.slug] || currentProject?.summary || (route === '/ai' ? 'AI: films David Morrison made with AI, the pipeline behind them, and the strategy and products around them.' : route === '/videos' ? 'Videos — David Morrison.' : route === '/videos/vox' ? 'VOX: short paper-collage explainer films by David Morrison.' : route === '/videos/motion-design' ? 'Motion design by David Morrison.' : route === '/videos/slop' ? 'Slop: AI experiments and unfinished films by David Morrison.' : route === '/videos/speaking' ? 'Speaking: talks, interviews and hosting by David Morrison, from ETHDenver to Edward Snowden.' : route === '/resume' ? 'David Morrison’s resume. Head of Creative Campaigns & Social Media at NEAR Foundation; now leading social for special projects at Douro Labs.' : route === '/before' ? 'Selected campaigns for NEAR and Fogo.' : route === '/after' ? 'Selected AI-generated films for NEAR and Superluminal.' : 'David Morrison: eight years leading social, creative campaigns and community for crypto and fintech startups. Selected work for NEAR, Fogo and Superluminal.');
+  const themeColors = {'/work/near-hijack':'#060a08','/work/fogo-launch':'#120a12','/work/near-profile-transformation':'#000000','/work/near-egg':'#f4eef6','/ai':'#0c0d10'};
   document.querySelector('meta[name="theme-color"]').content = themeColors[route] || '#f8f8f5';
   if (location.hash) requestAnimationFrame(() => document.getElementById(location.hash.slice(1))?.scrollIntoView());
 }

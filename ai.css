@@ -1,0 +1,130 @@
+/* AI: a node graph on a dark canvas, the way AI pipelines are built. Nodes are coloured by kind, wires run between real
+   ports and carry a signal, the final cut fans out to the films, and the title denoises like a generation settling. */
+.ai-theme{--paper:#0c0d10;--ink:#eceef2;--muted:#9aa0ab;--line:#262931;--accent:#c6f432;background:var(--paper);color:var(--ink)}
+.ai-theme .site-header,.ai-theme .portfolio-footer{--paper:#0c0d10;--ink:#eceef2;--muted:#9aa0ab;--line:#262931}
+.ai-theme .portfolio-footer{background:transparent}
+.ai-theme ::selection{background:#c6f432;color:#0c0d10}
+
+.ai-page{--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--node:#15171c;--edge:#2a2e37;overflow:clip;background:radial-gradient(circle,#24272f 1px,transparent 1.3px) 0 0/24px 24px}
+.ai-defs{position:absolute;width:0;height:0}
+.ai-canvas{position:relative;isolation:isolate;padding-bottom:clamp(56px,8vw,120px)}
+.ai-wires{position:absolute;z-index:0;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.ai-hero,.ai-section{position:relative;z-index:1}
+
+/* Kinds. */
+.ai-node--input,.ai-wire--input{--k:#f5b83d}
+.ai-node--generate,.ai-wire--generate{--k:#a58bff}
+.ai-node--audio,.ai-wire--audio{--k:#3ad6c5}
+.ai-node--check,.ai-wire--check{--k:#ff6b5a}
+.ai-node--output,.ai-wire--output{--k:#c6f432}
+
+/* Hero: the title denoises from displacement noise over thirty steps, then rests. Hover runs it again. */
+.ai-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);gap:clamp(32px,6vw,110px);align-items:end;padding-block:clamp(32px,5vw,72px) clamp(56px,7vw,104px)}
+.ai-title-wrap{position:relative}
+.ai-title{--clean:1;font-size:clamp(150px,27vw,430px);font-weight:600;line-height:.78;letter-spacing:-.07em;margin-left:-.04em;color:color-mix(in srgb,var(--ink) calc(var(--clean) * 100%),#3c404b);width:fit-content;cursor:default}
+.ai-title.is-noisy{filter:url(#ai-denoise)}
+.ai-steps{margin-top:clamp(14px,1.6vw,24px);font:12px/1 var(--mono);color:var(--muted);letter-spacing:.04em}
+.ai-steps span{color:var(--accent);font-variant-numeric:tabular-nums}
+.ai-hero-copy > p{font-size:clamp(16px,1.25vw,19px);line-height:1.55;color:var(--muted);max-width:56ch}
+.ai-hero-copy > p:first-child{color:var(--ink)}
+
+/* Nodes. */
+.ai-node{position:relative;padding:16px 18px 18px;background:var(--node);border:1px solid var(--edge);border-radius:12px;box-shadow:0 18px 40px -18px rgba(0,0,0,.7);transition:translate .35s cubic-bezier(.16,1,.3,1),border-color .35s}
+.ai-node::before{content:"";position:absolute;inset:-1px -1px auto;height:3px;border-radius:12px 12px 0 0;background:var(--k)}
+.ai-node:hover{translate:0 -3px;border-color:color-mix(in srgb,var(--k) 45%,var(--edge))}
+.ai-node-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px;font:11px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ai-node-kind{display:inline-flex;align-items:center;gap:8px}
+.ai-node-kind::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--k);box-shadow:0 0 10px var(--k)}
+.ai-node h3{font-size:clamp(19px,1.5vw,23px);font-weight:500;line-height:1.2;letter-spacing:-.02em}
+.ai-node h3 + p{margin-top:8px;font-size:14px;line-height:1.5;color:var(--muted)}
+.ai-node a{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:6px;font-size:14px;color:var(--ink);text-decoration:none}
+.ai-node a svg{width:13px;height:13px;fill:none;stroke:var(--k);stroke-width:1.6;stroke-linecap:round;transition:translate .25s}
+.ai-node a:hover{text-decoration:underline;text-underline-offset:4px}
+.ai-node a:hover svg{translate:2px -2px}
+.ai-node a:focus-visible{outline-color:var(--k)}
+
+/* Ports sit on the node's edge. --dir is the way a wire leaves them; ai-view.js reads it to bend the curve. */
+.ai-port{position:absolute;z-index:2;width:12px;height:12px;translate:-50% -50%;border-radius:50%;background:var(--paper);border:2px solid var(--k);box-shadow:0 0 0 3px var(--paper)}
+.ai-port--in{--dir:left;left:0;top:50%}
+.ai-port--out{--dir:right;left:100%;top:50%}
+.ai-port--fan{--dir:down;left:50%;top:100%}
+.ai-port--retake{--dir:up;left:50%;top:0}
+.ai-port--back{--dir:down;left:50%;top:100%;border-color:#ff6b5a}
+
+.ai-kit{margin-top:28px}
+.ai-kit .ai-port--out{--dir:down;left:50%;top:100%}
+.ai-kit ul{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.ai-kit li{padding:6px 11px;border:1px solid var(--edge);border-radius:999px;font-size:14px;background:#1b1e24}
+
+/* Section labels. */
+.ai-label{display:flex;align-items:center;gap:14px;margin-bottom:clamp(22px,2.6vw,36px);font-size:clamp(24px,2.4vw,36px);font-weight:500;letter-spacing:-.03em}
+.ai-label::before{content:"";width:10px;height:10px;border:2px solid var(--accent);border-radius:3px;rotate:45deg}
+.ai-section + .ai-section{margin-top:clamp(64px,8vw,128px)}
+
+/* Pipeline: four across, snaking back along the second row like a real graph. */
+.ai-pipeline{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(36px,4vw,64px) clamp(44px,5vw,88px)}
+.ai-pipeline > :first-child .ai-port--in{--dir:up;left:50%;top:0}
+.ai-pipeline > :nth-child(5){grid-area:2/4}
+.ai-pipeline > :nth-child(6){grid-area:2/3}
+.ai-pipeline > :nth-child(7){grid-area:2/2}
+.ai-pipeline > :nth-child(8){grid-area:2/1}
+.ai-pipeline > :nth-child(n+5) .ai-port--in{--dir:right;left:100%}
+.ai-pipeline > :nth-child(n+5) .ai-port--out{--dir:left;left:0}
+
+/* Films: justified rows. Each node grows by its film's aspect ratio, so every film in a row is the same height.
+   The header is the film's progress bar while it plays. */
+.ai-films{display:grid;gap:clamp(28px,3vw,44px)}
+.ai-film-row{display:flex;gap:clamp(20px,2.4vw,36px);align-items:stretch}
+.ai-film{--p:0;flex:calc(var(--ar)) 1 0;min-width:0;display:flex;flex-direction:column;padding:12px 12px 6px}
+.ai-film .ai-port--in{--dir:up;left:32px;top:0}
+.ai-film .ai-node-head{margin:-4px -4px 10px;padding:4px;border-radius:6px;background:linear-gradient(90deg,color-mix(in srgb,var(--k) 22%,transparent) calc(var(--p) * 100%),transparent 0)}
+.ai-status{font-variant-numeric:tabular-nums}
+.ai-film.is-playing .ai-status{color:var(--k)}
+.ai-screen video{display:block;width:100%;height:auto;aspect-ratio:var(--ar);background:#000;border-radius:7px}
+.ai-film-foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4px 18px;padding:12px 4px 0}
+.ai-film-foot h3{font-size:clamp(16px,1.2vw,19px)}
+.ai-film-foot p{margin-top:2px;font-size:13px;color:var(--muted)}
+.ai-film-foot a{margin-top:0;font-size:13px}
+.ai-film.is-playing{border-color:color-mix(in srgb,var(--k) 55%,var(--edge))}
+
+/* Strategy and products. */
+.ai-builds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.4vw,36px)}
+.ai-build{display:flex;flex-direction:column}
+.ai-build p:last-of-type{flex:1}
+
+/* Wires: the cable draws in, then a signal runs along it. A playing film's wire runs hot. */
+.ai-cable,.ai-signal{fill:none;stroke:var(--k);stroke-linecap:round}
+.ai-cable{stroke-width:2;stroke-opacity:.45;stroke-dasharray:1;transition:stroke-dashoffset 1.1s cubic-bezier(.65,0,.35,1) calc(var(--i) * 110ms),stroke-opacity .3s,stroke-width .3s}
+.ai-signal{stroke-width:3;stroke-dasharray:.03 .97;opacity:0;transition:opacity .4s calc(var(--i) * 110ms + 1s)}
+.ai-wire--retake .ai-cable{stroke-opacity:.35}
+.is-armed .ai-cable{stroke-dashoffset:1}
+.is-live .ai-signal{opacity:1;animation:ai-flow 3.4s linear infinite;animation-delay:calc(var(--i) * -430ms)}
+.ai-wire.is-playing .ai-cable{stroke-opacity:1;stroke-width:2.5}
+.ai-wire.is-playing .ai-signal{animation-duration:1.1s}
+@keyframes ai-flow{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+
+/* Narrower: the pipeline goes two across and the films stack, each at its own width. */
+@media (max-width:1099px){
+  .ai-hero{grid-template-columns:1fr;align-items:start}
+  .ai-pipeline{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ai-pipeline > :nth-child(n){grid-area:auto}
+  .ai-pipeline > :nth-child(n+5) .ai-port--in{--dir:left;left:0}
+  .ai-pipeline > :nth-child(n+5) .ai-port--out{--dir:right;left:100%}
+  .ai-pipeline > :nth-child(5) .ai-port--retake{left:50%}
+  .ai-film-row{flex-direction:column;align-items:center}
+  .ai-film{flex:none;width:min(100%,860px)}
+  .ai-film--tall{width:min(100%,380px)}
+  .ai-builds{grid-template-columns:1fr;max-width:640px}
+}
+/* Phones: one column, wires run top to bottom, and the retake loop is left out. */
+@media (max-width:640px){
+  .ai-pipeline{grid-template-columns:1fr;gap:40px}
+  .ai-pipeline .ai-port--in,.ai-pipeline > :nth-child(n+5) .ai-port--in{--dir:up;left:50%;top:0}
+  .ai-pipeline .ai-port--out,.ai-pipeline > :nth-child(n+5) .ai-port--out{--dir:down;left:50%;top:100%}
+  .ai-port--retake,.ai-port--back{display:none}
+  .ai-pipeline .ai-port--fan{left:70%}
+  .ai-film{padding:10px 10px 4px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ai-title{filter:none}
+}
