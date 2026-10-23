@@ -32,9 +32,30 @@ function projectLink(entry, selected) {
   return `<li class="circular-project"><a class="project-index-link" data-project="${escape(entry.slug)}" href="/work/${escape(entry.slug)}" aria-label="${escape(entry.title)}" draggable="false" ${selected ? 'aria-current="true"' : ''}><span class="project-index-thumbnail" aria-hidden="true"><img src="${escape(entry.thumbnail.path)}" alt="" width="${entry.thumbnail.width}" height="${entry.thumbnail.height}" draggable="false" decoding="async"></span><span class="project-index-name sr-only">${escape(entry.title)}</span></a></li>`;
 }
 
+// The intro reel opens the page, under the header. Its captions are burned in, so it plays muted in a loop;
+// "Watch with sound" restarts it with sound and native controls. Reduced motion and Save Data leave it on its poster.
+const heroIcons = {
+  sound: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6h2.5L8 3v10L4.5 10H2z"/><path d="M10.5 5.5a3.5 3.5 0 0 1 0 5M12 3.5a6 6 0 0 1 0 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>',
+  pause: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 3h3v10H4zM9 3h3v10H9z"/></svg>',
+  play: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.5v11L13 8z"/></svg>',
+};
+
+const hero = `<section class="home-hero" aria-label="Intro film">
+    <div class="home-hero-frame">
+      <video muted loop playsinline preload="metadata" poster="/images/home/intro-poster.webp" width="1280" height="720" aria-label="Intro film">
+        <source src="/media/home/intro.mp4" type="video/mp4">
+      </video>
+      <div class="home-hero-controls">
+        <button type="button" data-hero-sound>${heroIcons.sound}Watch with sound</button>
+        <button type="button" class="home-hero-toggle" data-hero-toggle aria-label="Play intro film">${heroIcons.play}</button>
+      </div>
+    </div>
+  </section>`;
+
 export function renderHome() {
   const active = entries.find(entry => entry.slug === selectedSlug) || entries[0];
-  return `<div class="portfolio-home page-wrap">
+  return `${hero}
+  <div class="portfolio-home page-wrap">
     <section class="project-explorer" id="work" aria-labelledby="portfolio-title">
       <h1 id="portfolio-title" class="sr-only">David Morrison — Selected work</h1>
       <nav class="circular-slider" data-circular-slider aria-label="Projects" aria-roledescription="carousel" aria-describedby="carousel-instructions">
@@ -89,6 +110,38 @@ const testimonial = item => `<figure class="testimonial">
       <figcaption><img src="${escape(item.photo)}" alt="" width="96" height="96" loading="lazy" decoding="async"><span><strong>${escape(item.name)}</strong> ${escape(item.role)}<span class="testimonial-links">${item.context ? `<a href="${escape(item.context.href)}">${escape(item.context.label)}</a>` : ''}<a href="${escape(item.source.url)}" target="_blank" rel="noopener noreferrer">${escape(item.source.label)}<span class="sr-only"> (opens in a new tab)</span></a></span></span></figcaption>
     </figure>`;
 
+// Plays only while on screen and the tab is visible. A pause the visitor chooses sticks; one we make doesn't.
+function mountHero(section) {
+  if (!section) return () => {};
+  const video = section.querySelector('video');
+  const toggle = section.querySelector('[data-hero-toggle]');
+  const sound = section.querySelector('[data-hero-sound]');
+  let wanted = !(matchMedia('(prefers-reduced-motion: reduce)').matches || navigator.connection?.saveData);
+  let visible = false;
+  const label = () => {
+    toggle.setAttribute('aria-label', `${wanted ? 'Pause' : 'Play'} intro film`);
+    toggle.innerHTML = wanted ? heroIcons.pause : heroIcons.play;
+  };
+  const sync = () => {
+    if (wanted && visible && !document.hidden) video.play().catch(() => { wanted = false; label(); });
+    else if (!video.paused) video.pause();
+  };
+  toggle.addEventListener('click', () => { wanted = !wanted; label(); sync(); });
+  sound.addEventListener('click', () => {
+    Object.assign(video, {currentTime: 0, muted: false, loop: false, controls: true});
+    section.classList.add('has-sound');
+    wanted = true;
+    sync();
+  });
+  video.addEventListener('play', () => { wanted = true; label(); });
+  video.addEventListener('pause', () => { if (visible && !document.hidden) { wanted = false; label(); } });
+  const watch = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, {threshold: 0.25});
+  watch.observe(section);
+  document.addEventListener('visibilitychange', sync);
+  label();
+  return () => { watch.disconnect(); document.removeEventListener('visibilitychange', sync); video.pause(); };
+}
+
 let dispose = () => {};
 export function mountHome(root = null) {
   dispose();
@@ -104,6 +157,7 @@ export function mountHome(root = null) {
     slider?.select(slug);
   });
   slider = mountCircularSlider(root.querySelector('[data-circular-slider]'), selectedSlug, slug => preview.select(slug));
-  dispose = () => { slider.dispose(); preview(); };
+  const stopHero = mountHero(document.querySelector('.home-hero'));
+  dispose = () => { slider.dispose(); preview(); stopHero(); };
 }
 
